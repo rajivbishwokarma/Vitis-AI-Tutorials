@@ -102,7 +102,7 @@ sudo docker commit -m"new image: added keras 2.2.4 and pandas, seaborn, matplotl
        5310263294ba xilinx/vitis-ai:tools-1.0.0-cpu
 ```
 
-For the sake of clarity, all the Python3.6 packages used in this tutorial are listed in the [vitis_ai_tf_tools_requirements.txt](doc/vitis_ai_tf_tools_requirements.txt). Most of them are already pre-installed in the original container and you only need to install the few missing ones listed previously (nevertheless, if you want to re-install all of them, from the python3.6 virtual environment run the command ``pip install -r ./doc/vitis_ai_tf_tools_requirements.txt``).
+For the sake of clarity, all the Python3.6 packages used in this tutorial are listed in the [vitis_ai_tf_tools_requirements.txt](doc/vitis_ai_tf_tools_requirements.txt). Most of them are already pre-installed in the original container and you only need to install the few missing ones listed previously (nevertheless, if you want to re-install all of them, from the python3.6 virtual environment run the command ``pip install -r ./files/doc/vitis_ai_tf_tools_requirements.txt``).
 
 You can launch this modified tools container by running the following command from the ``<WRK_DIR>`` folder:
 ```bash
