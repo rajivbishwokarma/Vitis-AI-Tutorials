@@ -1,0 +1,1956 @@
+/**
+
+* © Copyright (C) 2016-2020 Xilinx, Inc
+*
+* Licensed under the Apache License, Version 2.0 (the "License"). You may
+* not use this file except in compliance with the License. A copy of the
+* License is located at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations
+* under the License.
+*/
+
+
+
+
+##################################################################################
+Step1: CREATE DATA AND FOLDERS
+##################################################################################
+
+Archive:  ./workspace/../dataset1.zip
+   creating: ./workspace/dataset1/annotations_prepped_test/
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08085.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08039.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07995.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08067.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08073.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08123.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08159.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08157.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08047.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08075.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08121.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08053.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08119.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08103.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07981.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08051.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07973.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08059.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08105.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08153.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08127.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08011.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07989.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07997.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08015.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08139.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08095.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07993.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08061.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07985.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08081.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08071.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08001.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08007.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08143.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07969.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08089.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08055.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08035.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08107.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08025.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08023.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08077.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08125.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08041.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08115.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08017.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08141.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08043.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08117.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08079.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08013.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08135.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08003.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07987.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08113.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08129.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07977.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08045.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07971.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08101.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07967.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08063.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08065.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08133.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08111.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07991.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08021.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08005.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07999.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07963.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08151.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07961.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08145.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08027.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08037.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08099.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08019.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08031.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08091.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08097.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08029.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08155.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08069.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07975.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07965.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07959.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08109.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08131.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08083.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08049.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08147.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08137.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08087.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08033.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07983.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08057.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_07979.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08009.png
+ extracting: ./workspace/dataset1/annotations_prepped_test/0016E5_08093.png
+  inflating: ./workspace/dataset1/annotations_prepped_test/0016E5_08149.png
+   creating: ./workspace/dataset1/images_prepped_train/
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01740.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02910.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01170.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06390.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03870.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01440.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008520.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03120.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006840.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06750.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02820.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04860.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006930.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02640.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04530.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04380.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008220.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01890.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05280.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05250.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04890.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01320.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03810.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007020.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01080.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00720.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03390.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05730.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008490.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01470.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02040.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007830.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06960.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01590.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01860.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007650.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00630.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007860.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07080.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06930.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08490.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01050.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03720.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01500.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02130.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06360.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08550.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07740.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08250.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02580.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01260.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07920.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05670.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06270.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007440.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02160.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07800.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007770.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007110.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007140.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00990.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02310.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05100.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05760.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07890.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007230.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06570.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006870.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00750.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03510.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05400.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08370.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02520.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00690.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01230.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08310.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007320.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02370.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06330.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05040.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01530.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07290.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02460.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f00990.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006990.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00480.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008190.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05790.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02340.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08400.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01950.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07170.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01650.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04740.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03480.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03180.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05850.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02250.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008130.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01770.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05370.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06000.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06840.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00600.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006900.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05220.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02190.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07500.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06510.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08220.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05340.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008100.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007530.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03780.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04410.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03660.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03150.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07050.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05550.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08640.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05010.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03300.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05640.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008310.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05310.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02850.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08610.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04440.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01920.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04500.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02310.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06600.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007050.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00450.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008010.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01350.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05880.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04650.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01080.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05970.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06150.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008460.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01830.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02760.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07560.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00840.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007410.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03060.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01800.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01860.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05430.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07770.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03600.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03030.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00660.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06450.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02040.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01410.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007800.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01380.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007350.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01560.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01980.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01710.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04800.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02430.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07620.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03540.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007740.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06990.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01680.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01290.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05070.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04620.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02790.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007590.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07860.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03840.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04950.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02250.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007950.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04470.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02220.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05490.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05820.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02340.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02130.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008340.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008160.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07260.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006780.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007170.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07350.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00570.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06720.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08190.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08580.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01020.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01440.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008400.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07320.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01350.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02280.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01050.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01200.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01890.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04770.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f00960.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05700.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01560.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01410.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05190.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06210.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01020.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007500.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01770.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06780.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03210.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03900.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06120.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07830.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01110.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03750.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00510.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007200.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02280.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008280.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01470.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07110.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01620.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01530.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06540.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06180.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03330.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07380.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06240.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07200.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06300.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07140.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05910.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01140.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02940.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04680.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07470.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02670.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008370.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01200.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06870.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03450.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00390.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01710.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03240.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07590.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00960.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02370.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007620.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05520.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08460.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02100.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05610.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00870.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08430.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01290.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00420.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007920.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06060.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01260.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02970.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07230.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02070.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07410.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02730.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02220.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01680.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01650.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06420.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02010.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01590.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007080.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03930.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03270.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01620.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006750.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03570.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03420.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f00930.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007890.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01140.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05580.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02400.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06630.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04560.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01230.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04830.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08280.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05130.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06030.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07680.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008430.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01920.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007710.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07440.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007380.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03090.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05940.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02880.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08520.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05160.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01170.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007680.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01980.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00780.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00901.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01830.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03690.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006690.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03360.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01950.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06090.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04350.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008040.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03630.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01740.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07530.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07650.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00930.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02070.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01320.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00540.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01800.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02160.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02100.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02700.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02400.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07020.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008070.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f03000.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06900.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04710.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007560.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007290.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_008250.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06480.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007980.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01500.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_08340.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02550.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007470.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006810.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006960.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_00810.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04590.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02490.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_05460.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02610.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_07710.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_006720.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06810.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_01380.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_02010.png
+  inflating: ./workspace/dataset1/images_prepped_train/0001TP_007260.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f02190.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06660.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04920.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_06690.png
+  inflating: ./workspace/dataset1/images_prepped_train/0016E5_04980.png
+  inflating: ./workspace/dataset1/images_prepped_train/0006R0_f01110.png
+   creating: ./workspace/dataset1/annotations_prepped_train/
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01740.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02910.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01170.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06390.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f03870.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01440.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008520.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03120.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006840.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06750.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02820.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04860.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006930.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02640.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04530.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04380.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008220.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01890.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05280.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05250.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04890.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01320.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f03810.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007020.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01080.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00720.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03390.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05730.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008490.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01470.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02040.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007830.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06960.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01590.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01860.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007650.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00630.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007860.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07080.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06930.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08490.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01050.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03720.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01500.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02130.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06360.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_08550.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07740.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08250.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02580.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01260.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07920.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05670.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06270.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007440.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02160.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07800.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007770.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007110.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007140.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00990.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02310.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05100.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05760.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07890.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007230.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06570.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006870.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_00750.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03510.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05400.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08370.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f02520.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00690.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01230.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_08310.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007320.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02370.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06330.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05040.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01530.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07290.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02460.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f00990.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006990.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00480.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008190.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05790.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02340.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08400.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01950.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07170.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01650.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04740.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03480.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03180.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_05850.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02250.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008130.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01770.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05370.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06000.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06840.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00600.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006900.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05220.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02190.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07500.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06510.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08220.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_05340.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008100.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007530.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03780.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04410.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03660.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03150.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07050.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05550.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08640.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05010.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f03300.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05640.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008310.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05310.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02850.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08610.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04440.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01920.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04500.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02310.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06600.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007050.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00450.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008010.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01350.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05880.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04650.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01080.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_05970.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06150.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008460.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01830.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02760.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07560.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00840.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007410.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03060.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01800.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01860.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05430.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07770.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03600.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03030.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00660.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06450.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f02040.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01410.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0001TP_007800.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01380.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007350.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01560.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01980.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01710.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04800.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02430.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07620.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03540.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007740.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06990.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01680.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01290.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05070.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_04620.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02790.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007590.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07860.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f03840.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04950.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02250.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007950.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04470.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02220.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05490.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_05820.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02340.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02130.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008340.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008160.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07260.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006780.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007170.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07350.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00570.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06720.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08190.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08580.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01020.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01440.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008400.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07320.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01350.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02280.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01050.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01200.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01890.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04770.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f00960.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05700.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f01560.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01410.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05190.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06210.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01020.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007500.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01770.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06780.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03210.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f03900.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06120.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07830.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01110.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03750.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00510.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007200.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02280.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008280.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01470.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07110.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01620.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01530.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06540.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06180.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03330.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07380.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06240.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07200.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06300.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07140.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_05910.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01140.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02940.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04680.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07470.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02670.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008370.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01200.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06870.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03450.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00390.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01710.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03240.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07590.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00960.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02370.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007620.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05520.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08460.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02100.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05610.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00870.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_08430.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01290.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_00420.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007920.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06060.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01260.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02970.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07230.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_02070.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07410.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02730.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02220.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01680.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01650.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06420.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f02010.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01590.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0001TP_007080.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0006R0_f03930.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03270.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01620.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006750.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03570.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03420.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f00930.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007890.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01140.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05580.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02400.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06630.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04560.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01230.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04830.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_08280.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05130.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_06030.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07680.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008430.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01920.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007710.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07440.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007380.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03090.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05940.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02880.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_08520.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_05160.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_01170.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0001TP_007680.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01980.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00780.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00901.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01830.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03690.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006690.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03360.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01950.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06090.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_04350.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008040.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03630.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01740.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_07530.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07650.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00930.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02070.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01320.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00540.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01800.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_02160.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02100.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02700.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_02400.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07020.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008070.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f03000.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06900.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04710.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007560.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007290.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_008250.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06480.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007980.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01500.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_08340.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02550.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007470.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006810.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0001TP_006960.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_00810.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04590.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02490.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_05460.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02610.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_07710.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_006720.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06810.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0016E5_01380.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_02010.png
+ extracting: ./workspace/dataset1/annotations_prepped_train/0001TP_007260.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f02190.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06660.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04920.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_06690.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0016E5_04980.png
+  inflating: ./workspace/dataset1/annotations_prepped_train/0006R0_f01110.png
+   creating: ./workspace/dataset1/images_prepped_test/
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08085.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08039.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07995.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08067.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08073.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08123.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08159.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08157.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08047.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08075.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08121.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08053.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08119.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08103.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07981.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08051.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07973.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08059.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08105.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08153.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08127.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08011.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07989.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07997.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08015.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08139.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08095.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07993.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08061.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07985.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08081.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08071.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08001.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08007.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08143.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07969.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08089.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08055.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08035.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08107.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08025.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08023.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08077.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08125.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08041.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08115.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08017.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08141.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08043.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08117.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08079.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08013.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08135.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08003.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07987.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08113.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08129.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07977.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08045.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07971.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08101.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07967.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08063.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08065.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08133.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08111.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07991.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08021.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08005.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07999.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07963.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08151.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07961.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08145.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08027.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08037.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08099.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08019.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08031.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08091.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08097.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08029.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08155.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08069.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07975.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07965.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07959.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08109.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08131.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08083.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08049.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08147.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08137.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08087.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08033.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07983.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08057.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_07979.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08009.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08093.png
+  inflating: ./workspace/dataset1/images_prepped_test/0016E5_08149.png
+
+2020-02-11 03:59:49.752291: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-11 03:59:49.842480: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 22.92GiB
+2020-02-11 03:59:49.842498: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-11 03:59:50.383774: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-11 03:59:50.383794: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-11 03:59:50.383798: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-11 03:59:50.384413: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 20768 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+
+
+python 3.6.10 |Anaconda, Inc.| (default, Jan  7 2020, 21:14:29)
+[GCC 7.3.0]
+keras version 2.2.4
+tensorflow version 1.12.0
+channels_last
+
+
+written 311 training images
+written 104 calibr.  images
+written  56 valid.   images
+written 101 test     images
+
+##################################################################################
+Step2a: TRAINING
+##################################################################################
+
+2020-02-11 04:00:02.964126: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-11 04:00:03.059886: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 22.94GiB
+2020-02-11 04:00:03.059905: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-11 04:00:03.581976: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-11 04:00:03.581995: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-11 04:00:03.581998: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-11 04:00:03.582587: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 20768 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+UPSCALE =  False
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+input_1 (InputLayer)            (None, 224, 224, 3)  0
+__________________________________________________________________________________________________
+block1_conv1 (Conv2D)           (None, 224, 224, 64) 1792        input_1[0][0]
+__________________________________________________________________________________________________
+block1_conv2 (Conv2D)           (None, 224, 224, 64) 36928       block1_conv1[0][0]
+__________________________________________________________________________________________________
+block1_pool (MaxPooling2D)      (None, 112, 112, 64) 0           block1_conv2[0][0]
+__________________________________________________________________________________________________
+block2_conv1 (Conv2D)           (None, 112, 112, 128 73856       block1_pool[0][0]
+__________________________________________________________________________________________________
+block2_conv2 (Conv2D)           (None, 112, 112, 128 147584      block2_conv1[0][0]
+__________________________________________________________________________________________________
+block2_pool (MaxPooling2D)      (None, 56, 56, 128)  0           block2_conv2[0][0]
+__________________________________________________________________________________________________
+block3_conv1 (Conv2D)           (None, 56, 56, 256)  295168      block2_pool[0][0]
+__________________________________________________________________________________________________
+block3_conv2 (Conv2D)           (None, 56, 56, 256)  590080      block3_conv1[0][0]
+__________________________________________________________________________________________________
+block3_conv3 (Conv2D)           (None, 56, 56, 256)  590080      block3_conv2[0][0]
+__________________________________________________________________________________________________
+block3_pool (MaxPooling2D)      (None, 28, 28, 256)  0           block3_conv3[0][0]
+__________________________________________________________________________________________________
+block4_conv1 (Conv2D)           (None, 28, 28, 512)  1180160     block3_pool[0][0]
+__________________________________________________________________________________________________
+block4_conv2 (Conv2D)           (None, 28, 28, 512)  2359808     block4_conv1[0][0]
+__________________________________________________________________________________________________
+block4_conv3 (Conv2D)           (None, 28, 28, 512)  2359808     block4_conv2[0][0]
+__________________________________________________________________________________________________
+block4_pool (MaxPooling2D)      (None, 14, 14, 512)  0           block4_conv3[0][0]
+__________________________________________________________________________________________________
+block5_conv1 (Conv2D)           (None, 14, 14, 512)  2359808     block4_pool[0][0]
+__________________________________________________________________________________________________
+block5_conv2 (Conv2D)           (None, 14, 14, 512)  2359808     block5_conv1[0][0]
+__________________________________________________________________________________________________
+block5_conv3 (Conv2D)           (None, 14, 14, 512)  2359808     block5_conv2[0][0]
+__________________________________________________________________________________________________
+block5_pool (MaxPooling2D)      (None, 7, 7, 512)    0           block5_conv3[0][0]
+__________________________________________________________________________________________________
+conv6 (Conv2D)                  (None, 7, 7, 512)    12845568    block5_pool[0][0]
+__________________________________________________________________________________________________
+pool4_11 (Conv2D)               (None, 14, 14, 12)   6156        block4_pool[0][0]
+__________________________________________________________________________________________________
+conv7 (Conv2D)                  (None, 7, 7, 512)    262656      conv6[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose_2 (Conv2DTrans (None, 28, 28, 12)   576         pool4_11[0][0]
+__________________________________________________________________________________________________
+pool3_11 (Conv2D)               (None, 28, 28, 12)   3084        block3_pool[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose_1 (Conv2DTrans (None, 28, 28, 12)   98304       conv7[0][0]
+__________________________________________________________________________________________________
+add_layer (Add)                 (None, 28, 28, 12)   0           conv2d_transpose_2[0][0]
+                                                                 pool3_11[0][0]
+                                                                 conv2d_transpose_1[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose_3 (Conv2DTrans (None, 224, 224, 12) 9216        add_layer[0][0]
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 224, 224, 12) 0           conv2d_transpose_3[0][0]
+==================================================================================================
+Total params: 27,940,248
+Trainable params: 27,940,248
+Non-trainable params: 0
+__________________________________________________________________________________________________
+(311, 224, 224, 3) (311, 224, 224, 12)
+(56, 224, 224, 3) (56, 224, 224, 12)
+Train on 311 samples, validate on 56 samples
+
+Epoch 1/200
+ - 10s - loss: 2.6008 - acc: 0.0899 - val_loss: 2.4828 - val_acc: 0.0948
+Epoch 2/200
+ - 4s - loss: 2.4791 - acc: 0.1004 - val_loss: 2.4707 - val_acc: 0.1154
+Epoch 3/200
+ - 4s - loss: 2.4575 - acc: 0.1278 - val_loss: 2.4268 - val_acc: 0.1516
+Epoch 4/200
+ - 4s - loss: 2.3726 - acc: 0.1853 - val_loss: 2.2424 - val_acc: 0.2467
+Epoch 5/200
+ - 4s - loss: 2.3889 - acc: 0.1776 - val_loss: 2.3751 - val_acc: 0.1767
+Epoch 6/200
+ - 4s - loss: 2.3107 - acc: 0.2381 - val_loss: 2.0573 - val_acc: 0.3447
+Epoch 7/200
+ - 4s - loss: 1.9995 - acc: 0.3742 - val_loss: 1.6284 - val_acc: 0.4781
+Epoch 8/200
+ - 4s - loss: 1.6308 - acc: 0.4754 - val_loss: 1.4593 - val_acc: 0.5123
+Epoch 9/200
+ - 4s - loss: 1.5101 - acc: 0.5018 - val_loss: 1.3731 - val_acc: 0.5407
+Epoch 10/200
+ - 4s - loss: 1.3965 - acc: 0.5578 - val_loss: 1.2839 - val_acc: 0.6194
+Epoch 11/200
+ - 4s - loss: 1.3006 - acc: 0.6278 - val_loss: 1.1837 - val_acc: 0.6753
+Epoch 12/200
+ - 4s - loss: 1.2030 - acc: 0.6621 - val_loss: 1.0998 - val_acc: 0.6917
+Epoch 13/200
+ - 4s - loss: 1.1086 - acc: 0.6715 - val_loss: 1.0170 - val_acc: 0.6962
+Epoch 14/200
+ - 4s - loss: 1.0636 - acc: 0.6741 - val_loss: 0.9875 - val_acc: 0.6997
+Epoch 15/200
+ - 4s - loss: 1.0223 - acc: 0.6776 - val_loss: 0.9524 - val_acc: 0.7034
+Epoch 16/200
+ - 4s - loss: 0.9953 - acc: 0.6805 - val_loss: 0.9487 - val_acc: 0.7031
+Epoch 17/200
+ - 4s - loss: 0.9850 - acc: 0.6818 - val_loss: 0.9127 - val_acc: 0.7088
+Epoch 18/200
+ - 4s - loss: 0.9578 - acc: 0.6868 - val_loss: 0.9497 - val_acc: 0.7043
+Epoch 19/200
+ - 4s - loss: 0.9406 - acc: 0.6900 - val_loss: 0.8838 - val_acc: 0.7154
+Epoch 20/200
+ - 4s - loss: 0.9180 - acc: 0.6950 - val_loss: 0.9073 - val_acc: 0.7126
+Epoch 21/200
+ - 4s - loss: 0.9158 - acc: 0.6979 - val_loss: 0.8719 - val_acc: 0.7163
+Epoch 22/200
+ - 4s - loss: 0.9010 - acc: 0.7015 - val_loss: 0.8820 - val_acc: 0.7173
+Epoch 23/200
+ - 4s - loss: 0.8927 - acc: 0.7025 - val_loss: 0.8477 - val_acc: 0.7228
+Epoch 24/200
+ - 4s - loss: 0.8723 - acc: 0.7078 - val_loss: 0.8381 - val_acc: 0.7249
+Epoch 25/200
+ - 4s - loss: 0.8577 - acc: 0.7122 - val_loss: 0.8341 - val_acc: 0.7307
+Epoch 26/200
+ - 4s - loss: 0.8476 - acc: 0.7188 - val_loss: 0.8660 - val_acc: 0.7340
+Epoch 27/200
+ - 4s - loss: 0.8631 - acc: 0.7227 - val_loss: 0.8043 - val_acc: 0.7406
+Epoch 28/200
+ - 4s - loss: 0.8259 - acc: 0.7324 - val_loss: 0.8690 - val_acc: 0.7349
+Epoch 29/200
+ - 4s - loss: 0.8344 - acc: 0.7393 - val_loss: 0.8137 - val_acc: 0.7586
+Epoch 30/200
+ - 4s - loss: 0.8218 - acc: 0.7505 - val_loss: 0.8093 - val_acc: 0.7583
+Epoch 31/200
+ - 4s - loss: 0.8025 - acc: 0.7602 - val_loss: 0.7676 - val_acc: 0.7741
+Epoch 32/200
+ - 4s - loss: 0.8316 - acc: 0.7485 - val_loss: 0.7754 - val_acc: 0.7640
+Epoch 33/200
+ - 4s - loss: 0.7818 - acc: 0.7677 - val_loss: 0.7592 - val_acc: 0.7786
+Epoch 34/200
+ - 4s - loss: 0.7681 - acc: 0.7766 - val_loss: 0.7607 - val_acc: 0.7787
+Epoch 35/200
+ - 4s - loss: 0.7745 - acc: 0.7723 - val_loss: 0.7529 - val_acc: 0.7802
+Epoch 36/200
+ - 4s - loss: 0.7536 - acc: 0.7801 - val_loss: 0.7439 - val_acc: 0.7848
+Epoch 37/200
+ - 4s - loss: 0.7668 - acc: 0.7774 - val_loss: 0.7362 - val_acc: 0.7848
+Epoch 38/200
+ - 4s - loss: 0.7618 - acc: 0.7747 - val_loss: 0.7229 - val_acc: 0.7891
+Epoch 39/200
+ - 4s - loss: 0.7457 - acc: 0.7809 - val_loss: 0.7714 - val_acc: 0.7725
+Epoch 40/200
+ - 4s - loss: 0.7412 - acc: 0.7824 - val_loss: 0.7154 - val_acc: 0.7939
+Epoch 41/200
+ - 4s - loss: 0.7257 - acc: 0.7895 - val_loss: 0.7138 - val_acc: 0.7924
+Epoch 42/200
+ - 4s - loss: 0.7251 - acc: 0.7876 - val_loss: 0.7070 - val_acc: 0.7969
+Epoch 43/200
+ - 4s - loss: 0.7074 - acc: 0.7953 - val_loss: 0.7068 - val_acc: 0.7978
+Epoch 44/200
+ - 4s - loss: 0.7110 - acc: 0.7940 - val_loss: 0.7628 - val_acc: 0.7814
+Epoch 45/200
+ - 4s - loss: 0.7309 - acc: 0.7836 - val_loss: 0.6950 - val_acc: 0.8019
+Epoch 46/200
+ - 4s - loss: 0.7074 - acc: 0.7933 - val_loss: 0.7196 - val_acc: 0.7866
+Epoch 47/200
+ - 4s - loss: 0.6934 - acc: 0.7988 - val_loss: 0.6798 - val_acc: 0.8040
+Epoch 48/200
+ - 4s - loss: 0.7235 - acc: 0.7875 - val_loss: 0.6826 - val_acc: 0.8043
+Epoch 49/200
+ - 4s - loss: 0.6947 - acc: 0.7986 - val_loss: 0.6919 - val_acc: 0.8019
+Epoch 50/200
+ - 4s - loss: 0.6919 - acc: 0.7997 - val_loss: 0.6953 - val_acc: 0.7986
+Epoch 51/200
+ - 4s - loss: 0.6785 - acc: 0.8037 - val_loss: 0.6698 - val_acc: 0.8077
+Epoch 52/200
+ - 4s - loss: 0.6705 - acc: 0.8065 - val_loss: 0.6765 - val_acc: 0.8083
+Epoch 53/200
+ - 4s - loss: 0.7440 - acc: 0.7804 - val_loss: 0.6848 - val_acc: 0.8004
+Epoch 54/200
+ - 4s - loss: 0.6811 - acc: 0.8027 - val_loss: 0.6647 - val_acc: 0.8093
+Epoch 55/200
+ - 4s - loss: 0.6676 - acc: 0.8070 - val_loss: 0.6673 - val_acc: 0.8078
+Epoch 56/200
+ - 4s - loss: 0.6641 - acc: 0.8080 - val_loss: 0.6732 - val_acc: 0.8087
+Epoch 57/200
+ - 4s - loss: 0.6604 - acc: 0.8092 - val_loss: 0.6559 - val_acc: 0.8125
+Epoch 58/200
+ - 4s - loss: 0.6585 - acc: 0.8104 - val_loss: 0.6577 - val_acc: 0.8120
+Epoch 59/200
+ - 4s - loss: 0.6534 - acc: 0.8117 - val_loss: 0.6459 - val_acc: 0.8157
+Epoch 60/200
+ - 4s - loss: 0.6455 - acc: 0.8151 - val_loss: 0.6457 - val_acc: 0.8139
+Epoch 61/200
+ - 4s - loss: 0.6736 - acc: 0.8041 - val_loss: 0.6565 - val_acc: 0.8140
+Epoch 62/200
+ - 4s - loss: 0.6455 - acc: 0.8156 - val_loss: 0.6428 - val_acc: 0.8174
+Epoch 63/200
+ - 4s - loss: 0.6361 - acc: 0.8181 - val_loss: 0.6377 - val_acc: 0.8191
+Epoch 64/200
+ - 4s - loss: 0.6469 - acc: 0.8137 - val_loss: 0.6379 - val_acc: 0.8181
+Epoch 65/200
+ - 4s - loss: 0.6303 - acc: 0.8202 - val_loss: 0.6446 - val_acc: 0.8184
+Epoch 66/200
+ - 4s - loss: 0.6360 - acc: 0.8174 - val_loss: 0.6368 - val_acc: 0.8195
+Epoch 67/200
+ - 4s - loss: 0.6378 - acc: 0.8173 - val_loss: 0.6373 - val_acc: 0.8170
+Epoch 68/200
+ - 4s - loss: 0.6298 - acc: 0.8203 - val_loss: 0.6579 - val_acc: 0.8070
+Epoch 69/200
+ - 4s - loss: 0.6336 - acc: 0.8174 - val_loss: 0.6275 - val_acc: 0.8212
+Epoch 70/200
+ - 4s - loss: 0.6192 - acc: 0.8236 - val_loss: 0.6293 - val_acc: 0.8220
+Epoch 71/200
+ - 4s - loss: 0.6181 - acc: 0.8240 - val_loss: 0.6212 - val_acc: 0.8240
+Epoch 72/200
+ - 4s - loss: 0.6219 - acc: 0.8226 - val_loss: 0.6180 - val_acc: 0.8255
+Epoch 73/200
+ - 4s - loss: 0.6104 - acc: 0.8265 - val_loss: 0.6321 - val_acc: 0.8235
+Epoch 74/200
+ - 4s - loss: 0.6123 - acc: 0.8258 - val_loss: 0.6289 - val_acc: 0.8228
+Epoch 75/200
+ - 4s - loss: 0.6142 - acc: 0.8251 - val_loss: 0.6268 - val_acc: 0.8240
+Epoch 76/200
+ - 4s - loss: 0.6164 - acc: 0.8233 - val_loss: 0.6140 - val_acc: 0.8272
+Epoch 77/200
+ - 4s - loss: 0.6039 - acc: 0.8282 - val_loss: 0.6164 - val_acc: 0.8260
+Epoch 78/200
+ - 4s - loss: 0.6224 - acc: 0.8228 - val_loss: 0.6114 - val_acc: 0.8276
+Epoch 79/200
+ - 4s - loss: 0.5981 - acc: 0.8307 - val_loss: 0.6077 - val_acc: 0.8279
+Epoch 80/200
+ - 4s - loss: 0.5997 - acc: 0.8293 - val_loss: 0.6760 - val_acc: 0.8083
+Epoch 81/200
+ - 4s - loss: 0.6202 - acc: 0.8219 - val_loss: 0.6044 - val_acc: 0.8292
+Epoch 82/200
+ - 4s - loss: 0.5921 - acc: 0.8323 - val_loss: 0.6077 - val_acc: 0.8293
+Epoch 83/200
+ - 4s - loss: 0.5955 - acc: 0.8310 - val_loss: 0.6062 - val_acc: 0.8282
+Epoch 84/200
+ - 4s - loss: 0.5922 - acc: 0.8325 - val_loss: 0.6218 - val_acc: 0.8263
+Epoch 85/200
+ - 4s - loss: 0.5886 - acc: 0.8333 - val_loss: 0.5974 - val_acc: 0.8309
+Epoch 86/200
+ - 4s - loss: 0.5836 - acc: 0.8345 - val_loss: 0.6008 - val_acc: 0.8312
+Epoch 87/200
+ - 4s - loss: 0.5821 - acc: 0.8353 - val_loss: 0.5946 - val_acc: 0.8324
+Epoch 88/200
+ - 4s - loss: 0.5929 - acc: 0.8314 - val_loss: 0.6797 - val_acc: 0.8012
+Epoch 89/200
+ - 4s - loss: 0.6024 - acc: 0.8287 - val_loss: 0.5959 - val_acc: 0.8322
+Epoch 90/200
+ - 4s - loss: 0.5782 - acc: 0.8367 - val_loss: 0.5984 - val_acc: 0.8323
+Epoch 91/200
+ - 4s - loss: 0.5766 - acc: 0.8370 - val_loss: 0.5880 - val_acc: 0.8337
+Epoch 92/200
+ - 4s - loss: 0.5724 - acc: 0.8383 - val_loss: 0.5892 - val_acc: 0.8334
+Epoch 93/200
+ - 4s - loss: 0.5705 - acc: 0.8389 - val_loss: 0.5859 - val_acc: 0.8346
+Epoch 94/200
+ - 4s - loss: 0.5767 - acc: 0.8364 - val_loss: 0.5877 - val_acc: 0.8346
+Epoch 95/200
+ - 4s - loss: 0.5687 - acc: 0.8388 - val_loss: 0.5890 - val_acc: 0.8314
+Epoch 96/200
+ - 4s - loss: 0.5675 - acc: 0.8393 - val_loss: 0.5896 - val_acc: 0.8338
+Epoch 97/200
+ - 4s - loss: 0.5707 - acc: 0.8387 - val_loss: 0.6327 - val_acc: 0.8176
+Epoch 98/200
+ - 4s - loss: 0.5876 - acc: 0.8329 - val_loss: 0.5896 - val_acc: 0.8339
+Epoch 99/200
+ - 4s - loss: 0.5640 - acc: 0.8407 - val_loss: 0.5793 - val_acc: 0.8358
+Epoch 100/200
+ - 4s - loss: 0.5614 - acc: 0.8408 - val_loss: 0.5841 - val_acc: 0.8353
+Epoch 101/200
+ - 4s - loss: 0.5645 - acc: 0.8395 - val_loss: 0.5926 - val_acc: 0.8340
+Epoch 102/200
+ - 4s - loss: 0.5588 - acc: 0.8417 - val_loss: 0.5734 - val_acc: 0.8368
+Epoch 103/200
+ - 4s - loss: 0.5550 - acc: 0.8431 - val_loss: 0.5801 - val_acc: 0.8339
+Epoch 104/200
+ - 4s - loss: 0.5671 - acc: 0.8378 - val_loss: 0.5734 - val_acc: 0.8368
+Epoch 105/200
+ - 4s - loss: 0.5540 - acc: 0.8434 - val_loss: 0.5777 - val_acc: 0.8356
+Epoch 106/200
+ - 4s - loss: 0.5538 - acc: 0.8429 - val_loss: 0.5699 - val_acc: 0.8378
+Epoch 107/200
+ - 4s - loss: 0.5489 - acc: 0.8444 - val_loss: 0.5744 - val_acc: 0.8361
+Epoch 108/200
+ - 4s - loss: 0.5467 - acc: 0.8452 - val_loss: 0.5670 - val_acc: 0.8379
+Epoch 109/200
+ - 4s - loss: 0.5477 - acc: 0.8445 - val_loss: 0.5757 - val_acc: 0.8374
+Epoch 110/200
+ - 4s - loss: 0.5578 - acc: 0.8414 - val_loss: 0.5842 - val_acc: 0.8360
+Epoch 111/200
+ - 4s - loss: 0.5458 - acc: 0.8451 - val_loss: 0.5687 - val_acc: 0.8372
+Epoch 112/200
+ - 4s - loss: 0.5480 - acc: 0.8442 - val_loss: 0.5649 - val_acc: 0.8382
+Epoch 113/200
+ - 4s - loss: 0.5420 - acc: 0.8459 - val_loss: 0.5620 - val_acc: 0.8396
+Epoch 114/200
+ - 4s - loss: 0.5416 - acc: 0.8465 - val_loss: 0.5638 - val_acc: 0.8395
+Epoch 115/200
+ - 4s - loss: 0.5391 - acc: 0.8467 - val_loss: 0.5640 - val_acc: 0.8395
+Epoch 116/200
+ - 4s - loss: 0.5389 - acc: 0.8468 - val_loss: 0.5685 - val_acc: 0.8388
+Epoch 117/200
+ - 4s - loss: 0.5374 - acc: 0.8472 - val_loss: 0.5692 - val_acc: 0.8391
+Epoch 118/200
+ - 4s - loss: 0.5361 - acc: 0.8477 - val_loss: 0.5627 - val_acc: 0.8400
+Epoch 119/200
+ - 4s - loss: 0.5417 - acc: 0.8455 - val_loss: 0.5559 - val_acc: 0.8410
+Epoch 120/200
+ - 4s - loss: 0.5345 - acc: 0.8479 - val_loss: 0.5556 - val_acc: 0.8412
+Epoch 121/200
+ - 4s - loss: 0.5309 - acc: 0.8490 - val_loss: 0.5587 - val_acc: 0.8409
+Epoch 122/200
+ - 4s - loss: 0.5385 - acc: 0.8466 - val_loss: 0.5651 - val_acc: 0.8396
+Epoch 123/200
+ - 4s - loss: 0.5328 - acc: 0.8482 - val_loss: 0.5576 - val_acc: 0.8414
+Epoch 124/200
+ - 4s - loss: 0.5274 - acc: 0.8501 - val_loss: 0.5574 - val_acc: 0.8409
+Epoch 125/200
+ - 4s - loss: 0.5293 - acc: 0.8491 - val_loss: 0.6019 - val_acc: 0.8318
+Epoch 126/200
+ - 4s - loss: 0.5370 - acc: 0.8467 - val_loss: 0.5602 - val_acc: 0.8412
+Epoch 127/200
+ - 4s - loss: 0.5255 - acc: 0.8505 - val_loss: 0.5569 - val_acc: 0.8411
+Epoch 128/200
+ - 4s - loss: 0.5269 - acc: 0.8498 - val_loss: 0.5498 - val_acc: 0.8428
+Epoch 129/200
+ - 4s - loss: 0.5234 - acc: 0.8509 - val_loss: 0.5528 - val_acc: 0.8426
+Epoch 130/200
+ - 4s - loss: 0.5220 - acc: 0.8515 - val_loss: 0.5729 - val_acc: 0.8390
+Epoch 131/200
+ - 4s - loss: 0.5219 - acc: 0.8511 - val_loss: 0.5515 - val_acc: 0.8428
+Epoch 132/200
+ - 4s - loss: 0.5206 - acc: 0.8519 - val_loss: 0.5594 - val_acc: 0.8409
+Epoch 133/200
+ - 4s - loss: 0.5246 - acc: 0.8502 - val_loss: 0.5490 - val_acc: 0.8435
+Epoch 134/200
+ - 4s - loss: 0.5174 - acc: 0.8526 - val_loss: 0.5469 - val_acc: 0.8434
+Epoch 135/200
+ - 4s - loss: 0.5176 - acc: 0.8527 - val_loss: 0.5499 - val_acc: 0.8410
+Epoch 136/200
+ - 4s - loss: 0.5216 - acc: 0.8506 - val_loss: 0.5453 - val_acc: 0.8438
+Epoch 137/200
+ - 4s - loss: 0.5175 - acc: 0.8529 - val_loss: 0.5446 - val_acc: 0.8446
+Epoch 138/200
+ - 4s - loss: 0.5152 - acc: 0.8529 - val_loss: 0.5475 - val_acc: 0.8441
+Epoch 139/200
+ - 4s - loss: 0.5188 - acc: 0.8521 - val_loss: 0.5474 - val_acc: 0.8442
+Epoch 140/200
+ - 4s - loss: 0.5136 - acc: 0.8535 - val_loss: 0.5434 - val_acc: 0.8449
+Epoch 141/200
+ - 4s - loss: 0.5119 - acc: 0.8541 - val_loss: 0.5442 - val_acc: 0.8445
+Epoch 142/200
+ - 4s - loss: 0.5096 - acc: 0.8549 - val_loss: 0.5511 - val_acc: 0.8443
+Epoch 143/200
+ - 4s - loss: 0.5174 - acc: 0.8525 - val_loss: 0.5483 - val_acc: 0.8444
+Epoch 144/200
+ - 4s - loss: 0.5100 - acc: 0.8547 - val_loss: 0.5444 - val_acc: 0.8452
+Epoch 145/200
+ - 4s - loss: 0.5073 - acc: 0.8555 - val_loss: 0.5396 - val_acc: 0.8452
+Epoch 146/200
+ - 4s - loss: 0.5092 - acc: 0.8552 - val_loss: 0.5404 - val_acc: 0.8461
+Epoch 147/200
+ - 4s - loss: 0.5093 - acc: 0.8547 - val_loss: 0.5374 - val_acc: 0.8469
+Epoch 148/200
+ - 4s - loss: 0.5051 - acc: 0.8564 - val_loss: 0.5359 - val_acc: 0.8467
+Epoch 149/200
+ - 4s - loss: 0.5044 - acc: 0.8566 - val_loss: 0.5370 - val_acc: 0.8466
+Epoch 150/200
+ - 4s - loss: 0.5041 - acc: 0.8565 - val_loss: 0.5356 - val_acc: 0.8471
+Epoch 151/200
+ - 4s - loss: 0.5071 - acc: 0.8554 - val_loss: 0.5397 - val_acc: 0.8470
+Epoch 152/200
+ - 4s - loss: 0.5023 - acc: 0.8570 - val_loss: 0.5326 - val_acc: 0.8477
+Epoch 153/200
+ - 4s - loss: 0.5013 - acc: 0.8575 - val_loss: 0.5435 - val_acc: 0.8457
+Epoch 154/200
+ - 4s - loss: 0.5018 - acc: 0.8568 - val_loss: 0.5335 - val_acc: 0.8475
+Epoch 155/200
+ - 4s - loss: 0.5000 - acc: 0.8577 - val_loss: 0.5367 - val_acc: 0.8477
+Epoch 156/200
+ - 4s - loss: 0.5035 - acc: 0.8568 - val_loss: 0.5451 - val_acc: 0.8462
+Epoch 157/200
+ - 4s - loss: 0.4984 - acc: 0.8582 - val_loss: 0.5316 - val_acc: 0.8485
+Epoch 158/200
+ - 4s - loss: 0.4982 - acc: 0.8580 - val_loss: 0.5324 - val_acc: 0.8479
+Epoch 159/200
+ - 4s - loss: 0.4959 - acc: 0.8591 - val_loss: 0.5374 - val_acc: 0.8466
+Epoch 160/200
+ - 4s - loss: 0.5012 - acc: 0.8571 - val_loss: 0.5423 - val_acc: 0.8434
+Epoch 161/200
+ - 4s - loss: 0.5015 - acc: 0.8573 - val_loss: 0.5273 - val_acc: 0.8492
+Epoch 162/200
+ - 4s - loss: 0.4940 - acc: 0.8598 - val_loss: 0.5327 - val_acc: 0.8489
+Epoch 163/200
+ - 4s - loss: 0.4921 - acc: 0.8603 - val_loss: 0.5312 - val_acc: 0.8491
+Epoch 164/200
+ - 4s - loss: 0.4918 - acc: 0.8601 - val_loss: 0.5302 - val_acc: 0.8491
+Epoch 165/200
+ - 4s - loss: 0.4916 - acc: 0.8605 - val_loss: 0.5299 - val_acc: 0.8477
+Epoch 166/200
+ - 4s - loss: 0.4951 - acc: 0.8593 - val_loss: 0.5255 - val_acc: 0.8498
+Epoch 167/200
+ - 4s - loss: 0.4903 - acc: 0.8607 - val_loss: 0.5288 - val_acc: 0.8495
+Epoch 168/200
+ - 4s - loss: 0.4899 - acc: 0.8607 - val_loss: 0.5335 - val_acc: 0.8490
+Epoch 169/200
+ - 4s - loss: 0.4961 - acc: 0.8587 - val_loss: 0.5276 - val_acc: 0.8488
+Epoch 170/200
+ - 4s - loss: 0.4909 - acc: 0.8605 - val_loss: 0.5221 - val_acc: 0.8507
+Epoch 171/200
+ - 4s - loss: 0.4873 - acc: 0.8617 - val_loss: 0.5248 - val_acc: 0.8508
+Epoch 172/200
+ - 4s - loss: 0.4859 - acc: 0.8619 - val_loss: 0.5277 - val_acc: 0.8504
+Epoch 173/200
+ - 4s - loss: 0.4857 - acc: 0.8621 - val_loss: 0.5252 - val_acc: 0.8507
+Epoch 174/200
+ - 4s - loss: 0.4850 - acc: 0.8623 - val_loss: 0.5223 - val_acc: 0.8508
+Epoch 175/200
+ - 4s - loss: 0.4851 - acc: 0.8622 - val_loss: 0.5248 - val_acc: 0.8509
+Epoch 176/200
+ - 4s - loss: 0.4850 - acc: 0.8624 - val_loss: 0.5194 - val_acc: 0.8517
+Epoch 177/200
+ - 4s - loss: 0.4831 - acc: 0.8627 - val_loss: 0.5208 - val_acc: 0.8513
+Epoch 178/200
+ - 4s - loss: 0.4834 - acc: 0.8628 - val_loss: 0.5395 - val_acc: 0.8490
+Epoch 179/200
+ - 4s - loss: 0.4895 - acc: 0.8610 - val_loss: 0.5189 - val_acc: 0.8519
+Epoch 180/200
+ - 4s - loss: 0.4823 - acc: 0.8629 - val_loss: 0.5160 - val_acc: 0.8524
+Epoch 181/200
+ - 4s - loss: 0.4867 - acc: 0.8614 - val_loss: 0.5164 - val_acc: 0.8518
+Epoch 182/200
+ - 4s - loss: 0.4798 - acc: 0.8639 - val_loss: 0.5169 - val_acc: 0.8521
+Epoch 183/200
+ - 4s - loss: 0.4791 - acc: 0.8640 - val_loss: 0.5175 - val_acc: 0.8520
+Epoch 184/200
+ - 4s - loss: 0.4792 - acc: 0.8639 - val_loss: 0.5165 - val_acc: 0.8525
+Epoch 185/200
+ - 4s - loss: 0.4777 - acc: 0.8644 - val_loss: 0.5146 - val_acc: 0.8528
+Epoch 186/200
+ - 4s - loss: 0.4775 - acc: 0.8644 - val_loss: 0.5155 - val_acc: 0.8526
+Epoch 187/200
+ - 4s - loss: 0.4761 - acc: 0.8649 - val_loss: 0.5163 - val_acc: 0.8527
+Epoch 188/200
+ - 4s - loss: 0.4756 - acc: 0.8650 - val_loss: 0.5151 - val_acc: 0.8518
+Epoch 189/200
+ - 4s - loss: 0.4788 - acc: 0.8639 - val_loss: 0.5124 - val_acc: 0.8530
+Epoch 190/200
+ - 4s - loss: 0.4747 - acc: 0.8652 - val_loss: 0.5140 - val_acc: 0.8532
+Epoch 191/200
+ - 4s - loss: 0.4769 - acc: 0.8647 - val_loss: 0.5184 - val_acc: 0.8524
+Epoch 192/200
+ - 4s - loss: 0.4748 - acc: 0.8652 - val_loss: 0.5145 - val_acc: 0.8533
+Epoch 193/200
+ - 4s - loss: 0.4727 - acc: 0.8659 - val_loss: 0.5162 - val_acc: 0.8525
+Epoch 194/200
+ - 4s - loss: 0.4758 - acc: 0.8649 - val_loss: 0.5100 - val_acc: 0.8538
+Epoch 195/200
+ - 4s - loss: 0.4745 - acc: 0.8653 - val_loss: 0.5332 - val_acc: 0.8491
+Epoch 196/200
+ - 4s - loss: 0.4759 - acc: 0.8649 - val_loss: 0.5159 - val_acc: 0.8528
+Epoch 197/200
+ - 4s - loss: 0.4715 - acc: 0.8662 - val_loss: 0.5301 - val_acc: 0.8494
+Epoch 198/200
+ - 4s - loss: 0.4714 - acc: 0.8663 - val_loss: 0.5095 - val_acc: 0.8540
+Epoch 199/200
+ - 4s - loss: 0.4698 - acc: 0.8667 - val_loss: 0.5114 - val_acc: 0.8542
+Epoch 200/200
+ - 4s - loss: 0.4691 - acc: 0.8669 - val_loss: 0.5109 - val_acc: 0.8541
+Using TensorFlow backend.
+
+
+Elapsed time for Keras training (s):  801.79431
+
+
+
+End of FCN8 training
+
+
+
+##################################################################################
+Step2b: MAKING PREDICTIONS
+##################################################################################
+
+2020-02-12 06:30:10.028416: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 06:30:10.120283: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.18GiB
+2020-02-12 06:30:10.120302: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 06:30:10.653333: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 06:30:10.653352: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-12 06:30:10.653356: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-12 06:30:10.653950: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 20768 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+
+
+validation data (X) (Y) shapes: (56, 224, 224, 3) (56, 224, 224, 12)
+testing    data (X) (Y) shapes (101, 224, 224, 3) (101, 224, 224, 12)
+
+
+
+now computing IoU over testing data set:
+class ( 0)          Sky: #TP= 435409, #FP=  37256, #FN=  20564, IoU=0.883
+class ( 1)         Wall: #TP=1119914, #FP= 129567, #FN= 184032, IoU=0.781
+class ( 2)         Pole: #TP=      6, #FP=    135, #FN=  36414, IoU=0.000
+class ( 3)         Road: #TP=1412882, #FP= 104628, #FN=  62137, IoU=0.894
+class ( 4)     Sidewalk: #TP= 358070, #FP=  77814, #FN=  90363, IoU=0.680
+class ( 5)   Vegetation: #TP= 802939, #FP= 194304, #FN=  23606, IoU=0.787
+class ( 6)         Sign: #TP=      4, #FP=    176, #FN=  53388, IoU=0.000
+class ( 7)        Fence: #TP=  14762, #FP=  13956, #FN= 141641, IoU=0.087
+class ( 8)      vehicle: #TP=  78459, #FP= 154592, #FN=  15601, IoU=0.316
+class ( 9)   Pedestrian: #TP=     78, #FP=    940, #FN=  36787, IoU=0.002
+class (10)    Bicyclist: #TP=    451, #FP=    432, #FN= 110521, IoU=0.004
+class (11)  miscellanea: #TP=  29216, #FP= 101786, #FN=  40532, IoU=0.170
+_________________
+Mean IoU: 0.384
+
+now computing IoU over validation data set:
+class ( 0)          Sky: #TP= 452208, #FP=  48662, #FN=  15898, IoU=0.875
+class ( 1)         Wall: #TP= 606385, #FP= 152768, #FN=  51062, IoU=0.748
+class ( 2)         Pole: #TP=      9, #FP=    126, #FN=  32156, IoU=0.000
+class ( 3)         Road: #TP= 884905, #FP=  47707, #FN=  41154, IoU=0.909
+class ( 4)     Sidewalk: #TP=  80833, #FP=  41802, #FN=  49650, IoU=0.469
+class ( 5)   Vegetation: #TP= 196679, #FP=  75480, #FN=  39754, IoU=0.631
+class ( 6)         Sign: #TP=     44, #FP=    173, #FN=  33852, IoU=0.001
+class ( 7)        Fence: #TP=   2523, #FP=  12143, #FN=  30780, IoU=0.056
+class ( 8)      vehicle: #TP= 122667, #FP=  32859, #FN=  29343, IoU=0.664
+class ( 9)   Pedestrian: #TP=     69, #FP=    904, #FN=  21653, IoU=0.003
+class (10)    Bicyclist: #TP=     53, #FP=   1358, #FN=   9801, IoU=0.005
+class (11)  miscellanea: #TP=  29190, #FP=  20309, #FN=  79188, IoU=0.227
+_________________
+Mean IoU: 0.382
+
+
+#######################################################################################
+Step3: KERAS to TENSORFLOW GRAPH CONVERSION
+#######################################################################################
+
+2020-02-12 03:52:52.908155: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 03:52:53.012141: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.14GiB
+2020-02-12 03:52:53.012160: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 03:52:53.530809: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 03:52:53.530829: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-12 03:52:53.530833: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-12 03:52:53.531412: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22455 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+model name =  fcn8
+
+ TF input node name:
+[<tf.Tensor 'input_1:0' shape=(?, 224, 224, 3) dtype=float32>]
+
+ TF output node name:
+[<tf.Tensor 'activation_1/truediv:0' shape=(?, ?, ?, 12) dtype=float32>]
+
+FINISHED CREATING TF FILES
+
+
+##############################################################################
+Step4a: FREEZE TF GRAPHS
+##############################################################################
+
+WARNING:tensorflow:From /opt/vitis_ai/conda/envs/vitis-ai-tensorflow/lib/python3.6/site-packages/tensorflow/python/tools/freeze_graph.py:249: FastGFile.__init__ (from tensorflow.python.platform.gfile) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.gfile.GFile.
+2020-02-12 03:53:01.304551: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 03:53:01.392036: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.12GiB
+2020-02-12 03:53:01.392055: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 03:53:01.908753: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 03:53:01.908774: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-12 03:53:01.908777: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-12 03:53:01.909357: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22437 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+
+##############################################################################
+Step4a: INSPECT FROZEN GRAPH
+##############################################################################
+
+Op types used: 81 Const, 37 Identity, 17 BiasAdd, 17 Conv2D, 17 Relu, 9 StridedSlice, 8 Add, 6 Mul, 5 MaxPool, 3 Pack, 3 Shape, 3 Conv2DBackpropInput, 1 Max, 1 Placeholder, 1 RealDiv, 1 Exp, 1 Sub, 1 Sum
+
+Found 1 possible inputs: (name=input_1, type=float(1), shape=[?,224,224,3])
+Found 1 possible outputs: (name=activation_1/truediv, op=RealDiv)
+
+##############################################################################
+Step4b: EVALUATING THE ORIGINAL GRAPH
+##############################################################################
+
+2020-02-12 03:53:13.793508: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 03:53:13.873262: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.14GiB
+2020-02-12 03:53:13.873281: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 03:53:14.387125: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 03:53:14.387146: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-12 03:53:14.387150: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-12 03:53:14.387746: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22455 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+X tensor shape:  (101, 224, 224, 3)  Y tensor shape:  (101, 224, 224, 12)
+(101, 224, 224) (101, 224, 224)
+class ( 0)          Sky: #TP= 432072, #FP=  34341, #FN=  23901, IoU=0.881
+class ( 1)         Wall: #TP=1119275, #FP= 149195, #FN= 184671, IoU=0.770
+class ( 2)         Pole: #TP=      0, #FP=     35, #FN=  36420, IoU=0.000
+class ( 3)         Road: #TP=1405924, #FP=  59865, #FN=  69095, IoU=0.916
+class ( 4)     Sidewalk: #TP= 388540, #FP=  90773, #FN=  59893, IoU=0.721
+class ( 5)   Vegetation: #TP= 783532, #FP=  87803, #FN=  43013, IoU=0.857
+class ( 6)         Sign: #TP=     11, #FP=    221, #FN=  53381, IoU=0.000
+class ( 7)        Fence: #TP=  40321, #FP=  24934, #FN= 116082, IoU=0.222
+class ( 8)      vehicle: #TP=  76847, #FP= 155329, #FN=  17213, IoU=0.308
+class ( 9)   Pedestrian: #TP=    125, #FP=    478, #FN=  36740, IoU=0.003
+class (10)    Bicyclist: #TP=   2731, #FP=   1612, #FN= 108241, IoU=0.024
+class (11)  miscellanea: #TP=  33635, #FP= 180177, #FN=  36113, IoU=0.135
+_________________
+Mean IoU: 0.403
+FINISHED!
+
+##########################################################################
+Step5a: QUANTIZATION
+##########################################################################
+
+
+Vai_q_tensorflow v1.0.0 Build for Tensorflow 1.12.0
+
+Using TensorFlow backend.
+                                                                               N/A% (0 of 10) |                         | Elapsed Time: 0:00:00 ETA:  --:--:--                                                                                10% (1 of 10) |##                       | Elapsed Time: 0:00:01 ETA:   0:00:10                                                                                20% (2 of 10) |#####                    | Elapsed Time: 0:00:02 ETA:   0:00:09                                                                                30% (3 of 10) |#######                  | Elapsed Time: 0:00:03 ETA:   0:00:08                                                                                40% (4 of 10) |##########               | Elapsed Time: 0:00:04 ETA:   0:00:06                                                                                50% (5 of 10) |############             | Elapsed Time: 0:00:05 ETA:   0:00:05                                                                                60% (6 of 10) |###############          | Elapsed Time: 0:00:06 ETA:   0:00:04                                                                                70% (7 of 10) |#################        | Elapsed Time: 0:00:08 ETA:   0:00:03                                                                                80% (8 of 10) |####################     | Elapsed Time: 0:00:09 ETA:   0:00:02                                                                                90% (9 of 10) |######################   | Elapsed Time: 0:00:10 ETA:   0:00:01                                                                               100% (10 of 10) |########################| Elapsed Time: 0:00:11 Time:  0:00:11
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+script running on folder  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+CALIB DIR  /workspace/VAI-KERAS-FCN8-SEMSEG/code/../workspace/dataset1/img_calib
+INFO: Checking Float Graph...
+INFO: Float Graph Check Done.
+INFO: Calibrating for 10 iterations...
+INFO: Calibration Done.
+INFO: Generating Deploy Model...
+INFO: Deploy Model Generated.
+********************* Quantization Summary *********************
+INFO: Output:
+  quantize_eval_model: .././workspace/quantize_results/fcn8/quantize_eval_model.pb
+  deploy_model: .././workspace/quantize_results/fcn8/deploy_model.pb
+
+##############################################################################
+Step5b: EVALUATE QUANTIZED GRAPH
+##############################################################################
+
+2020-02-12 03:53:50.311027: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 03:53:50.411274: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.14GiB
+2020-02-12 03:53:50.411294: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 03:53:50.933970: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 03:53:50.933990: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2020-02-12 03:53:50.933994: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2020-02-12 03:53:50.934611: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22455 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+X tensor shape:  (101, 224, 224, 3)  Y tensor shape:  (101, 224, 224, 12)
+(101, 224, 224) (101, 224, 224)
+class ( 0)          Sky: #TP= 430810, #FP=  33964, #FN=  25163, IoU=0.879
+class ( 1)         Wall: #TP=1120623, #FP= 149128, #FN= 183323, IoU=0.771
+class ( 2)         Pole: #TP=      2, #FP=     49, #FN=  36418, IoU=0.000
+class ( 3)         Road: #TP=1401973, #FP=  57021, #FN=  73046, IoU=0.915
+class ( 4)     Sidewalk: #TP= 391071, #FP=  95681, #FN=  57362, IoU=0.719
+class ( 5)   Vegetation: #TP= 784293, #FP=  90664, #FN=  42252, IoU=0.855
+class ( 6)         Sign: #TP=     10, #FP=    315, #FN=  53382, IoU=0.000
+class ( 7)        Fence: #TP=  39859, #FP=  25919, #FN= 116544, IoU=0.219
+class ( 8)      vehicle: #TP=  76040, #FP= 147562, #FN=  18020, IoU=0.315
+class ( 9)   Pedestrian: #TP=    161, #FP=    654, #FN=  36704, IoU=0.004
+class (10)    Bicyclist: #TP=   3334, #FP=   1990, #FN= 107638, IoU=0.030
+class (11)  miscellanea: #TP=  34176, #FP= 182477, #FN=  35572, IoU=0.135
+_________________
+Mean IoU: 0.404
+FINISHED!
+
+##########################################################################
+COMPILE FCN8 ELF FILE WITH Vitis AI
+##########################################################################
+
+[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_1/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_1/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_1/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_2/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_2/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_2/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_2/strided_slice_1/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_2/strided_slice_1/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_2/strided_slice_1/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_2/strided_slice_2/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_2/strided_slice_2/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_2/strided_slice_2/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_3/strided_slice_1/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_3/strided_slice_1/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_3/strided_slice_1/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_3/strided_slice_2/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_3/strided_slice_2/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_3/strided_slice_2/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m
+Kernel topology "fcn8_kernel_graph.jpg" for network "fcn8"
+kernel list info for network "fcn8"
+                               Kernel ID : Name
+                                       0 : fcn8
+
+                             Kernel Name : fcn8
+--------------------------------------------------------------------------------
+                             Kernel Type : DPUKernel
+                               Code Size : 0.21MB
+                              Param Size : 26.65MB
+                           Workload MACs : 32009.30MOPS
+                         IO Memory Space : 3.99MB
+                              Mean Value : 0, 0, 0,
+                      Total Tensor Count : 22
+                Boundary Input Tensor(s)   (H*W*C)
+                            input_1:0(0) : 224*224*3
+
+               Boundary Output Tensor(s)   (H*W*C)
+conv2d_transpose_3_conv2d_transpose:0(0) : 224*224*12
+
+                        Total Node Count : 21
+                           Input Node(s)   (H*W*C)
+             block1_conv1_convolution(0) : 224*224*3
+
+                          Output Node(s)   (H*W*C)
+  conv2d_transpose_3_conv2d_transpose(0) : 224*224*12
+
+
+
+
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************
+/opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json
+./workspace/dataset1/img_test/
+./workspace/dataset1/img_test/testing_48.png
+./workspace/dataset1/img_test/testing_82.png
+./workspace/dataset1/img_test/testing_60.png
+./workspace/dataset1/img_test/testing_80.png
+./workspace/dataset1/img_test/testing_34.png
+./workspace/dataset1/img_test/testing_41.png
+./workspace/dataset1/img_test/testing_8.png
+./workspace/dataset1/img_test/testing_70.png
+./workspace/dataset1/img_test/testing_3.png
+./workspace/dataset1/img_test/testing_15.png
+./workspace/dataset1/img_test/testing_81.png
+./workspace/dataset1/img_test/testing_10.png
+./workspace/dataset1/img_test/testing_32.png
+./workspace/dataset1/img_test/testing_29.png
+./workspace/dataset1/img_test/testing_61.png
+./workspace/dataset1/img_test/testing_12.png
+./workspace/dataset1/img_test/testing_77.png
+./workspace/dataset1/img_test/testing_93.png
+./workspace/dataset1/img_test/testing_40.png
+./workspace/dataset1/img_test/testing_55.png
+./workspace/dataset1/img_test/testing_100.png
+./workspace/dataset1/img_test/testing_66.png
+./workspace/dataset1/img_test/testing_87.png
+./workspace/dataset1/img_test/testing_6.png
+./workspace/dataset1/img_test/testing_39.png
+./workspace/dataset1/img_test/testing_0.png
+./workspace/dataset1/img_test/testing_53.png
+./workspace/dataset1/img_test/testing_96.png
+./workspace/dataset1/img_test/testing_58.png
+./workspace/dataset1/img_test/testing_38.png
+./workspace/dataset1/img_test/testing_49.png
+./workspace/dataset1/img_test/testing_71.png
+./workspace/dataset1/img_test/testing_86.png
+./workspace/dataset1/img_test/testing_69.png
+./workspace/dataset1/img_test/testing_83.png
+./workspace/dataset1/img_test/testing_92.png
+./workspace/dataset1/img_test/testing_45.png
+./workspace/dataset1/img_test/testing_52.png
+./workspace/dataset1/img_test/testing_97.png
+./workspace/dataset1/img_test/testing_63.png
+./workspace/dataset1/img_test/testing_33.png
+./workspace/dataset1/img_test/testing_30.png
+./workspace/dataset1/img_test/testing_24.png
+./workspace/dataset1/img_test/testing_5.png
+./workspace/dataset1/img_test/testing_90.png
+./workspace/dataset1/img_test/testing_94.png
+./workspace/dataset1/img_test/testing_18.png
+./workspace/dataset1/img_test/testing_23.png
+./workspace/dataset1/img_test/testing_35.png
+./workspace/dataset1/img_test/testing_59.png
+./workspace/dataset1/img_test/testing_20.png
+./workspace/dataset1/img_test/testing_28.png
+./workspace/dataset1/img_test/testing_31.png
+./workspace/dataset1/img_test/testing_16.png
+./workspace/dataset1/img_test/testing_57.png
+./workspace/dataset1/img_test/testing_27.png
+./workspace/dataset1/img_test/testing_50.png
+./workspace/dataset1/img_test/testing_47.png
+./workspace/dataset1/img_test/testing_1.png
+./workspace/dataset1/img_test/testing_65.png
+./workspace/dataset1/img_test/testing_51.png
+./workspace/dataset1/img_test/testing_11.png
+./workspace/dataset1/img_test/testing_76.png
+./workspace/dataset1/img_test/testing_42.png
+./workspace/dataset1/img_test/testing_22.png
+./workspace/dataset1/img_test/testing_98.png
+./workspace/dataset1/img_test/testing_95.png
+./workspace/dataset1/img_test/testing_78.png
+./workspace/dataset1/img_test/testing_19.png
+./workspace/dataset1/img_test/testing_2.png
+./workspace/dataset1/img_test/testing_85.png
+./workspace/dataset1/img_test/testing_46.png
+./workspace/dataset1/img_test/testing_37.png
+./workspace/dataset1/img_test/testing_68.png
+./workspace/dataset1/img_test/testing_99.png
+./workspace/dataset1/img_test/testing_13.png
+./workspace/dataset1/img_test/testing_25.png
+./workspace/dataset1/img_test/testing_36.png
+./workspace/dataset1/img_test/testing_26.png
+./workspace/dataset1/img_test/testing_54.png
+./workspace/dataset1/img_test/testing_56.png
+./workspace/dataset1/img_test/testing_44.png
+./workspace/dataset1/img_test/testing_72.png
+./workspace/dataset1/img_test/testing_7.png
+./workspace/dataset1/img_test/testing_21.png
+./workspace/dataset1/img_test/testing_79.png
+./workspace/dataset1/img_test/testing_73.png
+./workspace/dataset1/img_test/testing_17.png
+./workspace/dataset1/img_test/testing_64.png
+./workspace/dataset1/img_test/testing_75.png
+./workspace/dataset1/img_test/testing_62.png
+./workspace/dataset1/img_test/testing_9.png
+./workspace/dataset1/img_test/testing_14.png
+./workspace/dataset1/img_test/testing_91.png
+./workspace/dataset1/img_test/testing_74.png
+./workspace/dataset1/img_test/testing_89.png
+./workspace/dataset1/img_test/testing_67.png
+./workspace/dataset1/img_test/testing_84.png
+./workspace/dataset1/img_test/testing_4.png
+./workspace/dataset1/img_test/testing_88.png
+./workspace/dataset1/img_test/testing_43.png
+./workspace/dataset1/seg_test/
+./workspace/dataset1/seg_test/seg_tst_36.png
+./workspace/dataset1/seg_test/seg_tst_3.png
+./workspace/dataset1/seg_test/seg_tst_15.png
+./workspace/dataset1/seg_test/seg_tst_14.png
+./workspace/dataset1/seg_test/seg_tst_87.png
+./workspace/dataset1/seg_test/seg_tst_42.png
+./workspace/dataset1/seg_test/seg_tst_16.png
+./workspace/dataset1/seg_test/seg_tst_43.png
+./workspace/dataset1/seg_test/seg_tst_66.png
+./workspace/dataset1/seg_test/seg_tst_71.png
+./workspace/dataset1/seg_test/seg_tst_33.png
+./workspace/dataset1/seg_test/seg_tst_55.png
+./workspace/dataset1/seg_test/seg_tst_92.png
+./workspace/dataset1/seg_test/seg_tst_30.png
+./workspace/dataset1/seg_test/seg_tst_79.png
+./workspace/dataset1/seg_test/seg_tst_65.png
+./workspace/dataset1/seg_test/seg_tst_2.png
+./workspace/dataset1/seg_test/seg_tst_28.png
+./workspace/dataset1/seg_test/seg_tst_84.png
+./workspace/dataset1/seg_test/seg_tst_75.png
+./workspace/dataset1/seg_test/seg_tst_8.png
+./workspace/dataset1/seg_test/seg_tst_23.png
+./workspace/dataset1/seg_test/seg_tst_45.png
+./workspace/dataset1/seg_test/seg_tst_38.png
+./workspace/dataset1/seg_test/seg_tst_59.png
+./workspace/dataset1/seg_test/seg_tst_5.png
+./workspace/dataset1/seg_test/seg_tst_58.png
+./workspace/dataset1/seg_test/seg_tst_39.png
+./workspace/dataset1/seg_test/seg_tst_26.png
+./workspace/dataset1/seg_test/seg_tst_20.png
+./workspace/dataset1/seg_test/seg_tst_82.png
+./workspace/dataset1/seg_test/seg_tst_40.png
+./workspace/dataset1/seg_test/seg_tst_34.png
+./workspace/dataset1/seg_test/seg_tst_49.png
+./workspace/dataset1/seg_test/seg_tst_13.png
+./workspace/dataset1/seg_test/seg_tst_70.png
+./workspace/dataset1/seg_test/seg_tst_18.png
+./workspace/dataset1/seg_test/seg_tst_22.png
+./workspace/dataset1/seg_test/seg_tst_50.png
+./workspace/dataset1/seg_test/seg_tst_77.png
+./workspace/dataset1/seg_test/seg_tst_83.png
+./workspace/dataset1/seg_test/seg_tst_35.png
+./workspace/dataset1/seg_test/seg_tst_93.png
+./workspace/dataset1/seg_test/seg_tst_1.png
+./workspace/dataset1/seg_test/seg_tst_54.png
+./workspace/dataset1/seg_test/seg_tst_99.png
+./workspace/dataset1/seg_test/seg_tst_61.png
+./workspace/dataset1/seg_test/seg_tst_69.png
+./workspace/dataset1/seg_test/seg_tst_7.png
+./workspace/dataset1/seg_test/seg_tst_56.png
+./workspace/dataset1/seg_test/seg_tst_32.png
+./workspace/dataset1/seg_test/seg_tst_24.png
+./workspace/dataset1/seg_test/seg_tst_57.png
+./workspace/dataset1/seg_test/seg_tst_88.png
+./workspace/dataset1/seg_test/seg_tst_60.png
+./workspace/dataset1/seg_test/seg_tst_97.png
+./workspace/dataset1/seg_test/seg_tst_68.png
+./workspace/dataset1/seg_test/seg_tst_12.png
+./workspace/dataset1/seg_test/seg_tst_52.png
+./workspace/dataset1/seg_test/seg_tst_95.png
+./workspace/dataset1/seg_test/seg_tst_21.png
+./workspace/dataset1/seg_test/seg_tst_17.png
+./workspace/dataset1/seg_test/seg_tst_86.png
+./workspace/dataset1/seg_test/seg_tst_27.png
+./workspace/dataset1/seg_test/seg_tst_25.png
+./workspace/dataset1/seg_test/seg_tst_51.png
+./workspace/dataset1/seg_test/seg_tst_37.png
+./workspace/dataset1/seg_test/seg_tst_46.png
+./workspace/dataset1/seg_test/seg_tst_100.png
+./workspace/dataset1/seg_test/seg_tst_48.png
+./workspace/dataset1/seg_test/seg_tst_73.png
+./workspace/dataset1/seg_test/seg_tst_72.png
+./workspace/dataset1/seg_test/seg_tst_91.png
+./workspace/dataset1/seg_test/seg_tst_41.png
+./workspace/dataset1/seg_test/seg_tst_85.png
+./workspace/dataset1/seg_test/seg_tst_67.png
+./workspace/dataset1/seg_test/seg_tst_74.png
+./workspace/dataset1/seg_test/seg_tst_78.png
+./workspace/dataset1/seg_test/seg_tst_96.png
+./workspace/dataset1/seg_test/seg_tst_6.png
+./workspace/dataset1/seg_test/seg_tst_44.png
+./workspace/dataset1/seg_test/seg_tst_4.png
+./workspace/dataset1/seg_test/seg_tst_90.png
+./workspace/dataset1/seg_test/seg_tst_98.png
+./workspace/dataset1/seg_test/seg_tst_62.png
+./workspace/dataset1/seg_test/seg_tst_10.png
+./workspace/dataset1/seg_test/seg_tst_63.png
+./workspace/dataset1/seg_test/seg_tst_9.png
+./workspace/dataset1/seg_test/seg_tst_81.png
+./workspace/dataset1/seg_test/seg_tst_94.png
+./workspace/dataset1/seg_test/seg_tst_19.png
+./workspace/dataset1/seg_test/seg_tst_53.png
+./workspace/dataset1/seg_test/seg_tst_11.png
+./workspace/dataset1/seg_test/seg_tst_76.png
+./workspace/dataset1/seg_test/seg_tst_47.png
+./workspace/dataset1/seg_test/seg_tst_29.png
+./workspace/dataset1/seg_test/seg_tst_0.png
+./workspace/dataset1/seg_test/seg_tst_89.png
+./workspace/dataset1/seg_test/seg_tst_64.png
+./workspace/dataset1/seg_test/seg_tst_31.png
+./workspace/dataset1/seg_test/seg_tst_80.png
+#####################################
+MAIN FLOW COMPLETED
+#####################################
+cat: ./workspace/../log/fcn8/fcn8_prepare_data.log: No such file or directory
+cat: ./workspace/../log/fcn8/fcn8_training.log: No such file or directory

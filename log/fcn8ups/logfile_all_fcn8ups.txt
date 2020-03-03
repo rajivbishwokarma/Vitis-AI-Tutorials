@@ -1,0 +1,700 @@
+/**
+
+* © Copyright (C) 2016-2020 Xilinx, Inc
+*
+* Licensed under the Apache License, Version 2.0 (the "License"). You may
+* not use this file except in compliance with the License. A copy of the
+* License is located at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations
+* under the License.
+*/
+
+
+
+ 
+##################################################################################
+Step2a: TRAINING
+##################################################################################
+ 
+2020-02-11 05:09:51.522139: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-11 05:09:51.617331: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 22.92GiB
+2020-02-11 05:09:51.617349: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-11 05:09:52.137871: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-11 05:09:52.137891: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-11 05:09:52.137895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-11 05:09:52.138534: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 20768 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+UPSCALE =  True
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            (None, 224, 224, 3)  0                                            
+__________________________________________________________________________________________________
+block1_conv1 (Conv2D)           (None, 224, 224, 64) 1792        input_1[0][0]                    
+__________________________________________________________________________________________________
+block1_conv2 (Conv2D)           (None, 224, 224, 64) 36928       block1_conv1[0][0]               
+__________________________________________________________________________________________________
+block1_pool (MaxPooling2D)      (None, 112, 112, 64) 0           block1_conv2[0][0]               
+__________________________________________________________________________________________________
+block2_conv1 (Conv2D)           (None, 112, 112, 128 73856       block1_pool[0][0]                
+__________________________________________________________________________________________________
+block2_conv2 (Conv2D)           (None, 112, 112, 128 147584      block2_conv1[0][0]               
+__________________________________________________________________________________________________
+block2_pool (MaxPooling2D)      (None, 56, 56, 128)  0           block2_conv2[0][0]               
+__________________________________________________________________________________________________
+block3_conv1 (Conv2D)           (None, 56, 56, 256)  295168      block2_pool[0][0]                
+__________________________________________________________________________________________________
+block3_conv2 (Conv2D)           (None, 56, 56, 256)  590080      block3_conv1[0][0]               
+__________________________________________________________________________________________________
+block3_conv3 (Conv2D)           (None, 56, 56, 256)  590080      block3_conv2[0][0]               
+__________________________________________________________________________________________________
+block3_pool (MaxPooling2D)      (None, 28, 28, 256)  0           block3_conv3[0][0]               
+__________________________________________________________________________________________________
+block4_conv1 (Conv2D)           (None, 28, 28, 512)  1180160     block3_pool[0][0]                
+__________________________________________________________________________________________________
+block4_conv2 (Conv2D)           (None, 28, 28, 512)  2359808     block4_conv1[0][0]               
+__________________________________________________________________________________________________
+block4_conv3 (Conv2D)           (None, 28, 28, 512)  2359808     block4_conv2[0][0]               
+__________________________________________________________________________________________________
+block4_pool (MaxPooling2D)      (None, 14, 14, 512)  0           block4_conv3[0][0]               
+__________________________________________________________________________________________________
+block5_conv1 (Conv2D)           (None, 14, 14, 512)  2359808     block4_pool[0][0]                
+__________________________________________________________________________________________________
+block5_conv2 (Conv2D)           (None, 14, 14, 512)  2359808     block5_conv1[0][0]               
+__________________________________________________________________________________________________
+block5_conv3 (Conv2D)           (None, 14, 14, 512)  2359808     block5_conv2[0][0]               
+__________________________________________________________________________________________________
+block5_pool (MaxPooling2D)      (None, 7, 7, 512)    0           block5_conv3[0][0]               
+__________________________________________________________________________________________________
+pool4_11 (Conv2D)               (None, 14, 14, 12)   6156        block4_pool[0][0]                
+__________________________________________________________________________________________________
+conv7_4a (Conv2D)               (None, 7, 7, 12)     301068      block5_pool[0][0]                
+__________________________________________________________________________________________________
+pool411_b (Conv2D)              (None, 14, 14, 12)   156         pool4_11[0][0]                   
+__________________________________________________________________________________________________
+conv7_4b (Conv2D)               (None, 7, 7, 12)     156         conv7_4a[0][0]                   
+__________________________________________________________________________________________________
+up_sampling2d_2 (UpSampling2D)  (None, 28, 28, 12)   0           pool411_b[0][0]                  
+__________________________________________________________________________________________________
+pool3_11 (Conv2D)               (None, 28, 28, 12)   3084        block3_pool[0][0]                
+__________________________________________________________________________________________________
+up_sampling2d_1 (UpSampling2D)  (None, 28, 28, 12)   0           conv7_4b[0][0]                   
+__________________________________________________________________________________________________
+add_layer (Add)                 (None, 28, 28, 12)   0           up_sampling2d_2[0][0]            
+                                                                 pool3_11[0][0]                   
+                                                                 up_sampling2d_1[0][0]            
+__________________________________________________________________________________________________
+conv2d_transpose_1 (Conv2DTrans (None, 224, 224, 12) 9216        add_layer[0][0]                  
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 224, 224, 12) 0           conv2d_transpose_1[0][0]         
+==================================================================================================
+Total params: 15,034,524
+Trainable params: 15,034,524
+Non-trainable params: 0
+__________________________________________________________________________________________________
+(311, 224, 224, 3) (311, 224, 224, 12)
+(56, 224, 224, 3) (56, 224, 224, 12)
+Train on 311 samples, validate on 56 samples
+Epoch 1/200
+ - 9s - loss: 2.5892 - acc: 0.1057 - val_loss: 2.4768 - val_acc: 0.1244
+Epoch 2/200
+ - 4s - loss: 2.4628 - acc: 0.1415 - val_loss: 2.4299 - val_acc: 0.1611
+Epoch 3/200
+ - 4s - loss: 2.3768 - acc: 0.2013 - val_loss: 2.2505 - val_acc: 0.2725
+Epoch 4/200
+ - 4s - loss: 2.1137 - acc: 0.3030 - val_loss: 2.0167 - val_acc: 0.3375
+Epoch 5/200
+ - 4s - loss: 1.9459 - acc: 0.3781 - val_loss: 1.7261 - val_acc: 0.4324
+Epoch 6/200
+ - 4s - loss: 1.6860 - acc: 0.4520 - val_loss: 1.5255 - val_acc: 0.5215
+Epoch 7/200
+ - 4s - loss: 1.4435 - acc: 0.5585 - val_loss: 1.2770 - val_acc: 0.6247
+Epoch 8/200
+ - 4s - loss: 1.2824 - acc: 0.6255 - val_loss: 1.1653 - val_acc: 0.6797
+Epoch 9/200
+ - 4s - loss: 1.1831 - acc: 0.6653 - val_loss: 1.0862 - val_acc: 0.6940
+Epoch 10/200
+ - 4s - loss: 1.1042 - acc: 0.6725 - val_loss: 1.0339 - val_acc: 0.6984
+Epoch 11/200
+ - 4s - loss: 1.0829 - acc: 0.6738 - val_loss: 1.0169 - val_acc: 0.6987
+Epoch 12/200
+ - 4s - loss: 1.0353 - acc: 0.6778 - val_loss: 1.0004 - val_acc: 0.6985
+Epoch 13/200
+ - 4s - loss: 1.0225 - acc: 0.6781 - val_loss: 0.9763 - val_acc: 0.7035
+Epoch 14/200
+ - 4s - loss: 0.9883 - acc: 0.6828 - val_loss: 0.9440 - val_acc: 0.7046
+Epoch 15/200
+ - 4s - loss: 0.9921 - acc: 0.6819 - val_loss: 0.9465 - val_acc: 0.7014
+Epoch 16/200
+ - 4s - loss: 0.9567 - acc: 0.6857 - val_loss: 0.9173 - val_acc: 0.7091
+Epoch 17/200
+ - 4s - loss: 0.9463 - acc: 0.6902 - val_loss: 0.9029 - val_acc: 0.7143
+Epoch 18/200
+ - 4s - loss: 0.9340 - acc: 0.6960 - val_loss: 0.9031 - val_acc: 0.7139
+Epoch 19/200
+ - 4s - loss: 0.9113 - acc: 0.7051 - val_loss: 0.9075 - val_acc: 0.7169
+Epoch 20/200
+ - 4s - loss: 0.9144 - acc: 0.7088 - val_loss: 0.8690 - val_acc: 0.7281
+Epoch 21/200
+ - 4s - loss: 0.8811 - acc: 0.7244 - val_loss: 0.8909 - val_acc: 0.7288
+Epoch 22/200
+ - 4s - loss: 0.8774 - acc: 0.7285 - val_loss: 0.8409 - val_acc: 0.7473
+Epoch 23/200
+ - 4s - loss: 0.8803 - acc: 0.7303 - val_loss: 0.8828 - val_acc: 0.7333
+Epoch 24/200
+ - 4s - loss: 0.8525 - acc: 0.7425 - val_loss: 0.8385 - val_acc: 0.7495
+Epoch 25/200
+ - 4s - loss: 0.8536 - acc: 0.7414 - val_loss: 0.8070 - val_acc: 0.7609
+Epoch 26/200
+ - 4s - loss: 0.8228 - acc: 0.7553 - val_loss: 0.8311 - val_acc: 0.7501
+Epoch 27/200
+ - 4s - loss: 0.8136 - acc: 0.7585 - val_loss: 0.8191 - val_acc: 0.7504
+Epoch 28/200
+ - 4s - loss: 0.8111 - acc: 0.7561 - val_loss: 0.7793 - val_acc: 0.7694
+Epoch 29/200
+ - 4s - loss: 0.7993 - acc: 0.7599 - val_loss: 0.7677 - val_acc: 0.7732
+Epoch 30/200
+ - 4s - loss: 0.7808 - acc: 0.7690 - val_loss: 0.7572 - val_acc: 0.7787
+Epoch 31/200
+ - 4s - loss: 0.8010 - acc: 0.7574 - val_loss: 0.7653 - val_acc: 0.7667
+Epoch 32/200
+ - 4s - loss: 0.7670 - acc: 0.7724 - val_loss: 0.7743 - val_acc: 0.7680
+Epoch 33/200
+ - 4s - loss: 0.7554 - acc: 0.7757 - val_loss: 0.7563 - val_acc: 0.7708
+Epoch 34/200
+ - 4s - loss: 0.7521 - acc: 0.7775 - val_loss: 0.7257 - val_acc: 0.7874
+Epoch 35/200
+ - 4s - loss: 0.7313 - acc: 0.7834 - val_loss: 0.7292 - val_acc: 0.7868
+Epoch 36/200
+ - 4s - loss: 0.7469 - acc: 0.7775 - val_loss: 0.7133 - val_acc: 0.7927
+Epoch 37/200
+ - 4s - loss: 0.7204 - acc: 0.7876 - val_loss: 0.7436 - val_acc: 0.7723
+Epoch 38/200
+ - 4s - loss: 0.7295 - acc: 0.7836 - val_loss: 0.6978 - val_acc: 0.7974
+Epoch 39/200
+ - 4s - loss: 0.7119 - acc: 0.7891 - val_loss: 0.6968 - val_acc: 0.7959
+Epoch 40/200
+ - 4s - loss: 0.6942 - acc: 0.7962 - val_loss: 0.6936 - val_acc: 0.7976
+Epoch 41/200
+ - 4s - loss: 0.7029 - acc: 0.7917 - val_loss: 0.7235 - val_acc: 0.7856
+Epoch 42/200
+ - 4s - loss: 0.6869 - acc: 0.7982 - val_loss: 0.6771 - val_acc: 0.8044
+Epoch 43/200
+ - 4s - loss: 0.6923 - acc: 0.7959 - val_loss: 0.6678 - val_acc: 0.8068
+Epoch 44/200
+ - 4s - loss: 0.6690 - acc: 0.8046 - val_loss: 0.6630 - val_acc: 0.8072
+Epoch 45/200
+ - 4s - loss: 0.6610 - acc: 0.8071 - val_loss: 0.6912 - val_acc: 0.7970
+Epoch 46/200
+ - 4s - loss: 0.6777 - acc: 0.8015 - val_loss: 0.6815 - val_acc: 0.8030
+Epoch 47/200
+ - 4s - loss: 0.6582 - acc: 0.8087 - val_loss: 0.6596 - val_acc: 0.8068
+Epoch 48/200
+ - 4s - loss: 0.6568 - acc: 0.8085 - val_loss: 0.6453 - val_acc: 0.8132
+Epoch 49/200
+ - 4s - loss: 0.6391 - acc: 0.8149 - val_loss: 0.6493 - val_acc: 0.8140
+Epoch 50/200
+ - 4s - loss: 0.6406 - acc: 0.8144 - val_loss: 0.6507 - val_acc: 0.8125
+Epoch 51/200
+ - 4s - loss: 0.6487 - acc: 0.8129 - val_loss: 0.6273 - val_acc: 0.8182
+Epoch 52/200
+ - 4s - loss: 0.6240 - acc: 0.8201 - val_loss: 0.6256 - val_acc: 0.8190
+Epoch 53/200
+ - 4s - loss: 0.6221 - acc: 0.8208 - val_loss: 0.6253 - val_acc: 0.8181
+Epoch 54/200
+ - 4s - loss: 0.6176 - acc: 0.8222 - val_loss: 0.6378 - val_acc: 0.8127
+Epoch 55/200
+ - 4s - loss: 0.6416 - acc: 0.8135 - val_loss: 0.6158 - val_acc: 0.8226
+Epoch 56/200
+ - 4s - loss: 0.6089 - acc: 0.8256 - val_loss: 0.6134 - val_acc: 0.8235
+Epoch 57/200
+ - 4s - loss: 0.6037 - acc: 0.8272 - val_loss: 0.6072 - val_acc: 0.8255
+Epoch 58/200
+ - 4s - loss: 0.6017 - acc: 0.8277 - val_loss: 0.6033 - val_acc: 0.8263
+Epoch 59/200
+ - 4s - loss: 0.6027 - acc: 0.8274 - val_loss: 0.6039 - val_acc: 0.8259
+Epoch 60/200
+ - 4s - loss: 0.5924 - acc: 0.8305 - val_loss: 0.6343 - val_acc: 0.8175
+Epoch 61/200
+ - 4s - loss: 0.5983 - acc: 0.8287 - val_loss: 0.5957 - val_acc: 0.8288
+Epoch 62/200
+ - 4s - loss: 0.5883 - acc: 0.8323 - val_loss: 0.5923 - val_acc: 0.8283
+Epoch 63/200
+ - 4s - loss: 0.5840 - acc: 0.8330 - val_loss: 0.5934 - val_acc: 0.8276
+Epoch 64/200
+ - 4s - loss: 0.5844 - acc: 0.8332 - val_loss: 0.5925 - val_acc: 0.8287
+Epoch 65/200
+ - 4s - loss: 0.5785 - acc: 0.8349 - val_loss: 0.5841 - val_acc: 0.8309
+Epoch 66/200
+ - 4s - loss: 0.5734 - acc: 0.8366 - val_loss: 0.5865 - val_acc: 0.8292
+Epoch 67/200
+ - 4s - loss: 0.5782 - acc: 0.8353 - val_loss: 0.5802 - val_acc: 0.8326
+Epoch 68/200
+ - 4s - loss: 0.5718 - acc: 0.8366 - val_loss: 0.5795 - val_acc: 0.8327
+Epoch 69/200
+ - 4s - loss: 0.5728 - acc: 0.8357 - val_loss: 0.5765 - val_acc: 0.8327
+Epoch 70/200
+ - 4s - loss: 0.5639 - acc: 0.8394 - val_loss: 0.5736 - val_acc: 0.8344
+Epoch 71/200
+ - 4s - loss: 0.5594 - acc: 0.8404 - val_loss: 0.5741 - val_acc: 0.8342
+Epoch 72/200
+ - 4s - loss: 0.5614 - acc: 0.8399 - val_loss: 0.5853 - val_acc: 0.8319
+Epoch 73/200
+ - 4s - loss: 0.5704 - acc: 0.8367 - val_loss: 0.5702 - val_acc: 0.8351
+Epoch 74/200
+ - 4s - loss: 0.5540 - acc: 0.8420 - val_loss: 0.5729 - val_acc: 0.8351
+Epoch 75/200
+ - 4s - loss: 0.5641 - acc: 0.8389 - val_loss: 0.5741 - val_acc: 0.8343
+Epoch 76/200
+ - 4s - loss: 0.5494 - acc: 0.8430 - val_loss: 0.5656 - val_acc: 0.8351
+Epoch 77/200
+ - 4s - loss: 0.5498 - acc: 0.8432 - val_loss: 0.5625 - val_acc: 0.8362
+Epoch 78/200
+ - 4s - loss: 0.5481 - acc: 0.8432 - val_loss: 0.5682 - val_acc: 0.8370
+Epoch 79/200
+ - 4s - loss: 0.5484 - acc: 0.8432 - val_loss: 0.5628 - val_acc: 0.8365
+Epoch 80/200
+ - 4s - loss: 0.5427 - acc: 0.8448 - val_loss: 0.5564 - val_acc: 0.8390
+Epoch 81/200
+ - 4s - loss: 0.5391 - acc: 0.8460 - val_loss: 0.5624 - val_acc: 0.8359
+Epoch 82/200
+ - 4s - loss: 0.5501 - acc: 0.8421 - val_loss: 0.5551 - val_acc: 0.8389
+Epoch 83/200
+ - 4s - loss: 0.5405 - acc: 0.8452 - val_loss: 0.5532 - val_acc: 0.8398
+Epoch 84/200
+ - 4s - loss: 0.5365 - acc: 0.8468 - val_loss: 0.5519 - val_acc: 0.8405
+Epoch 85/200
+ - 4s - loss: 0.5357 - acc: 0.8467 - val_loss: 0.5493 - val_acc: 0.8408
+Epoch 86/200
+ - 4s - loss: 0.5321 - acc: 0.8483 - val_loss: 0.5615 - val_acc: 0.8391
+Epoch 87/200
+ - 4s - loss: 0.5396 - acc: 0.8459 - val_loss: 0.5460 - val_acc: 0.8417
+Epoch 88/200
+ - 4s - loss: 0.5277 - acc: 0.8493 - val_loss: 0.5466 - val_acc: 0.8423
+Epoch 89/200
+ - 4s - loss: 0.5272 - acc: 0.8493 - val_loss: 0.5464 - val_acc: 0.8413
+Epoch 90/200
+ - 4s - loss: 0.5257 - acc: 0.8499 - val_loss: 0.5450 - val_acc: 0.8424
+Epoch 91/200
+ - 4s - loss: 0.5238 - acc: 0.8503 - val_loss: 0.5447 - val_acc: 0.8427
+Epoch 92/200
+ - 4s - loss: 0.5371 - acc: 0.8460 - val_loss: 0.5772 - val_acc: 0.8345
+Epoch 93/200
+ - 4s - loss: 0.5300 - acc: 0.8484 - val_loss: 0.5441 - val_acc: 0.8428
+Epoch 94/200
+ - 4s - loss: 0.5201 - acc: 0.8510 - val_loss: 0.5406 - val_acc: 0.8434
+Epoch 95/200
+ - 4s - loss: 0.5189 - acc: 0.8519 - val_loss: 0.5375 - val_acc: 0.8449
+Epoch 96/200
+ - 4s - loss: 0.5159 - acc: 0.8527 - val_loss: 0.5376 - val_acc: 0.8453
+Epoch 97/200
+ - 4s - loss: 0.5150 - acc: 0.8531 - val_loss: 0.5396 - val_acc: 0.8441
+Epoch 98/200
+ - 4s - loss: 0.5170 - acc: 0.8525 - val_loss: 0.5539 - val_acc: 0.8394
+Epoch 99/200
+ - 4s - loss: 0.5262 - acc: 0.8494 - val_loss: 0.5371 - val_acc: 0.8442
+Epoch 100/200
+ - 4s - loss: 0.5150 - acc: 0.8532 - val_loss: 0.5371 - val_acc: 0.8448
+Epoch 101/200
+ - 4s - loss: 0.5105 - acc: 0.8543 - val_loss: 0.5371 - val_acc: 0.8442
+Epoch 102/200
+ - 4s - loss: 0.5157 - acc: 0.8530 - val_loss: 0.5374 - val_acc: 0.8445
+Epoch 103/200
+ - 4s - loss: 0.5077 - acc: 0.8554 - val_loss: 0.5349 - val_acc: 0.8471
+Epoch 104/200
+ - 4s - loss: 0.5093 - acc: 0.8547 - val_loss: 0.5313 - val_acc: 0.8470
+Epoch 105/200
+ - 4s - loss: 0.5083 - acc: 0.8550 - val_loss: 0.5345 - val_acc: 0.8469
+Epoch 106/200
+ - 4s - loss: 0.5098 - acc: 0.8543 - val_loss: 0.5376 - val_acc: 0.8467
+Epoch 107/200
+ - 4s - loss: 0.5100 - acc: 0.8545 - val_loss: 0.5396 - val_acc: 0.8432
+Epoch 108/200
+ - 4s - loss: 0.5054 - acc: 0.8558 - val_loss: 0.5264 - val_acc: 0.8482
+Epoch 109/200
+ - 4s - loss: 0.5018 - acc: 0.8574 - val_loss: 0.5332 - val_acc: 0.8478
+Epoch 110/200
+ - 4s - loss: 0.5050 - acc: 0.8558 - val_loss: 0.5235 - val_acc: 0.8488
+Epoch 111/200
+ - 4s - loss: 0.4983 - acc: 0.8581 - val_loss: 0.5238 - val_acc: 0.8490
+Epoch 112/200
+ - 4s - loss: 0.5001 - acc: 0.8577 - val_loss: 0.5237 - val_acc: 0.8486
+Epoch 113/200
+ - 4s - loss: 0.5005 - acc: 0.8576 - val_loss: 0.5232 - val_acc: 0.8494
+Epoch 114/200
+ - 4s - loss: 0.4997 - acc: 0.8577 - val_loss: 0.5247 - val_acc: 0.8496
+Epoch 115/200
+ - 4s - loss: 0.4952 - acc: 0.8590 - val_loss: 0.5323 - val_acc: 0.8459
+Epoch 116/200
+ - 4s - loss: 0.5162 - acc: 0.8530 - val_loss: 0.5218 - val_acc: 0.8496
+Epoch 117/200
+ - 4s - loss: 0.4973 - acc: 0.8584 - val_loss: 0.5236 - val_acc: 0.8491
+Epoch 118/200
+ - 4s - loss: 0.4939 - acc: 0.8593 - val_loss: 0.5212 - val_acc: 0.8496
+Epoch 119/200
+ - 4s - loss: 0.4913 - acc: 0.8604 - val_loss: 0.5207 - val_acc: 0.8505
+Epoch 120/200
+ - 4s - loss: 0.4902 - acc: 0.8610 - val_loss: 0.5243 - val_acc: 0.8486
+Epoch 121/200
+ - 4s - loss: 0.4908 - acc: 0.8605 - val_loss: 0.5179 - val_acc: 0.8507
+Epoch 122/200
+ - 4s - loss: 0.4893 - acc: 0.8611 - val_loss: 0.5191 - val_acc: 0.8508
+Epoch 123/200
+ - 4s - loss: 0.4878 - acc: 0.8614 - val_loss: 0.5195 - val_acc: 0.8507
+Epoch 124/200
+ - 4s - loss: 0.4891 - acc: 0.8609 - val_loss: 0.5161 - val_acc: 0.8518
+Epoch 125/200
+ - 4s - loss: 0.4924 - acc: 0.8600 - val_loss: 0.5148 - val_acc: 0.8520
+Epoch 126/200
+ - 4s - loss: 0.4851 - acc: 0.8622 - val_loss: 0.5182 - val_acc: 0.8509
+Epoch 127/200
+ - 4s - loss: 0.4855 - acc: 0.8620 - val_loss: 0.5146 - val_acc: 0.8525
+Epoch 128/200
+ - 4s - loss: 0.4827 - acc: 0.8630 - val_loss: 0.5135 - val_acc: 0.8529
+Epoch 129/200
+ - 4s - loss: 0.4831 - acc: 0.8627 - val_loss: 0.5346 - val_acc: 0.8460
+Epoch 130/200
+ - 4s - loss: 0.4956 - acc: 0.8584 - val_loss: 0.5117 - val_acc: 0.8529
+Epoch 131/200
+ - 4s - loss: 0.4821 - acc: 0.8633 - val_loss: 0.5120 - val_acc: 0.8535
+Epoch 132/200
+ - 4s - loss: 0.4821 - acc: 0.8630 - val_loss: 0.5116 - val_acc: 0.8531
+Epoch 133/200
+ - 4s - loss: 0.4793 - acc: 0.8643 - val_loss: 0.5141 - val_acc: 0.8520
+Epoch 134/200
+ - 4s - loss: 0.4796 - acc: 0.8639 - val_loss: 0.5118 - val_acc: 0.8536
+Epoch 135/200
+ - 4s - loss: 0.4783 - acc: 0.8645 - val_loss: 0.5100 - val_acc: 0.8535
+Epoch 136/200
+ - 4s - loss: 0.4791 - acc: 0.8640 - val_loss: 0.5109 - val_acc: 0.8532
+Epoch 137/200
+ - 4s - loss: 0.4771 - acc: 0.8647 - val_loss: 0.5091 - val_acc: 0.8541
+Epoch 138/200
+ - 4s - loss: 0.4751 - acc: 0.8652 - val_loss: 0.5078 - val_acc: 0.8550
+Epoch 139/200
+ - 4s - loss: 0.4771 - acc: 0.8645 - val_loss: 0.5068 - val_acc: 0.8547
+Epoch 140/200
+ - 4s - loss: 0.4745 - acc: 0.8654 - val_loss: 0.5122 - val_acc: 0.8544
+Epoch 141/200
+ - 4s - loss: 0.4738 - acc: 0.8657 - val_loss: 0.5090 - val_acc: 0.8546
+Epoch 142/200
+ - 4s - loss: 0.4734 - acc: 0.8659 - val_loss: 0.5081 - val_acc: 0.8542
+Epoch 143/200
+ - 4s - loss: 0.4779 - acc: 0.8645 - val_loss: 0.5054 - val_acc: 0.8549
+Epoch 144/200
+ - 4s - loss: 0.4703 - acc: 0.8669 - val_loss: 0.5038 - val_acc: 0.8557
+Epoch 145/200
+ - 4s - loss: 0.4753 - acc: 0.8650 - val_loss: 0.5074 - val_acc: 0.8543
+Epoch 146/200
+ - 4s - loss: 0.4715 - acc: 0.8663 - val_loss: 0.5031 - val_acc: 0.8559
+Epoch 147/200
+ - 4s - loss: 0.4681 - acc: 0.8674 - val_loss: 0.5071 - val_acc: 0.8553
+Epoch 148/200
+ - 4s - loss: 0.4672 - acc: 0.8676 - val_loss: 0.5045 - val_acc: 0.8558
+Epoch 149/200
+ - 4s - loss: 0.4680 - acc: 0.8674 - val_loss: 0.5053 - val_acc: 0.8549
+Epoch 150/200
+ - 4s - loss: 0.4751 - acc: 0.8652 - val_loss: 0.5044 - val_acc: 0.8559
+Epoch 151/200
+ - 4s - loss: 0.4653 - acc: 0.8683 - val_loss: 0.5017 - val_acc: 0.8564
+Epoch 152/200
+ - 4s - loss: 0.4643 - acc: 0.8685 - val_loss: 0.5024 - val_acc: 0.8563
+Epoch 153/200
+ - 4s - loss: 0.4670 - acc: 0.8676 - val_loss: 0.5096 - val_acc: 0.8554
+Epoch 154/200
+ - 4s - loss: 0.4663 - acc: 0.8678 - val_loss: 0.5515 - val_acc: 0.8468
+Epoch 155/200
+ - 4s - loss: 0.4699 - acc: 0.8663 - val_loss: 0.5036 - val_acc: 0.8565
+Epoch 156/200
+ - 4s - loss: 0.4623 - acc: 0.8690 - val_loss: 0.5012 - val_acc: 0.8565
+Epoch 157/200
+ - 4s - loss: 0.4616 - acc: 0.8691 - val_loss: 0.5008 - val_acc: 0.8574
+Epoch 158/200
+ - 4s - loss: 0.4605 - acc: 0.8697 - val_loss: 0.4989 - val_acc: 0.8575
+Epoch 159/200
+ - 4s - loss: 0.4600 - acc: 0.8697 - val_loss: 0.5079 - val_acc: 0.8559
+Epoch 160/200
+ - 4s - loss: 0.4604 - acc: 0.8694 - val_loss: 0.5004 - val_acc: 0.8565
+Epoch 161/200
+ - 4s - loss: 0.4630 - acc: 0.8689 - val_loss: 0.5086 - val_acc: 0.8546
+Epoch 162/200
+ - 4s - loss: 0.4621 - acc: 0.8689 - val_loss: 0.4984 - val_acc: 0.8578
+Epoch 163/200
+ - 4s - loss: 0.4584 - acc: 0.8703 - val_loss: 0.4993 - val_acc: 0.8576
+Epoch 164/200
+ - 4s - loss: 0.4597 - acc: 0.8696 - val_loss: 0.4990 - val_acc: 0.8578
+Epoch 165/200
+ - 4s - loss: 0.4563 - acc: 0.8708 - val_loss: 0.4983 - val_acc: 0.8579
+Epoch 166/200
+ - 4s - loss: 0.4568 - acc: 0.8706 - val_loss: 0.4979 - val_acc: 0.8577
+Epoch 167/200
+ - 4s - loss: 0.4566 - acc: 0.8706 - val_loss: 0.4980 - val_acc: 0.8578
+Epoch 168/200
+ - 4s - loss: 0.4567 - acc: 0.8704 - val_loss: 0.4994 - val_acc: 0.8577
+Epoch 169/200
+ - 4s - loss: 0.4538 - acc: 0.8714 - val_loss: 0.4956 - val_acc: 0.8585
+Epoch 170/200
+ - 4s - loss: 0.4533 - acc: 0.8716 - val_loss: 0.4951 - val_acc: 0.8582
+Epoch 171/200
+ - 4s - loss: 0.4535 - acc: 0.8715 - val_loss: 0.5048 - val_acc: 0.8567
+Epoch 172/200
+ - 4s - loss: 0.4642 - acc: 0.8678 - val_loss: 0.5020 - val_acc: 0.8570
+Epoch 173/200
+ - 4s - loss: 0.4552 - acc: 0.8707 - val_loss: 0.4931 - val_acc: 0.8588
+Epoch 174/200
+ - 4s - loss: 0.4519 - acc: 0.8720 - val_loss: 0.4940 - val_acc: 0.8587
+Epoch 175/200
+ - 4s - loss: 0.4550 - acc: 0.8706 - val_loss: 0.4951 - val_acc: 0.8583
+Epoch 176/200
+ - 4s - loss: 0.4510 - acc: 0.8721 - val_loss: 0.4926 - val_acc: 0.8591
+Epoch 177/200
+ - 4s - loss: 0.4501 - acc: 0.8726 - val_loss: 0.4924 - val_acc: 0.8595
+Epoch 178/200
+ - 4s - loss: 0.4490 - acc: 0.8728 - val_loss: 0.4912 - val_acc: 0.8595
+Epoch 179/200
+ - 4s - loss: 0.4546 - acc: 0.8711 - val_loss: 0.5131 - val_acc: 0.8555
+Epoch 180/200
+ - 4s - loss: 0.4544 - acc: 0.8711 - val_loss: 0.4914 - val_acc: 0.8596
+Epoch 181/200
+ - 4s - loss: 0.4482 - acc: 0.8729 - val_loss: 0.4924 - val_acc: 0.8594
+Epoch 182/200
+ - 4s - loss: 0.4477 - acc: 0.8732 - val_loss: 0.4911 - val_acc: 0.8598
+Epoch 183/200
+ - 4s - loss: 0.4467 - acc: 0.8736 - val_loss: 0.4930 - val_acc: 0.8597
+Epoch 184/200
+ - 4s - loss: 0.4474 - acc: 0.8732 - val_loss: 0.4923 - val_acc: 0.8594
+Epoch 185/200
+ - 4s - loss: 0.4486 - acc: 0.8728 - val_loss: 0.4931 - val_acc: 0.8589
+Epoch 186/200
+ - 4s - loss: 0.4459 - acc: 0.8737 - val_loss: 0.4914 - val_acc: 0.8597
+Epoch 187/200
+ - 4s - loss: 0.4441 - acc: 0.8743 - val_loss: 0.4912 - val_acc: 0.8599
+Epoch 188/200
+ - 4s - loss: 0.4456 - acc: 0.8737 - val_loss: 0.5052 - val_acc: 0.8572
+Epoch 189/200
+ - 4s - loss: 0.4485 - acc: 0.8726 - val_loss: 0.4912 - val_acc: 0.8602
+Epoch 190/200
+ - 4s - loss: 0.4436 - acc: 0.8744 - val_loss: 0.4928 - val_acc: 0.8597
+Epoch 191/200
+ - 4s - loss: 0.4437 - acc: 0.8743 - val_loss: 0.4886 - val_acc: 0.8605
+Epoch 192/200
+ - 4s - loss: 0.4426 - acc: 0.8747 - val_loss: 0.4915 - val_acc: 0.8593
+Epoch 193/200
+ - 4s - loss: 0.4468 - acc: 0.8734 - val_loss: 0.4923 - val_acc: 0.8591
+Epoch 194/200
+ - 4s - loss: 0.4426 - acc: 0.8747 - val_loss: 0.4878 - val_acc: 0.8604
+Epoch 195/200
+ - 4s - loss: 0.4467 - acc: 0.8735 - val_loss: 0.4898 - val_acc: 0.8603
+Epoch 196/200
+ - 4s - loss: 0.4440 - acc: 0.8742 - val_loss: 0.4897 - val_acc: 0.8603
+Epoch 197/200
+ - 4s - loss: 0.4422 - acc: 0.8747 - val_loss: 0.4903 - val_acc: 0.8595
+Epoch 198/200
+ - 4s - loss: 0.4430 - acc: 0.8745 - val_loss: 0.4877 - val_acc: 0.8607
+Epoch 199/200
+ - 4s - loss: 0.4395 - acc: 0.8756 - val_loss: 0.4869 - val_acc: 0.8611
+Epoch 200/200
+ - 4s - loss: 0.4394 - acc: 0.8757 - val_loss: 0.4912 - val_acc: 0.8602
+Using TensorFlow backend.
+
+
+Elapsed time for Keras training (s):  787.96797
+
+
+
+ 
+#######################################################################################
+Step3: KERAS to TENSORFLOW GRAPH CONVERSION
+#######################################################################################
+ 
+2020-02-12 04:01:38.890259: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 04:01:38.983859: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.16GiB
+2020-02-12 04:01:38.983878: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 04:01:39.507842: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 04:01:39.507862: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 04:01:39.507866: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 04:01:39.508458: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22467 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+model name =  fcn8ups
+
+ TF input node name:
+[<tf.Tensor 'input_1:0' shape=(?, 224, 224, 3) dtype=float32>]
+
+ TF output node name:
+[<tf.Tensor 'activation_1/truediv:0' shape=(?, ?, ?, 12) dtype=float32>]
+
+FINISHED CREATING TF FILES
+
+ 
+##############################################################################
+Step4a: FREEZE TF GRAPHS
+##############################################################################
+ 
+WARNING:tensorflow:From /opt/vitis_ai/conda/envs/vitis-ai-tensorflow/lib/python3.6/site-packages/tensorflow/python/tools/freeze_graph.py:249: FastGFile.__init__ (from tensorflow.python.platform.gfile) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.gfile.GFile.
+2020-02-12 04:01:46.549204: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 04:01:46.631756: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.16GiB
+2020-02-12 04:01:46.631775: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 04:01:47.154022: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 04:01:47.154043: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 04:01:47.154046: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 04:01:47.154681: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22467 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+ 
+##############################################################################
+Step4a: INSPECT FROZEN GRAPH
+##############################################################################
+ 
+Op types used: 61 Const, 37 Identity, 18 BiasAdd, 18 Conv2D, 18 Relu, 5 StridedSlice, 5 MaxPool, 4 Mul, 4 Add, 3 Shape, 2 ResizeBilinear, 1 Max, 1 Pack, 1 Placeholder, 1 RealDiv, 1 Exp, 1 Conv2DBackpropInput, 1 Sub, 1 Sum
+
+Found 1 possible inputs: (name=input_1, type=float(1), shape=[?,224,224,3]) 
+Found 1 possible outputs: (name=activation_1/truediv, op=RealDiv) 
+ 
+##############################################################################
+Spet4b: EVALUATING THE ORIGINAL GRAPH
+##############################################################################
+ 
+2020-02-12 04:01:58.363527: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 04:01:58.468648: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.16GiB
+2020-02-12 04:01:58.468668: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 04:01:58.989417: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 04:01:58.989435: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 04:01:58.989440: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 04:01:58.990021: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22467 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+X tensor shape:  (101, 224, 224, 3)  Y tensor shape:  (101, 224, 224, 12)
+(101, 224, 224) (101, 224, 224)
+class ( 0)          Sky: #TP= 434809, #FP=  27341, #FN=  21164, IoU=0.900
+class ( 1)         Wall: #TP=1120199, #FP= 149669, #FN= 183747, IoU=0.771
+class ( 2)         Pole: #TP=      4, #FP=    147, #FN=  36416, IoU=0.000
+class ( 3)         Road: #TP=1426100, #FP= 110182, #FN=  48919, IoU=0.900
+class ( 4)     Sidewalk: #TP= 379948, #FP=  80015, #FN=  68485, IoU=0.719
+class ( 5)   Vegetation: #TP= 803496, #FP= 173372, #FN=  23049, IoU=0.804
+class ( 6)         Sign: #TP=     15, #FP=    133, #FN=  53377, IoU=0.000
+class ( 7)        Fence: #TP=   1055, #FP=   4783, #FN= 155348, IoU=0.007
+class ( 8)      vehicle: #TP=  75844, #FP= 136259, #FN=  18216, IoU=0.329
+class ( 9)   Pedestrian: #TP=     96, #FP=    223, #FN=  36769, IoU=0.003
+class (10)    Bicyclist: #TP=     36, #FP=    104, #FN= 110936, IoU=0.000
+class (11)  miscellanea: #TP=  22758, #FP= 121188, #FN=  46990, IoU=0.119
+_________________
+Mean IoU: 0.379
+FINISHED!
+ 
+##########################################################################
+Step5a: QUANTIZATION
+##########################################################################
+ 
+ 
+Vai_q_tensorflow v1.0.0 Build for Tensorflow 1.12.0
+ 
+Using TensorFlow backend.
+                                                                               N/A% (0 of 10) |                         | Elapsed Time: 0:00:00 ETA:  --:--:--                                                                                10% (1 of 10) |##                       | Elapsed Time: 0:00:01 ETA:   0:00:10                                                                                20% (2 of 10) |#####                    | Elapsed Time: 0:00:02 ETA:   0:00:08                                                                                30% (3 of 10) |#######                  | Elapsed Time: 0:00:03 ETA:   0:00:07                                                                                40% (4 of 10) |##########               | Elapsed Time: 0:00:04 ETA:   0:00:06                                                                                50% (5 of 10) |############             | Elapsed Time: 0:00:05 ETA:   0:00:05                                                                                60% (6 of 10) |###############          | Elapsed Time: 0:00:06 ETA:   0:00:04                                                                                70% (7 of 10) |#################        | Elapsed Time: 0:00:07 ETA:   0:00:03                                                                                80% (8 of 10) |####################     | Elapsed Time: 0:00:08 ETA:   0:00:02                                                                                90% (9 of 10) |######################   | Elapsed Time: 0:00:09 ETA:   0:00:01                                                                               100% (10 of 10) |########################| Elapsed Time: 0:00:10 Time:  0:00:10
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+script running on folder  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+CALIB DIR  /workspace/VAI-KERAS-FCN8-SEMSEG/code/../workspace/dataset1/img_calib
+INFO: Checking Float Graph...
+INFO: Float Graph Check Done.
+INFO: Calibrating for 10 iterations...
+INFO: Calibration Done.
+INFO: Generating Deploy Model...
+INFO: Deploy Model Generated.
+********************* Quantization Summary *********************      
+INFO: Output:       
+  quantize_eval_model: .././workspace/quantize_results/fcn8ups/quantize_eval_model.pb       
+  deploy_model: .././workspace/quantize_results/fcn8ups/deploy_model.pb
+ 
+##############################################################################
+Step5b: EVALUATE QUANTIZED GRAPH
+##############################################################################
+ 
+2020-02-12 04:02:33.512725: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 04:02:33.610781: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.16GiB
+2020-02-12 04:02:33.610799: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 04:02:34.155869: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 04:02:34.155891: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 04:02:34.155895: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 04:02:34.156507: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22467 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+X tensor shape:  (101, 224, 224, 3)  Y tensor shape:  (101, 224, 224, 12)
+(101, 224, 224) (101, 224, 224)
+class ( 0)          Sky: #TP= 437317, #FP=  30868, #FN=  18656, IoU=0.898
+class ( 1)         Wall: #TP=1125721, #FP= 155155, #FN= 178225, IoU=0.772
+class ( 2)         Pole: #TP=      8, #FP=    214, #FN=  36412, IoU=0.000
+class ( 3)         Road: #TP=1426549, #FP= 110907, #FN=  48470, IoU=0.900
+class ( 4)     Sidewalk: #TP= 381635, #FP=  82109, #FN=  66798, IoU=0.719
+class ( 5)   Vegetation: #TP= 803255, #FP= 189951, #FN=  23290, IoU=0.790
+class ( 6)         Sign: #TP=     31, #FP=    160, #FN=  53361, IoU=0.001
+class ( 7)        Fence: #TP=    818, #FP=   5048, #FN= 155585, IoU=0.005
+class ( 8)      vehicle: #TP=  73561, #FP= 112039, #FN=  20499, IoU=0.357
+class ( 9)   Pedestrian: #TP=    107, #FP=    305, #FN=  36758, IoU=0.003
+class (10)    Bicyclist: #TP=     66, #FP=    138, #FN= 110906, IoU=0.001
+class (11)  miscellanea: #TP=  22290, #FP= 109524, #FN=  47458, IoU=0.124
+_________________
+Mean IoU: 0.381
+FINISHED!
+ 
+##########################################################################
+COMPILE FCN8UPS ELF FILE WITH Vitis AI
+##########################################################################
+
+Kernel topology "fcn8ups_kernel_graph.jpg" for network "fcn8ups"
+kernel list info for network "fcn8ups"
+                               Kernel ID : Name
+                                       0 : fcn8ups
+
+                             Kernel Name : fcn8ups
+--------------------------------------------------------------------------------
+                             Kernel Type : DPUKernel
+                               Code Size : 0.20MB
+                              Param Size : 14.34MB
+                           Workload MACs : 30744.51MOPS
+                         IO Memory Space : 3.99MB
+                              Mean Value : 0, 0, 0, 
+                      Total Tensor Count : 23
+                Boundary Input Tensor(s)   (H*W*C)
+                            input_1:0(0) : 224*224*3
+
+               Boundary Output Tensor(s)   (H*W*C)
+conv2d_transpose_1_conv2d_transpose:0(0) : 224*224*12
+
+                        Total Node Count : 22
+                           Input Node(s)   (H*W*C)
+             block1_conv1_convolution(0) : 224*224*3
+
+                          Output Node(s)   (H*W*C)
+  conv2d_transpose_1_conv2d_transpose(0) : 224*224*12
+
+
+
+
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************
+/opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json
+#####################################
+MAIN FLOW COMPLETED
+#####################################

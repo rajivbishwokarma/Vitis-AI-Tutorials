@@ -1,0 +1,167 @@
+ 
+##############################################################################
+Step4a: FREEZE TF GRAPHS
+##############################################################################
+ 
+WARNING:tensorflow:From /opt/vitis_ai/conda/envs/vitis-ai-tensorflow/lib/python3.6/site-packages/tensorflow/python/tools/freeze_graph.py:249: FastGFile.__init__ (from tensorflow.python.platform.gfile) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.gfile.GFile.
+2020-02-12 00:45:25.079563: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 00:45:25.172888: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.24GiB
+2020-02-12 00:45:25.172907: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 00:45:25.683673: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 00:45:25.683691: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 00:45:25.683695: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 00:45:25.684284: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22545 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+ 
+##############################################################################
+Step4a: INSPECT FROZEN GRAPH
+##############################################################################
+ 
+Op types used: 61 Const, 37 Identity, 18 BiasAdd, 18 Conv2D, 18 Relu, 5 StridedSlice, 5 MaxPool, 4 Mul, 4 Add, 3 Shape, 2 ResizeBilinear, 1 Max, 1 Pack, 1 Placeholder, 1 RealDiv, 1 Exp, 1 Conv2DBackpropInput, 1 Sub, 1 Sum
+
+Found 1 possible inputs: (name=input_1, type=float(1), shape=[?,224,224,3]) 
+Found 1 possible outputs: (name=activation_1/truediv, op=RealDiv) 
+ 
+##############################################################################
+Spet4b: EVALUATING THE ORIGINAL GRAPH
+##############################################################################
+ 
+2020-02-12 00:45:36.841212: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 00:45:36.935127: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.24GiB
+2020-02-12 00:45:36.935146: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 00:45:37.444255: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 00:45:37.444274: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 00:45:37.444278: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 00:45:37.444877: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22545 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+X tensor shape:  (101, 224, 224, 3)  Y tensor shape:  (101, 224, 224, 12)
+(101, 224, 224) (101, 224, 224)
+class ( 0)          Sky: #TP= 434809, #FP=  27341, #FN=  21164, IoU=0.900
+class ( 1)         Wall: #TP=1120199, #FP= 149669, #FN= 183747, IoU=0.771
+class ( 2)         Pole: #TP=      4, #FP=    147, #FN=  36416, IoU=0.000
+class ( 3)         Road: #TP=1426100, #FP= 110182, #FN=  48919, IoU=0.900
+class ( 4)     Sidewalk: #TP= 379948, #FP=  80015, #FN=  68485, IoU=0.719
+class ( 5)   Vegetation: #TP= 803496, #FP= 173372, #FN=  23049, IoU=0.804
+class ( 6)         Sign: #TP=     15, #FP=    133, #FN=  53377, IoU=0.000
+class ( 7)        Fence: #TP=   1055, #FP=   4783, #FN= 155348, IoU=0.007
+class ( 8)      vehicle: #TP=  75844, #FP= 136259, #FN=  18216, IoU=0.329
+class ( 9)   Pedestrian: #TP=     96, #FP=    223, #FN=  36769, IoU=0.003
+class (10)    Bicyclist: #TP=     36, #FP=    104, #FN= 110936, IoU=0.000
+class (11)  miscellanea: #TP=  22758, #FP= 121188, #FN=  46990, IoU=0.119
+_________________
+Mean IoU: 0.379
+FINISHED!
+ 
+##########################################################################
+Step5a: QUANTIZATION WITH DECENT_Q
+##########################################################################
+ 
+ 
+Vai_q_tensorflow v1.0.0 Build for Tensorflow 1.12.0
+ 
+Using TensorFlow backend.
+                                                                               N/A% (0 of 10) |                         | Elapsed Time: 0:00:00 ETA:  --:--:--                                                                                10% (1 of 10) |##                       | Elapsed Time: 0:00:01 ETA:   0:00:09                                                                                20% (2 of 10) |#####                    | Elapsed Time: 0:00:02 ETA:   0:00:08                                                                                30% (3 of 10) |#######                  | Elapsed Time: 0:00:03 ETA:   0:00:07                                                                                40% (4 of 10) |##########               | Elapsed Time: 0:00:04 ETA:   0:00:06                                                                                50% (5 of 10) |############             | Elapsed Time: 0:00:05 ETA:   0:00:05                                                                                60% (6 of 10) |###############          | Elapsed Time: 0:00:06 ETA:   0:00:04                                                                                70% (7 of 10) |#################        | Elapsed Time: 0:00:07 ETA:   0:00:03                                                                                80% (8 of 10) |####################     | Elapsed Time: 0:00:08 ETA:   0:00:02                                                                                90% (9 of 10) |######################   | Elapsed Time: 0:00:09 ETA:   0:00:01                                                                               100% (10 of 10) |########################| Elapsed Time: 0:00:10 Time:  0:00:10
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+script running on folder  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+CALIB DIR  /workspace/VAI-KERAS-FCN8-SEMSEG/code/../workspace/dataset1/img_calib
+INFO: Checking Float Graph...
+INFO: Float Graph Check Done.
+INFO: Calibrating for 10 iterations...
+INFO: Calibration Done.
+INFO: Generating Deploy Model...
+INFO: Deploy Model Generated.
+********************* Quantization Summary *********************      
+INFO: Output:       
+  quantize_eval_model: .././workspace/quantize_results/fcn8ups/quantize_eval_model.pb       
+  deploy_model: .././workspace/quantize_results/fcn8ups/deploy_model.pb
+ 
+##############################################################################
+Step5b: EVALUATE QUANTIZED GRAPH
+##############################################################################
+ 
+2020-02-12 00:46:12.079020: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX512F
+2020-02-12 00:46:12.165221: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Quadro P6000 major: 6 minor: 1 memoryClockRate(GHz): 1.645
+pciBusID: 0000:65:00.0
+totalMemory: 23.86GiB freeMemory: 23.24GiB
+2020-02-12 00:46:12.165240: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2020-02-12 00:46:12.675571: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-12 00:46:12.675591: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2020-02-12 00:46:12.675595: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2020-02-12 00:46:12.676157: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 22545 MB memory) -> physical GPU (device: 0, name: Quadro P6000, pci bus id: 0000:65:00.0, compute capability: 6.1)
+Using TensorFlow backend.
+fcn_config.py runs from  /workspace/VAI-KERAS-FCN8-SEMSEG/code
+X tensor shape:  (101, 224, 224, 3)  Y tensor shape:  (101, 224, 224, 12)
+(101, 224, 224) (101, 224, 224)
+class ( 0)          Sky: #TP= 437317, #FP=  30868, #FN=  18656, IoU=0.898
+class ( 1)         Wall: #TP=1125721, #FP= 155155, #FN= 178225, IoU=0.772
+class ( 2)         Pole: #TP=      8, #FP=    214, #FN=  36412, IoU=0.000
+class ( 3)         Road: #TP=1426549, #FP= 110907, #FN=  48470, IoU=0.900
+class ( 4)     Sidewalk: #TP= 381635, #FP=  82109, #FN=  66798, IoU=0.719
+class ( 5)   Vegetation: #TP= 803255, #FP= 189951, #FN=  23290, IoU=0.790
+class ( 6)         Sign: #TP=     31, #FP=    160, #FN=  53361, IoU=0.001
+class ( 7)        Fence: #TP=    818, #FP=   5048, #FN= 155585, IoU=0.005
+class ( 8)      vehicle: #TP=  73561, #FP= 112039, #FN=  20499, IoU=0.357
+class ( 9)   Pedestrian: #TP=    107, #FP=    305, #FN=  36758, IoU=0.003
+class (10)    Bicyclist: #TP=     66, #FP=    138, #FN= 110906, IoU=0.001
+class (11)  miscellanea: #TP=  22290, #FP= 109524, #FN=  47458, IoU=0.124
+_________________
+Mean IoU: 0.381
+FINISHED!
+ 
+##########################################################################
+COMPILE FCN8UPS ELF FILE WITH VAI
+##########################################################################
+ 
+[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_1/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_1/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_1/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_2/stack, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_2/stack_1, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m[0;33m[VAI_C][Warning] Operator [ name: conv2d_transpose_1/strided_slice_2/stack_2, op: Const] will be deleted by dnnc because it's not parent or child of any other operator.
+[m
+Kernel topology "fcn8ups_kernel_graph.jpg" for network "fcn8ups"
+kernel list info for network "fcn8ups"
+                               Kernel ID : Name
+                                       0 : fcn8ups
+
+                             Kernel Name : fcn8ups
+--------------------------------------------------------------------------------
+                             Kernel Type : DPUKernel
+                               Code Size : 0.20MB
+                              Param Size : 14.34MB
+                           Workload MACs : 30744.51MOPS
+                         IO Memory Space : 3.99MB
+                              Mean Value : 0, 0, 0, 
+                      Total Tensor Count : 23
+                Boundary Input Tensor(s)   (H*W*C)
+                            input_1:0(0) : 224*224*3
+
+               Boundary Output Tensor(s)   (H*W*C)
+conv2d_transpose_1_conv2d_transpose:0(0) : 224*224*12
+
+                        Total Node Count : 22
+                           Input Node(s)   (H*W*C)
+             block1_conv1_convolution(0) : 224*224*3
+
+                          Output Node(s)   (H*W*C)
+  conv2d_transpose_1_conv2d_transpose(0) : 224*224*12
+
+
+
+
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************
+/opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json
+#####################################
+MAIN FLOW COMPLETED
+#####################################
