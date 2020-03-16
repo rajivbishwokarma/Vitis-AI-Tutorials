@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 '''
 # Original code from https://fairyonice.github.io/Learn-about-Fully-Convolutional-Networks-for-semantic-segmentation.html
 # developed under the license https://github.com/FairyOnIce/FairyOnIce.github.io/blob/master/LICENSE here reproduced:

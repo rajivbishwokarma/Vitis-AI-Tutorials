@@ -275,7 +275,7 @@ void runSegmentation(DPUKernel *kernelConv)
     for(unsigned int ind = i  ;ind < images.size();ind+=threadnum)
       {
         Mat img = imread(baseImagePath + images.at(ind));
-        cout << "DBG imread " << baseImagePath + images.at(ind) << endl;
+        //cout << "DBG imread " << baseImagePath + images.at(ind) << endl;
         run_CNN(taskConv, img);
       }
     // Destroy DPU Tasks & free resources

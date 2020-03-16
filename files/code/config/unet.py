@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 '''
 Code developed by Harshall Lamba in his post  https://towardsdatascience.com/understanding-semantic-segmentation-with-unet-6be4f42d4b47
 under the MIT license https://github.com/hlamba28/UNET-TGS/blob/master/LICENSE

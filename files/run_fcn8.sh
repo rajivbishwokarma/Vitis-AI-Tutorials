@@ -19,18 +19,23 @@
 */
 '
 
+
+# daniele.bagni@xilinx.com
+# date 14 March 2020
+
 ## clean up previous log files
 #rm -f ./log/*.log
 
 CNN=fcn8
+
 
 # folders
 WORK_DIR=./workspace
 LOG_DIR=${WORK_DIR}/../log
 RPT_DIR=${WORK_DIR}/../rpt
 TARGET_DIR=${WORK_DIR}/../target_zcu102
+TARGET_DIR4=${WORK_DIR}/../target_zcu104
 KERAS_MODEL_DIR=${WORK_DIR}/../keras_model
-DCF_DIR=${WORK_DIR}/../dcf
 DATASET_DIR=${WORK_DIR}/dataset1
 
 TB_LOG_DIR=${WORK_DIR}/tb_log
@@ -58,13 +63,6 @@ COMP_LOG=${CNN}_compile.log
 INPUT_NODE="input_1"
 OUTPUT_NODE="activation_1/truediv" # output node of floating point CNN
 Q_OUTPUT_NODE="conv2d_transpose_3/conv2d_transpose" # output node of quantized CNN
-
-# target DCF file
-# taken from DNNDK3.1 installation
-DCF_FILE=${DCF_DIR}/ZCU102.dcf
-#DCF_FILE=${DCF_DIR}/ZCU104.dcf
-#DCF_FILE=${DCF_DIR}/Ultra96.dcf
-#DCF_FILE=${DCF_DIR}/ZedBoard.dcf
 
 ##################################################################################
 1_generate_images() {
@@ -94,22 +92,22 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 ##################################################################################
 # effective training
 2_fcn8_train() {
-    cd ${KERAS_MODEL_DIR}
 
-    # clean HDF5 files
-    rm -f *.h5 *.hdf5
     # effective training and predictions
-    cd ../code
+    cd code
+    echo "current dir is "
+    pwd
+
     echo " "
     echo "##################################################################################"
-    echo "Step2a: TRAINING"
+    echo "Step2a: FCN8 TRAINING"
     echo "##################################################################################"
     echo " "
     python fcn8_training.py         --upscale "False"
     echo " "
     cd ../code
     echo "##################################################################################"
-    echo "Step2b: MAKING PREDICTIONS"
+    echo "Step2b: FCN8 MAKING PREDICTIONS"
     echo "##################################################################################"
     echo " "
     python fcn8_make_predictions.py --upscale "False"
@@ -121,7 +119,7 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 3_fcn8_Keras2TF() {
     echo " "
     echo "#######################################################################################"
-    echo "Step3: KERAS to TENSORFLOW GRAPH CONVERSION"
+    echo "Step3: FCN8 KERAS to TENSORFLOW GRAPH CONVERSION"
     echo "#######################################################################################"
     echo " "
     # clean TF Check Point files
@@ -139,7 +137,7 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 4a_fcn8_freeze() {
     echo " "
     echo "##############################################################################"
-    echo "Step4a: FREEZE TF GRAPHS"
+    echo "Step4a: FCN8 FREEZE TF GRAPHS"
     echo "##############################################################################"
     echo " "
     # freeze the TF graph
@@ -152,7 +150,7 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 
     echo " "
     echo "##############################################################################"
-    echo "Step4a: INSPECT FROZEN GRAPH"
+    echo "Step4a: FCN8 INSPECT FROZEN GRAPH"
     echo "##############################################################################"
     echo " "
     vai_q_tensorflow inspect --input_frozen_graph ${FREEZE_DIR}/${CNN}/${FROZEN_GRAPH_FILENAME}
@@ -164,7 +162,7 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 4b_eval_graph() {
     echo " "
     echo "##############################################################################"
-    echo "Step4b: EVALUATING THE ORIGINAL GRAPH"
+    echo "Step4b: FCN8 EVALUATING THE ORIGINAL GRAPH"
     echo "##############################################################################"
     echo " "
     cd code
@@ -181,7 +179,7 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 5a_fcn8_quantize() {
     echo " "
     echo "##########################################################################"
-    echo "Step5a: QUANTIZATION"
+    echo "Step5a: FCN8 QUANTIZATION"
     echo "##########################################################################"
     echo " "
     # log the decent_q version being used
@@ -202,8 +200,6 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 	 --gpu 0
 
     cd ..
-    # go back to official DNNDK v3.1
-    #source ${HOME}/scriimport matplotlib.pyplot as pltpts/activate_py36_dnndk3v1.sh
 }
 
 ##################################################################################
@@ -212,7 +208,7 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 5b_eval_quantized_graph() {
     echo " "
     echo "##############################################################################"
-    echo "Step5b: EVALUATE QUANTIZED GRAPH"
+    echo "Step5b: FCN8 EVALUATE QUANTIZED GRAPH"
     echo "##############################################################################"
     echo " "
     cd code
@@ -226,11 +222,11 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 
 
 ##################################################################################
-# Compile ELF file with VAI
+# Compile ELF file for ZCU102 board with Vitis AI Compiler
 6_compile_vai() {
   echo " "
   echo "##########################################################################"
-  echo "COMPILE FCN8 ELF FILE WITH Vitis AI"
+  echo "COMPILE FCN8 ELF FILE WITH Vitis AI for ZCU102"
   echo "##########################################################################"
   echo " "
   python /opt/vitis_ai/compiler/vai_c_tensorflow \
@@ -241,11 +237,29 @@ DCF_FILE=${DCF_DIR}/ZCU102.dcf
 	 --net_name ${CNN}
  }
 
+ ##################################################################################
+ # Compile ELF file for ZCU104 board with Vitis AI Compiler
+ 6_compile_vai_zcu104() {
+   echo " "
+   echo "##########################################################################"
+   echo "COMPILE FCN8 ELF FILE WITH Vitis AI for ZCU104"
+   echo "##########################################################################"
+   echo " "
+   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+ 	 --frozen_pb ${QUANT_DIR}/${CNN}/deploy_model.pb \
+ 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
+ 	 --output_dir ${COMPILE_DIR}/${CNN} \
+ 	 --options    "{'mode':'normal'}" \
+ 	 --net_name ${CNN}
+  }
+
 
 ##################################################################################
 ##################################################################################
 
 main() {
+
+    conda activate vitis-ai-tensorflow
 
     # clean up previous results
     rm -rf ${WORK_DIR}; mkdir ${WORK_DIR}
@@ -253,22 +267,24 @@ main() {
     rm -rf ${RPT_DIR}; mkdir ${RPT_DIR}
     rm -rf ${CHKPT_DIR}; mkdir ${CHKPT_DIR}
     rm -rf ${DATASET_DIR}; mkdir ${DATASET_DIR}
-    rm -rf ${TARGET_DIR}; mkdir ${TARGET_DIR}
-    mkdir ${DATASET_DIR}/img_calib ${DATASET_DIR}/img_test ${DATASET_DIR}/img_train ${DATASET_DIR}/img_valid
-    mkdir ${DATASET_DIR}/seg_calib ${DATASET_DIR}/seg_test ${DATASET_DIR}/seg_train ${DATASET_DIR}/seg_valid
+    mkdir  ${DATASET_DIR}/img_calib ${DATASET_DIR}/img_test ${DATASET_DIR}/img_train ${DATASET_DIR}/img_valid
+    mkdir  ${DATASET_DIR}/seg_calib ${DATASET_DIR}/seg_test ${DATASET_DIR}/seg_train ${DATASET_DIR}/seg_valid
     rm -rf ${FREEZE_DIR}; mkdir ${FREEZE_DIR}
     rm -rf ${QUANT_DIR}; mkdir ${QUANT_DIR}
     rm -rf ${COMPILE_DIR}; mkdir ${COMPILE_DIR}
 
-    mkdir ${LOG_DIR}/${CNN} ${CHKPT_DIR}/${CNN} ${FREEZE_DIR}/${CNN} ${QUANT_DIR}/${CNN} ${COMPILE_DIR}/${CNN} ${TARGET_DIR}/${CNN} ${TARGET_DIR}/${CNN}/model
+    mkdir ${LOG_DIR}/${CNN} ${CHKPT_DIR}/${CNN} ${FREEZE_DIR}/${CNN} ${QUANT_DIR}/${CNN} ${COMPILE_DIR}/${CNN}
+
+    #copy target_zcu102 files into the new target_zcu104 folder if you have also the ZCU104 board
+    cp -r  ${TARGET_DIR}/* ${TARGET_DIR4}
+    mv ${TARGET_DIR4}/run_on_zcu102.sh  ${TARGET_DIR4}/run_on_zcu104.sh
 
     # create the proper folders and images from the original dataset
     1_generate_images 2>&1 | tee ${LOG_DIR}/${CNN}/${PREPARE_DATA_LOG}
 
-
     # do the training and make predictions
     2_fcn8_train     2>&1 | tee ${LOG_DIR}/${CNN}/${TRAIN_LOG}
-
+ 
     # from Keras to TF
     3_fcn8_Keras2TF  2>&1 | tee ${LOG_DIR}/${CNN}/fcn8_keras2tf.log
 
@@ -284,35 +300,26 @@ main() {
     # evaluate post-quantization model
     5b_eval_quantized_graph 2>&1 | tee ${LOG_DIR}/${CNN}/${EVAL_Q_LOG}
 
-    # compile with dnnc to generate elf file
+    # compile with dnnc to generate elf file for ZCU102
     6_compile_vai 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}
-
-    ## make shared library file (.so)
-    #aarch64-linux-gnu-gcc -fPIC -shared ${COMPILE_DIR}/${CNN}/dpu_${CNN}.elf -o ${COMPILE_DIR}/${CNN}/libdpumodel${CNN}.so
-
-    # move elf and so files to target board directory
+    # move elf and so files to target ZCU102 board directory
     mv  ${COMPILE_DIR}/${CNN}/dpu*.elf    ${TARGET_DIR}/${CNN}/model/
+
+    # compile with dnnc to generate elf file for ZCU104
+    6_compile_vai_zcu104 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}_zcu104
+    # move elf and so files to target ZCU104 board directory
+    mv  ${COMPILE_DIR}/${CNN}/dpu*.elf  ${TARGET_DIR4}/${CNN}/model/
 
     # copy test images into target board
     tar -cvf "test.tar" ${DATASET_DIR}/img_test ${DATASET_DIR}/seg_test
     gzip test.tar
-    mv test.tar.gz ${TARGET_DIR}/
+    cp test.tar.gz ${TARGET_DIR}/
+    mv test.tar.gz ${TARGET_DIR4}/
 
 
     echo "#####################################"
-    echo "MAIN FLOW COMPLETED"
+    echo "MAIN FCN8 FLOW COMPLETED"
     echo "#####################################"
-
-    # create unified log file
-#    cat ./short_LICENSE.txt  \
-#	${LOG_DIR}/${CNN}/${PREPARE_DATA_LOG} \
-#	${LOG_DIR}/${CNN}/${TRAIN_LOG} \
-#	${LOG_DIR}/${CNN}/fcn8_keras2tf.log \
-#	${LOG_DIR}/${CNN}/${FREEZE_LOG} \
-#	${LOG_DIR}/${CNN}/${EVAL_FR_LOG} \
-#	${LOG_DIR}/${CNN}/${QUANT_LOG} \
-#	${LOG_DIR}/${CNN}/${EVAL_Q_LOG} \
-#	${LOG_DIR}/${CNN}/${COMP_LOG} >> ${LOG_DIR}/${CNN}/logfile_all_fcn8.txt
 
 
 }

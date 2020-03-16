@@ -28,14 +28,14 @@ CC        :=   gcc
 
 LDFLAGS   =   $(shell pkg-config --libs opencv)
 LDFLAGS   +=  -lhineon -ln2cube -lpthread -lopencv_videoio
-CFLAGS    :=  -O2 -Wall -Wpointer-arith -std=c++11 -ffast-math -I../common/
+CFLAGS    :=  -O2 -Wall -Wpointer-arith -std=c++11 -ffast-math -I../../common/
 
 else
 CXX       :=   $(CROSS_COMPILE)g++
 CC        :=   $(CROSS_COMPILE)gcc
 
 CFLAGS    :=   --sysroot=$(SYSROOT) -O2 -Wall -Wpointer-arith -std=c++11 -ffast-math
-CFLAGS    +=   -I$(SYSROOT)/usr/include -I$(SYSROOT)/usr/local/include -I./include -I../common/
+CFLAGS    +=   -I$(SYSROOT)/usr/include -I$(SYSROOT)/usr/local/include -I./include -I../../common/
 
 LDFLAGS   :=  --sysroot=$(SYSROOT) -L$(SYSROOT)/usr/local/lib/ -L${SYSROOT}/lib -L${SYSROOT}/usr/lib
 LDFLAGS   +=  -ln2cube -lopencv_videoio  -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_core -lpthread
@@ -62,7 +62,7 @@ CFLAGS +=  -mcpu=cortex-a53
 MODEL = $(CUR_DIR)/model/dpu_$(CNN).elf
 SRC   = $(CUR_DIR)/src
 #SRC   = $(CUR_DIR)
-SRC_DPUTILS = $(shell cd ../common/; pwd)
+SRC_DPUTILS = $(shell cd ../../common/; pwd)
 
 .PHONY: all clean lib_so
 

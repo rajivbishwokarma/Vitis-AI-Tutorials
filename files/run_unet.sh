@@ -20,7 +20,7 @@
 '
 
 # daniele.bagni@xilinx.com
-# date 28 Feb 2020
+# date 14 March 2020
 
 ## clean up previous log files
 #rm -f ./log/*.log
@@ -32,8 +32,8 @@ WORK_DIR=./workspace
 LOG_DIR=${WORK_DIR}/../log
 RPT_DIR=${WORK_DIR}/../rpt
 TARGET_DIR=${WORK_DIR}/../target_zcu102/${CNN}
+TARGET_DIR4=${WORK_DIR}/../target_zcu104/${CNN}
 KERAS_MODEL_DIR=${WORK_DIR}/../keras_model
-DCF_DIR=${WORK_DIR}/../dcf
 DATASET_DIR=${WORK_DIR}/dataset1
 
 TB_LOG_DIR=${WORK_DIR}/tb_log
@@ -61,19 +61,6 @@ COMP_LOG=${CNN}_compile.log
 INPUT_NODE="input_1"
 OUTPUT_NODE="conv2d_19/Relu" # output node of floating point CNN UNET v1 and v3
 
-
-# target DCF file
-# taken from DNNDK3.1 installation
-DCF_FILE=${DCF_DIR}/ZCU102.dcf
-#DCF_FILE=${DCF_DIR}/ZCU104.dcf
-#DCF_FILE=${DCF_DIR}/Ultra96.dcf
-#DCF_FILE=${DCF_DIR}/ZedBoard.dcf
-
-#use the patched DNNC version of ml1636_dnnc_package_20191017.tar.gz
-#DNNC=${HOME}/ML/DNNDK3v1/patches/dnnc_20191017
-DNNC=/opt/vitis_ai/compiler/dnnc/dpuv2/dnnc
-
-
 ##################################################################################
 #setup the environment and check DNNDK relese
 #source ${HOME}/scripts/activate_py36_dnndk3v1.sh
@@ -100,10 +87,8 @@ DNNC=/opt/vitis_ai/compiler/dnnc/dpuv2/dnnc
 ##################################################################################
 # effective training
 2_unet_train() {
-    cd ${KERAS_MODEL_DIR}
-
+    cd code
     # effective training and predictions
-    cd ../code
     echo " "
     echo "##################################################################################"
     echo "Step2a: TRAINING"
@@ -227,12 +212,6 @@ DNNC=/opt/vitis_ai/compiler/dnnc/dpuv2/dnnc
     echo "Step5a: QUANTIZATION"
     echo "##########################################################################"
     echo " "
-    ## use PATCHed decent_q for deconv2d_transpose layer
-    #source ~/scripts/activate_py36_dnndk20191009.sh
-    # log the decent_q version being used
-    echo " "
-    decent_q --version
-    echo " "
     #quantize
     cd code
     vai_q_tensorflow quantize \
@@ -305,60 +284,12 @@ DNNC=/opt/vitis_ai/compiler/dnnc/dpuv2/dnnc
 }
 
 
-
 ##################################################################################
-# Compile ELF file
-6_compile() {
-  echo " "
-  echo "##########################################################################"
-  echo "COMPILE FCN8 ELF FILE WITH DNNDK"
-  echo "##########################################################################"
-  echo " "
-  # log the decent_q version being used
-  echo " "
-  ${DNNC} --version
-  echo " "
-  ${DNNC} \
-      --parser     tensorflow \
-      --frozen_pb  ${QUANT_DIR}/${CNN}1/deploy_model.pb \
-      --dcf        ${DCF_FILE} \
-      --cpu_arch   arm64 \
-      --output_dir ${COMPILE_DIR}/${CNN}1 \
-      --save_kernel \
-      --mode normal \
-      --net_name   ${CNN}1
-
-  ${DNNC} \
-      --parser     tensorflow \
-      --frozen_pb  ${QUANT_DIR}/${CNN}2/deploy_model.pb \
-      --dcf        ${DCF_FILE} \
-      --cpu_arch   arm64 \
-      --output_dir ${COMPILE_DIR}/${CNN}2 \
-      --save_kernel \
-      --mode normal \
-      --net_name   ${CNN}2
-
-
-  ${DNNC} \
-      --parser     tensorflow \
-      --frozen_pb  ${QUANT_DIR}/${CNN}3/deploy_model.pb \
-      --dcf        ${DCF_FILE} \
-      --cpu_arch   arm64 \
-      --output_dir ${COMPILE_DIR}/${CNN}3 \
-      --save_kernel \
-      --mode normal \
-      --net_name   ${CNN}3
-
-
-}
-
-
-##################################################################################
-# Compile ELF file with VAI
+# Compile ELF file for ZCU102 with Vitis AI
 6_compile_vai() {
   echo " "
   echo "##########################################################################"
-  echo "COMPILE UNET ELF FILE WITH Vitis AI"
+  echo "COMPILE UNET ELF FILE WITH Vitis AI for ZCU102"
   echo "##########################################################################"
   echo " "
   python /opt/vitis_ai/compiler/vai_c_tensorflow \
@@ -383,12 +314,47 @@ DNNC=/opt/vitis_ai/compiler/dnnc/dpuv2/dnnc
 	 --net_name ${CNN}3
  }
 
+##################################################################################
+# Compile ELF file for ZCU104 with Vitis AI
+6_compile_vai_zcu104(){
+   echo " "
+   echo "##########################################################################"
+   echo "COMPILE UNET ELF FILE WITH Vitis AI for ZCU104"
+   echo "##########################################################################"
+   echo " "
+   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+ 	 --frozen_pb ${QUANT_DIR}/${CNN}1/deploy_model.pb \
+ 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
+ 	 --output_dir ${COMPILE_DIR}/${CNN}1 \
+ 	 --options    "{'mode':'normal'}" \
+ 	 --net_name ${CNN}1
+
+   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+ 	 --frozen_pb ${QUANT_DIR}/${CNN}2/deploy_model.pb \
+ 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
+ 	 --output_dir ${COMPILE_DIR}/${CNN}2 \
+ 	 --options    "{'mode':'normal'}" \
+ 	 --net_name ${CNN}2
+
+   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+ 	 --frozen_pb ${QUANT_DIR}/${CNN}3/deploy_model.pb \
+ 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
+ 	 --output_dir ${COMPILE_DIR}/${CNN}3 \
+ 	 --options    "{'mode':'normal'}" \
+ 	 --net_name ${CNN}3
+}
+
 
 ##################################################################################
 ##################################################################################
 
 main() {
 
+  conda activate vitis-ai-tensorflow
+
+  # assuming you have run first the run_fcn8.sh script, you do not need to clean up anything
+
+: '
     # clean up previous results
     rm -rf ${WORK_DIR}; mkdir ${WORK_DIR}
     rm -rf ${LOG_DIR}; mkdir ${LOG_DIR}
@@ -400,14 +366,17 @@ main() {
     rm -rf ${FREEZE_DIR}; mkdir ${FREEZE_DIR}
     rm -rf ${QUANT_DIR}; mkdir ${QUANT_DIR}
     rm -rf ${COMPILE_DIR}; mkdir ${COMPILE_DIR}
-
+'
     mkdir ${LOG_DIR}/${CNN}
     mkdir ${CHKPT_DIR}/${CNN}1   ${CHKPT_DIR}/${CNN}2   ${CHKPT_DIR}/${CNN}3
     mkdir ${FREEZE_DIR}/${CNN}1  ${FREEZE_DIR}/${CNN}2  ${FREEZE_DIR}/${CNN}3
     mkdir ${QUANT_DIR}/${CNN}1   ${QUANT_DIR}/${CNN}2   ${QUANT_DIR}/${CNN}3
     mkdir ${COMPILE_DIR}/${CNN}1 ${COMPILE_DIR}/${CNN}2 ${COMPILE_DIR}/${CNN}3
 
-
+    #copy target_zcu102 files into the new target_zcu104 folder if you have also the ZCU104 board
+    cp -r  ${TARGET_DIR}/* ${TARGET_DIR4}
+    mv ${TARGET_DIR4}/run_on_zcu102.sh  ${TARGET_DIR4}/run_on_zcu104.sh
+    
     ## create the proper folders and images from the original dataset
     #1_generate_images 2>&1 | tee ${LOG_DIR}/${CNN}/${PREPARE_DATA_LOG}
 
@@ -429,24 +398,23 @@ main() {
     # evaluate post-quantization model
     5b_eval_quantized_graph 2>&1 | tee ${LOG_DIR}/${CNN}/${EVAL_Q_LOG}
 
-    # compile with dnnc to generate elf file
-    ##6_compile 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}
+    # compile with Vitis AI to generate elf file for ZCU102
     6_compile_vai 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}
-
-    # move elf and so files to target board directory
-    mv  ${COMPILE_DIR}/${CNN}1/dpu*.elf    ${TARGET_DIR}/v1/model/
+    # move elf and so files to  ZCU102 board directory
+    #mv  ${COMPILE_DIR}/${CNN}1/dpu*.elf    ${TARGET_DIR}/v1/model/
     mv  ${COMPILE_DIR}/${CNN}2/dpu*.elf    ${TARGET_DIR}/v2/model/
-    mv  ${COMPILE_DIR}/${CNN}3/dpu*.elf    ${TARGET_DIR}/v3/model/
+    #mv  ${COMPILE_DIR}/${CNN}3/dpu*.elf    ${TARGET_DIR}/v3/model/
 
-: '
-    # copy test images into target board
-    tar -cvf "test.tar" ${DATASET_DIR}/img_test ${DATASET_DIR}/seg_test
-    gzip test.tar
-    mv test.tar.gz ${TARGET_DIR}/../
-'
+    # compile with Vitis AI to generate elf file for ZCU104
+    6_compile_vai_zcu104 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}_zcu104
+    # move elf and so files to target board directory
+    #mv  ${COMPILE_DIR}/${CNN}1/dpu*.elf    ${TARGET_DIR4}/v1/model/
+    mv  ${COMPILE_DIR}/${CNN}2/dpu*.elf    ${TARGET_DIR4}/v2/model/
+    #mv  ${COMPILE_DIR}/${CNN}3/dpu*.elf    ${TARGET_DIR4}/v3/model/
+
 
     echo "#####################################"
-    echo "MAIN FLOW COMPLETED"
+    echo "MAIN UNET FLOW COMPLETED"
     echo "#####################################"
 
 

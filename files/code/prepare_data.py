@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 '''
 /**
 
@@ -181,4 +184,3 @@ file_list.sort()
 for i in range(0, len(file_list)) :
     f.write(file_list[i]+"\n")
 f.close()
-'''

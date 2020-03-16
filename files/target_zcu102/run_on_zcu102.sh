@@ -18,7 +18,6 @@
 * under the License.
 */
 '
-
 #unpack test images
 tar -xvf ./test.tar.gz
 
@@ -30,7 +29,6 @@ ln -nsf ../workspace ./workspace
 cd ../unet/v2
 ln -nsf ../../workspace ./workspace
 
-
 #run python3 script on fcn8
 cd ../../fcn8/
 make clean
@@ -41,7 +39,6 @@ python3 ./run_fcn8_on_dpu.py 2>&1 | tee dpu_logfile_fcn8_py.txt
 cd ..
 #run C++ executable with 1 thread
 ./fcn8 1 2>&1 | tee dpu_logfile_fcn8_th1.txt
-
 
 #run python3 script on fcn8ups
 cd ../fcn8ups
@@ -60,13 +57,14 @@ make clean
 make
 make lib_so
 cd model
-python3 ./run_unet_on_dpu.py 2>&1 | tee dpu_logfile_unet_py.txt
+python3 ./run_unet2_on_dpu.py 2>&1 | tee dpu_logfile_unet2_py.txt
 cd ..
 #run C++ executable with 1 thread
 ./unet2 1 2>&1 | tee dpu_logfile_unet2_th1.txt
 
 cd ../..
 
-tar -cvf new_target_zcu102.tar ./target_zcu102
+
+
 
 
