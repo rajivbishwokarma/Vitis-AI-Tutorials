@@ -255,11 +255,11 @@ class ConvNetFactory:
                 for i in range(0, len(stages)):
                         # initialize the stride, then apply a residual module used to reduce the spatial size of the input volume
                         stride = (1, 1) if i == 0 else (2, 2)
-                        x = ResNet.residual_module(x, filters[i + 1], stride, chanDim, red=True, bnEps=bnEps, bnMom=bnMom)
+                        x = ConvNetFactory.residual_module(x, filters[i + 1], stride, chanDim, red=True, bnEps=bnEps, bnMom=bnMom)
                         # loop over the number of layers in the stage
                         for j in range(0, stages[i] - 1):
                                 # apply a ResNet module
-                                x = ResNet.residual_module(x, filters[i + 1],(1, 1), chanDim, bnEps=bnEps, bnMom=bnMom)
+                                x = ConvNetFactory.residual_module(x, filters[i + 1],(1, 1), chanDim, bnEps=bnEps, bnMom=bnMom)
                 # apply BN => ACT => POOL
                 x = BatchNormalization(axis=chanDim, epsilon=bnEps, momentum=bnMom)(x)
                 x = Activation("relu")(x)

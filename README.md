@@ -14,6 +14,10 @@
 
 2. Tested in hardware on ZCU102 (default) and ZCU104 boards
 
+3. Date: 14 March 2020
+
+Any questions, comments or errors found - please email me directly: [Daniele Bagni](mailto:danieleb@xilinx.com)
+
 # Introduction
 
 In this Deep Learning (DL) tutorial, you will quantize in fixed point some custom Convolutional Neural Networks (CNNs) and deploy them on the Xilinx&reg; [ZCU102](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html) or [ZCU104](https://www.xilinx.com/products/boards-and-kits/zcu104.html) boards using [Vitis AI](https://developer.xilinx.com/en/get-started/ai.html), which is a set of optimized IP, tools libraries, models and example designs valid for AI inference on both Xilinx edge devices and Alveo cards.
