@@ -11,7 +11,12 @@
 
 1. Tested with Vitis AI 1.0
 
-2. Tested in hardware on ZCU102
+2. Tested in hardware on ZCU102 and ZCU104
+
+3. Date: 18 March 2020
+
+Any questions, comments or errors found - please email me directly: [Daniele Bagni](mailto:danieleb@xilinx.com)
+
 
 # Introduction
 
@@ -188,6 +193,10 @@ for file in $(find . -name "*.sh"); do
 done
 ```
 
+
+# 1 Organize the Data
+
+You have to download the data from [here](https://drive.google.com/file/d/0B0d9ZiqAgFkiOHR1NTJhWVJMNEU/view) and save the file ``dataset1.zip`` (of size ~120MB) in the folder [files](files) at the same level of other sub-folders like [code](files/code) and [log](files/log).
 
 The subroutine ``1_generate_images()`` within the script [run_fcn8.sh](files/run_fcn8.sh) calls the [prepare_data.py](files/code/prepare_data.py) python module and creates the sub-folders: ``img_train``, ``img_valid``, ``img_test``, and ``img_calib`` that are located in the ``dataset1`` directory and fills them with 311 images for training, 56 images for validation (taken from the images of the original training dataset), 101 images for testing (all the images of the original testing dataset), and 104 images for the calibration process (copied from the training images).
 

@@ -284,7 +284,7 @@ main() {
 
     # do the training and make predictions
     2_fcn8_train     2>&1 | tee ${LOG_DIR}/${CNN}/${TRAIN_LOG}
- 
+
     # from Keras to TF
     3_fcn8_Keras2TF  2>&1 | tee ${LOG_DIR}/${CNN}/fcn8_keras2tf.log
 
@@ -294,7 +294,7 @@ main() {
     # evaluate the frozen graph performance
     4b_eval_graph 2>&1 | tee ${LOG_DIR}/${CNN}/${EVAL_FR_LOG}
 
-    # quantize with decent_q
+    # quantize 
     5a_fcn8_quantize 2>&1 | tee ${LOG_DIR}/${CNN}/${QUANT_LOG}
 
     # evaluate post-quantization model

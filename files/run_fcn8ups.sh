@@ -274,9 +274,11 @@ main() {
 '
   mkdir ${LOG_DIR}/${CNN} ${CHKPT_DIR}/${CNN} ${FREEZE_DIR}/${CNN} ${QUANT_DIR}/${CNN} ${COMPILE_DIR}/${CNN}
 
+: '
   #copy target_zcu102 files into the new target_zcu104 folder if you have also the ZCU104 board
-  cp -r  ${TARGET_DIR}/* ${TARGET_DIR4}
-  mv ${TARGET_DIR4}/run_on_zcu102.sh  ${TARGET_DIR4}/run_on_zcu104.sh
+  cp -r  ${TARGET_DIR}/${CNN}/* ${TARGET_DIR4}/${CNN}/
+  #mv ${TARGET_DIR4}/run_on_zcu102.sh  ${TARGET_DIR4}/run_on_zcu104.sh
+'
 
   ## create the proper folders and images from the original dataset
   #1_generate_images 2>&1 | tee ${LOG_DIR}/${CNN}/${PREPARE_DATA_LOG}
@@ -293,7 +295,7 @@ main() {
   # evaluate the frozen graph performance
   4b_eval_graph 2>&1 | tee ${LOG_DIR}/${CNN}/${EVAL_FR_LOG}
 
-  # quantize with decent_q
+  # quantize
   5a_fcn8_quantize 2>&1 | tee ${LOG_DIR}/${CNN}/${QUANT_LOG}
 
   # evaluate post-quantization model
