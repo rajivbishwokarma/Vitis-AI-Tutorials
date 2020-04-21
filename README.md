@@ -1,7 +1,7 @@
 # ML at the Edge - Introduction Lab
 
 ## Introduction
-
+ 
 In this lab, you will use the Vitis&trade; AI 1.0 tool kit to quantize and compile a Yolov3 TensorFlow model that utilizes the Xilinx® Deep Learning Processor (DPU) on the ZCU104 board. The Yolov3 model was trained on the Pascal VOC data set.
 
 You will also use the high-level Vitis AI Library APIs to build sw examples to measure DPU performance and display the video stream using a USB camera.  
@@ -25,7 +25,7 @@ For more details, refer to the [Vitis AI Repository](https://github.com/Xilinx/V
 
 ## Lab Flow
 
-The following figure shows the lab flow.
+The following figure shows the lab flow:
 
 ![](files/pictures/workflow.png)
 
