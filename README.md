@@ -161,46 +161,47 @@ At this point, the training dataset has been prepared and is ready for use to tr
   Output snapshots will be incrementally created under the following directory: **/workspace/SSD/workspace/VGG16-SSD/snapshots**.
 
 ## 3.0.2 Understanding the SSD Prototxt Files
-There are a few notable differences between the official SSD model that gets created as part of Wei Liu's tutorial/caffe distribution.  Namely, the following:
+There are a few notable differences between the official SSD model that gets created as part of Wei Liu's tutorial/caffe distribution.
 
-* We changed **mbox_conf_reshape**, **mbox_conf_softmax**, and **mbox_conf_flatten** layers to include the phase:test parameter so that these layers are only used for testing.  The entry that was added is:
+We changed **mbox_conf_reshape**, **mbox_conf_softmax**, and **mbox_conf_flatten** layers to include the phase:test parameter so that these layers are only used for testing.  The entry that was added is:
+
 ```
 include{
   phase: TEST
 }
 ```
 
-  This was inserted in each of the layers just after the **top:** declaration and before the layers other parameters.
+This was inserted in each of the layers just after the **top:** declaration and before the layers other parameters.
 
-* We replaced the Normalize layer with a BatchNorm/Scale combined layer because the DPU does not support Normalize.  In the original SSD model, this is called "conv4_3_norm".  The following steps were used to replace the layer:
+We replaced the Normalize layer with a BatchNorm/Scale combined layer because the DPU does not support Normalize.  In the original SSD model, this is called "conv4_3_norm".  The following steps were used to replace the layer:
 
-  * Delete the Normalize layer named "conv4_3_norm" which should start at around line 972 and end around line 985.
+1. Delete the Normalize layer named "conv4_3_norm" which should start at around line 972 and end around line 985.
 
-  * Insert the Batchnorm/scale layer "conv4_3" and "relu4_3" layers.
+2. Insert the Batchnorm/scale layer "conv4_3" and "relu4_3" layers.
 
-  * Replace the other bottom layers in the prototxt named "conv4_3_norm" with "conv4_3" (there should be three of these) and they appear as `bottom: "conv4_3_norm"`.
+3. Replace the other bottom layers in the prototxt named "conv4_3_norm" with "conv4_3" (there should be three of these) and they appear as `bottom: "conv4_3_norm"`.
 
-* We modified the "fc6" layer by changing the num_output to 682 instead of 1024.  The reason for this is that the DPU only supports 12 bits to describe the number of parameters.  With a dilation of 6, the number of output parameters will be 6143 which is too many for the DPU to capture.
+We modified the "fc6" layer by changing the num_output to 682 instead of 1024.  The reason for this is that the DPU only supports 12 bits to describe the number of parameters.  With a dilation of 6, the number of output parameters will be 6143 which is too many for the DPU to capture.
 
-  Because of this change to the layer, we renamed both fc6 and fc7 layers - for "fc6" we named it "fc6_682", and for "fc7", we named it "fc7_682".
+Because of this change to the layer, we renamed both fc6 and fc7 layers - for "fc6" we named it "fc6_682", and for "fc7", we named it "fc7_682".
 
-  Taking a look at the [solver.prototxt](SSD/workspace/VGG16-SSD/solver.prototxt), this file has the training hyper-parameters and also points to the net which is being trained.  In this file, we use a combined train/test prototxt file instead of two separate files for train and test:  
+Taking a look at the [solver.prototxt](SSD/workspace/VGG16-SSD/solver.prototxt), this file has the training hyper-parameters and also points to the net which is being trained.  In this file, we use a combined train/test prototxt file instead of two separate files for train and test:
 
-  ```
+```
 net:  "train_test_example.prototxt"
 ```
 
-  Notice the snapshot_prefix location which is where the training will produce output models.  This can be modified as desired to place the snapshot output model in a desired directory, though for this tutorial, leaving the snapshots at this location with the recommended prefix as it will allow for easier evaluation of the floating point model without modifying other scripts.
+Notice the snapshot_prefix location which is where the training will produce output models.  This can be modified as desired to place the snapshot output model in a desired directory, though for this tutorial, leaving the snapshots at this location with the recommended prefix as it will allow for easier evaluation of the floating point model without modifying other scripts.
 
-  ```
+```
 snapshot_prefix: "./snapshots/snapshot"
 ```
 
-  The number/frequency of snapshots are determined based on the parameters specified in the solver and note that by default the first snapshot will occur after 10K iterations.
+The number/frequency of snapshots are determined based on the parameters specified in the solver and note that by default the first snapshot will occur after 10K iterations.
 
-5. The training process requires about 10GB of GPU memory in the current configuration.  If your GPU does not have sufficient memory, you can modify the train_test.prototxt file and change the batch_size parameter in the input layers to a smaller value such as 8, 4, 2, or 1.  
+The training process requires about 10GB of GPU memory in the current configuration.  If your GPU does not have sufficient memory, you can modify the train_test.prototxt file and change the batch_size parameter in the input layers to a smaller value such as 8, 4, 2, or 1.  
 
-  Since the training typically uses a batch_size of 32, if you modify this value, you should also change the solver.prototxt iter_size parameter such that the product of iter_size x batch_size = 32.  For instance, if you change the batch_size to be 8, you should change the iter_size to be 4 so that the effective batch size used for the training process is 4x8 = 32.  
+Since the training typically uses a batch_size of 32, if you modify this value, you should also change the solver.prototxt iter_size parameter such that the product of iter_size x batch_size = 32.  For instance, if you change the batch_size to be 8, you should change the iter_size to be 4 so that the effective batch size used for the training process is 4x8 = 32.  
 
 ## 3.0.3 Train It!
 
