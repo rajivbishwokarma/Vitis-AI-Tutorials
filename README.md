@@ -418,7 +418,7 @@ At this point, you have tested the trained SSD model on the host machine and can
 
 5. Next run the quantization tools using the following command (note that you made need to make the file executable first by running "chmod +x quantize_and_compile.sh"):
 
-   ```
+```
 ./quantize_and_compile.sh
 ```
 
@@ -559,7 +559,7 @@ The final step of this tutorial is to run the trained and compiled model on the 
 
   - [process_result.hpp](SSD/ZCU102/process_result.hpp): This application is used by the software source and overlays the bounding boxes on the output images/video.  
 
-  The [Vitis AI Libraries](https://github.com/Xilinx/Vitis-AI/tree/master/Vitis-AI-Library) are providing all of the software functionality including image preprocessing, DPU model execution, and model post-processing (NMS etc.).  
+   The [Vitis AI Libraries](https://github.com/Xilinx/Vitis-AI/tree/master/Vitis-AI-Library) are providing all of the software functionality including image preprocessing, DPU model execution, and model post-processing (NMS etc.).  
 
 2. The next step is to copy this application folder to your ZCU102 board using via an Ethernet connection.  The next steps assume you have prepared the ZCU102 with the Vitis AI SD image and installed all of the Vitis AI libraries etc. per step 1.1 of this tutorial.
 
@@ -576,7 +576,7 @@ or
 ```
   The name that follows the executable is expecting a path into the subdirectory which contains the model elf file, meta.json, and model config prototxt file.  The -t argument is the number of threads to use to execute the model.  On a ZCU102 with 3x B4096 DPUs, 4-6 threads seems to work reasonable well.  The last argument '0' specifies to use the webcam for the input video.  You can also specify the filename of a video recording for this argument.
 
-6. In order to run the performance test, you need a number of sample images.  I copied 12 images to a folder from the VOC dataset.  Then you need to create an image.list file which simply lists the paths to the input images, similar to what is used by the host evaluation process. Then you can run the performance evaluation using the following command structure:
+5. In order to run the performance test, you need a number of sample images.  I copied 12 images to a folder from the VOC dataset.  Then you need to create an image.list file which simply lists the paths to the input images, similar to what is used by the host evaluation process. Then you can run the performance evaluation using the following command structure:
 
   ```
 ./test_performance_ssd dpu_vgg16_ssd detect.list -t 6 -s 30
