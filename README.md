@@ -1,30 +1,34 @@
-# DenseNetX - a version of DenseNet modified for use with Xilinx DPUv2 on Zynq
+<table width="100%">
+  <tr width="100%">
+    <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>DenseNetX - a Version of DenseNet Modified for use with Xilinx DPUv2 on Zynq Devices</h1>
+    </td>
+ </tr>
+ </table>
+
+# Current Status
+
+- Tested on ZCU102 with Vitis AI 1.1 and VART runtime
 
 
-### Current status
+# Introduction
 
-- [X] Tested on ZCU102 with Vitis-AI 1.1 and VART runtime
+This tutorial introduces the Vitis AI TensorFlow design process and illustrates how to go from a Python description of the network model to running a compiled model on the Xilinx&reg; DPU accelerator.
 
-
-## Introduction
-
-This tutorial introduces the user to the Vitis AI TensorFlow design process and will illustrate how to go from a python description of the network model to running a compiled model on the Xilinx DPU accelerator.
-
-The application code in this example design is written in Python and uses the Unified APIs and VART runtime that were introduced in Vitis-AI 1.1.
+The application code in this example design is written in Python and uses the Unified APIs and VART runtime that were introduced in Vitis&trade; AI 1.1.
 
 We will run the following steps:
 
-  + Training and evaluation of a customised version of the DenseNet network using TensorFlow Keras.
-  + Conversion of the HDF5 format Keras checkpoint into a TensorFlow compatible checkpoint.
-  + Removal of the training nodes and conversion of the graph variables to constants (..often referred to as 'freezing the graph').
-  + Evaluation of the frozen model using the CIFAR-10 test dataset.
-  + Quantization of the floating-point frozen model.
-  + Evaluation of the quantized model using the CIFAR-10 test dataset.
-  + Compilation of the quantized model to create the .elf file ready for execution on the DPU accelerator IP.
-  + Download and execution of the application on an evaluation board.
+1. Training and evaluation of a customized version of the DenseNet network using TensorFlow Keras.
+2. Conversion of the HDF5 format Keras checkpoint into a TensorFlow compatible checkpoint.
+3. Removal of the training nodes and conversion of the graph variables to constants (..often referred to as 'freezing the graph').
+4. Evaluation of the frozen model using the CIFAR-10 test dataset.
+5. Quantization of the floating-point frozen model.
+6. Evaluation of the quantized model using the CIFAR-10 test dataset.
+7. Compilation of the quantized model to create the .elf file ready for execution on the DPU accelerator IP.
+8. Download and execution of the application on an evaluation board.
 
 
-## The CIFAR-10 dataset
+# The CIFAR-10 Dataset
 
 CIFAR-10 is a publicly available dataset that contains a total of 60k RGB images each of which are 32pixels x 32pixels x8bits per color channel. The small image size of 32 x 32 means that it is not very useful for real-world applications, but the CIFAR-10 dataset makes a good starting point for studying machine learning. The complete dataset of 60k images is normally divided into 50k images for training and 10k images for testing/validation.
 
@@ -45,9 +49,9 @@ There are a total of 10 mutually exclusive classes (or labels):
 | 9 | truck |
 
 
-## The DenseNetX CNN
+# The DenseNetX CNN
 
-The DenseNet architecture was first proposed by Huang et al in their paper ['Densely Connected Convolutional Networks'](https://arxiv.org/pdf/1608.06993.pdf) The code provided in the ``DenseNetX.py`` python script is based on version 5 of the paper and includes the Bottleneck layers and Compression factor, so strictly speaking is a DenseNet-BC implementation. It also includes some minor modifications to make it compatible with the Vitis-AI quantizer and compiler. In particular, the order of the BatchNorm, RelU activation and Convolution layers has been altered from BN->ReLU->Conv to Conv->BN->ReLU.
+The DenseNet architecture was first proposed by Huang et al in their paper ['Densely Connected Convolutional Networks'](https://arxiv.org/pdf/1608.06993.pdf) The code provided in the ``DenseNetX.py`` python script is based on version 5 of the paper and includes the Bottleneck layers and Compression factor, so strictly speaking is a DenseNet-BC implementation. It also includes some minor modifications to make it compatible with the Vitis AI quantizer and compiler. In particular, the order of the BatchNorm, RelU activation and Convolution layers has been altered from BN->ReLU->Conv to Conv->BN->ReLU.
 
 The authors of the original paper used a Stochastic Gradient Descent (SGD) optimizer whereas the training script in this example (``train.py``) uses RMSProp - the code required for SGD optimization is also provided, just uncomment it and then comment out the RMSProp optimizer, like this:
 
@@ -74,7 +78,7 @@ The code in ``DenseNetX.py`` is set for the CIFAR10 dataset, so the first convol
 ```
 
 
-In the original DenseNet paper, the first convolutional layer was set for a 7x7 kernel, stride lengths of 2 and a max pooling layer was included for the ImageNet dataset: 
+In the original DenseNet paper, the first convolutional layer was set for a 7x7 kernel, stride lengths of 2 and a max pooling layer was included for the ImageNet dataset:
 
 
 ```python
@@ -88,12 +92,12 @@ In the original DenseNet paper, the first convolutional layer was set for a 7x7 
     net = MaxPooling2D(3, 2)(net)
 ```
 
-..users will need to adjust this code according to the size of their input data.
+**Note**: You must adjust this code according to the size of your input data.
 
 A picture of the complete network can be found at ./img/model.png.
 
 
-### DenseNet-121, 169, 201 and 264 naming
+## DenseNet-121, 169, 201 and 264 Naming
 
 The authors of the original paper labelled the architectures they created for ImageNet as DenseNet-121, 169, 201 and 264.  (Reference 1, Table 1). It can be useful to understand how they arrived at that nomenclature.
 
@@ -122,12 +126,11 @@ The DenseNetX model provided in this tutorial has 3 dense blocks each of which h
 ```
 
 
-## Implementing the design
+# Implementing the Design
 
 This section will lead you through the steps necessary to run the design in hardware.
 
-
-### Preparing the host machine and target board
+## Preparing the Host Machine and Target Board
 
 The host machine has several requirements that need to be met before we begin. You will need:
 
@@ -137,24 +140,23 @@ The host machine has several requirements that need to be met before we begin. Y
 
   + You should follow the setup instructions provided in [Setting up the host](https://www.xilinx.com/html_docs/vitis_ai/1_1/jck1570690043273.html) and in [For Edge (DPUv2)](https://www.xilinx.com/html_docs/vitis_ai/1_1/lbv1583226048322.html).
 
-  + A target board - in this tutorial, the Xilinx ZCU102 board is used. Users should follow all of the steps described in [Setting Up the Evaluation Board](https://www.xilinx.com/html_docs/vitis_ai/1_1/yjf1570690235238.html) section of the User Guide, including the installation of the VART runtime.
+  + A target board - in this tutorial, the Xilinx ZCU102 board is used. You should follow all of the steps described in [Setting Up the Evaluation Board](https://www.xilinx.com/html_docs/vitis_ai/1_1/yjf1570690235238.html) section of the [Vitis AI User Guide](https://www.xilinx.com/html_docs/vitis_ai/1_0/zkj1576857115470.html), including the installation of the VART runtime.
 
   :pushpin: Once the SDcard has been completely prepared, you can use the Ubuntu host machine's 'Disks' utility to create an image (.img) of the SDcard. The same Disks utility can be used to re-write the SDcard or write to new SDcards without having to follow all of the above steps.
 
 It is recommended to test the SDcard in the ZCU102 and ensure that it boots correctly.
 
 
-Refer to the latest version of the [Vitis AI User Guide - UG1414](https://www.xilinx.com/html_docs/vitis_ai/1_1/zkj1576857115470.html) for other details.
+Refer to the latest version of the [Vitis AI User Guide](https://www.xilinx.com/html_docs/vitis_ai/1_0/zkj1576857115470.html) for other details.
 
 
-
-### Step 0 - Downloading the design and setting up the workspace
+## Downloading the Design and Setting up the Workspace
 
 This repository should be downloaded to the host machine as a zip file and then unzipped to a folder, or cloned using the ``git clone`` command from a terminal.
 
-Open a linux terminal, cd into the repository folder then into the 'files' folder. Start the Vitis-AI docker - if you have a GPU in the host system, it is recommended that you use the GPU version of the docker container. If you intend running the model training, you will definitely need the GPU docker container. If you are going to skip the training phase, then the CPU docker container will be sufficient.
+Open a linux terminal, cd into the repository folder then into the 'files' folder. Start the Vitis AI docker - if you have a GPU in the host system, it is recommended that you use the GPU version of the docker container. If you intend running the model training, you will definitely need the GPU docker container. If you are going to skip the training phase, then the CPU docker container will be sufficient.
 
-As part of the [Setting up the host](https://www.xilinx.com/html_docs/vitis_ai/1_1/jck1570690043273.html) procedure, you will have cloned or downloaded The Vitis-AI repository to the host machine. In the Vitis-AI folder of that repo there is a shell script called docker_run.sh that will launch the chosen docker container. Open a terminal on the host machine and cd into the enter the following commands (note: start *either* the GPU or the CPU docker container, but not both):
+As part of the [Setting up the host](https://www.xilinx.com/html_docs/vitis_ai/1_1/jck1570690043273.html) procedure, you will have cloned or downloaded The Vitis AI repository to the host machine. In the Vitis AI folder of that repo there is a shell script called docker_run.sh that will launch the chosen docker container. Open a terminal on the host machine and cd into the enter the following commands (note: start *either* the GPU or the CPU docker container, but not both):
 
 
 ```shell
@@ -173,11 +175,11 @@ The docker container will start and you should see something like this in the te
 
 ```shell
 ==========================================
-__      ___ _   _                   _____ 
+__      ___ _   _                   _____
 \ \    / (_) | (_)            /\   |_   _|
  \ \  / / _| |_ _ ___ ______ /  \    | |  
   \ \/ / | | __| / __|______/ /\ \   | |  
-   \  /  | | |_| \__ \     / ____ \ _| |_ 
+   \  /  | | |_| \__ \     / ____ \ _| |_
     \/   |_|\__|_|___/    /_/    \_\_____|
 
 ==========================================
@@ -191,12 +193,12 @@ For Caffe Workflows do:
   conda activate vitis-ai-caffe
 For Neptune Workflows do:
   conda activate vitis-ai-neptune
-mharvey@XITMHARVEY33:/workspace$ 
+mharvey@XITMHARVEY33:/workspace$
 ```
 
 Now run the environment setup script:  `source ./0_setenv.sh`
 
-This will set up all the environment variables (..mainly pointers to folder and files..) most of which users can edit as required. It will also create the folders for the logs and the trained keras checkpoint.
+This will set up all the environment variables (..mainly pointers to folder and files..) most of which you can edit as required. It will also create the folders for the logs and the trained keras checkpoint.
 
 The 0_setenv.sh script also activates the 'vitis-ai-tensorflow' TensorFlow conda environment, so you should now see that the terminal prompt looks like this:
 
@@ -205,20 +207,19 @@ The 0_setenv.sh script also activates the 'vitis-ai-tensorflow' TensorFlow conda
 (vitis-ai-tensorflow) mharvey@XITMHARVEY33:/workspace$
 ```
 
+## Step 1: Training Your Model
 
-### Step 1 - Training
-
-:pushpin: Training takes a considerable time, between 8-12 hours depending on the GPU. Users can either:
+:pushpin: Training takes a considerable time, between 8-12 hours depending on the GPU. You can either:
 
 + Reduce the number of epochs by editing the ``export EPOCHS=160`` line in the 0_setenv.sh shell script. Obviously, less epochs of training will have a negative impact on the final accuracy.
-+ Skip the training phase altogether and use the pretrained Keras checkpoint available in keras_model.zip. The k_model.h5 file inside this zip archive should be copied to the ./files/build/keras_model folder and the remaining parts of Step 1 should be skipped and users should go direct to Step 2.   
++ Skip the training phase altogether and use the pretrained Keras checkpoint available in keras_model.zip. In this case, you can copy the k_model.h5 file inside this zip archive to the ./files/build/keras_model folder. You can then skip the remaining parts of Step 1 and go directly to Step 2.   
 
 
 To run step 1: ``source ./1_train.sh``
 
 The training process is defined by the train.py Python script. First, the CIFAR10 dataset is downloaded and pre-processed by the datadownload.py script which is called by train.py. All images undergo simple pre-processing before being used for training, evaluation and quantization calibration. The images are normalized to bring all pixel values into the range 0 to 1.0 by dividing them by 255.
 
-The images will also undergo augmentation in the form of random rotation, horizontal flipping (i.e. around the *vertical* axis), shifting up and down, shearing and zooming: 
+The images will also undergo augmentation in the form of random rotation, horizontal flipping (i.e. around the *vertical* axis), shifting up and down, shearing and zooming:
 
 
 ```python
@@ -250,11 +251,11 @@ After training has finished, the trained Keras checkpoint will be found in the .
 *Note: Any error messages relating to CUPTI can be ignored.*
 
 
-### Step 2 - Convert the Keras HDF5 checkpoint to a TensorFlow frozen graph
+## Step 2: Converting the Keras HDF5 Checkpoint to a TensorFlow Frozen Graph
 
 To run step 2: ``source ./2_keras2tf.sh``
 
-The Vitis-AI tools cannot operate directly on Keras checkpoints and require a TensorFlow compatible frozen graph as the input format. The 2_keras2tf.sh shell script will create the frozen graph in two steps:
+The Vitis AI tools cannot operate directly on Keras checkpoints and require a TensorFlow compatible frozen graph as the input format. The 2_keras2tf.sh shell script will create the frozen graph in two steps:
 
 1. The HDF5 file is converted to a TensorFlow checkpoint.
 2. The TensorFlow checkpoint is converted to a 'frozen graph' in binary protobuf format.
@@ -264,18 +265,18 @@ The output .pb file is generally known as a 'frozen graph' since all variables a
 After this step is completed, there should be a protobuf file called 'frozen_graph.pb' in the ./files/build/freeze folder.
 
 
-### Step 3 - Evaluate the frozen graph
+## Step 3: Evaluating the Frozen Graph
 
-To run step 2: ``source ./3_eval_frozen.sh``
+To run step 3: ``source ./3_eval_frozen.sh``
 
 This is an optional step as the frozen graph is still in floating-point format and should give almost identical accuracy results as the evaluation done during the training phase (step 1). All 10k images of CIFAR10 test images are passed through the frozen model and the accuracy is calculated.
 
 
-### Step 4 - Quantize the frozen graph
+## Step 4: Quantizing the Frozen Graph
 
 To run step 4: ``source ./4_quant.sh``
 
-The DPU accelerator IP executes all calculations in 8bit integer format, so we must quantize our floating-point frozen graph. This is done by the Vitis-AI tools, in particular by the 'vai_q_tensorflow quantize' command. This command can be seen in the 4_quant.sh script and has several arguments that we must provide values for:
+The DPU accelerator IP executes all calculations in 8bit integer format, so we must quantize our floating-point frozen graph. This is done by the Vitis AI tools, in particular by the 'vai_q_tensorflow quantize' command. This command can be seen in the 4_quant.sh script and has several arguments that we must provide values for:
 
 
 | Argument              | Description                                                    |
@@ -304,7 +305,7 @@ The number of images generated for use in calibration is set by the CALIB_IMAGES
 Once quantization has completed, we will have the quantized deployment model (deploy_model.pb) and the evaluation model (quantize_eval_model.pb) in the ./files/build/quantize folder.
 
 
-### Step 5 - Evaluate the quantized model
+## Step 5: Evaluating the Quantized Model
 
 To run step 5: ``source ./5_eval_quant.sh``
 
@@ -313,15 +314,15 @@ This is an optional, but *highly* recommended step. The conversion from a floati
 The exact same Python script, eval_graph.py, that was used to evaluate the frozen graph is used to evaluate the quantized model.
 
 
-### Step 6 - Compile the quantized model
+## Step 6: Compiling the Quantized Model
 
 To run step 6: ``source ./6_compile.sh``
 
 The DPU IP is a soft-core IP whose only function is to accelerate the execution of convolutional neural networks. It is a co-processor which has its own instruction set - those instructions are passed to the DPU in ELF file format.
 
-The Vitis-AI compiler will convert, and optimize where possible, the quantized deployment model to a set of micro-instructions and then output them in an ELF file.
+The Vitis AI compiler will convert, and optimize where possible, the quantized deployment model to a set of micro-instructions and then output them in an ELF file.
 
-The generated instructions are specific to the particular configuration of the DPU. The DPU's parameters are contained in a .dcf file which needs to be created for each target board - see thw Vitis-AI User Guide for details.
+The generated instructions are specific to the particular configuration of the DPU. The DPU's parameters are contained in a .dcf file which needs to be created for each target board - see the [Vitis AI User Guide](https://www.xilinx.com/html_docs/vitis_ai/1_0/zkj1576857115470.html) for details.
 
 In the specific case of the ZCU102 and the prepared SDcard image file that we used back in the 'Preparing the host machine and target board' section, the .dcf file is included in the docker container and its location is passed to the vai_c_tensorflow command via the --arch argument.
 
@@ -334,14 +335,14 @@ When you compile, you will see a warning like this:
 ```
 
 
-This message tells us that we have an unsupported layer, Softmax in this case, in the quantized model. The Vitis-AI compiler will ignore this layer and only compile the network up to the output of the previous layer. Generally, for unsupported layers the user must provide an equivalent software function that will be executed on the CPU - but be aware that in the particular case of Softmax, the DPUv2 has an optional hardware block to implement it.
+This message tells us that we have an unsupported layer, Softmax in this case, in the quantized model. The Vitis AI compiler will ignore this layer and only compile the network up to the output of the previous layer. Generally, for unsupported layers, you must provide an equivalent software function that will be executed on the CPU - but be aware that in the particular case of Softmax, the DPUv2 has an optional hardware block to implement it.
 
-In this tutorial, we will not include a Softmax function in our application code but instead use a Numpy argmax function to extract the predicted class from the vector of probabilities returned by the DPU. 
+In this tutorial, we will not include a Softmax function in our application code but instead use a Numpy argmax function to extract the predicted class from the vector of probabilities returned by the DPU.
 
 Once compile is complete, the ELF file will be stored in the ./files/build/compile folder.
 
 
-### Step 7 - Run the application on the board
+## Step 7: Running the Application on the Board
 
 To run step 7: ``source ./7_make_target.sh``
 
@@ -394,7 +395,7 @@ Correct: 9116 Wrong: 883 Accuracy: 0.9116
 ```
 
 
-## Accuracy & Performance results
+# Accuracy & Performance Results
 
 The floating-point post-training and frozen graph evaluations can be compared to the INT8 post-quantization model and actual results obtained by the hardware model running on the ZCU102 board:
 
@@ -416,7 +417,7 @@ The approximate throughput (in frames/sec) for various batch sizes is shown belo
 |     5     |      829.56      |
 
 
-## References
+# References
 
 1. Huang et al. <a href="https://arxiv.org/pdf/1608.06993.pdf">"Densely Connected Convolutional Networks" (v5) Jan 28 2018</a>.
 2. Krizhevsky, Alex. <a href="https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf">"Learning Multiple Layers of Features from Tiny Images"</a>.
