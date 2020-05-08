@@ -1,13 +1,13 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>DenseNetX - a Version of DenseNet Modified for use with Xilinx DPUv2 on Zynq Devices</h1>
+    <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Using DenseNetX on the Xilinx DPU Accelerator</h1>
     </td>
  </tr>
  </table>
 
 # Current Status
 
-- Tested on ZCU102 with Vitis AI 1.1 and VART runtime
+Tested on ZCU102 with Vitis AI 1.1 and VART runtime
 
 
 # Introduction
