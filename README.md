@@ -1,47 +1,55 @@
-<table width="100%">
-  <tr width="100%">
-    <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Vitis AI Tutorials</h1>
-    </td>
- </tr>
- </table>
-
- <table style="width:100%">
+<table>
  <tr>
- <td width="50%" align="center"><b>Tutorial</b></td>
- <td width="50%" align="center"><b>Description</b></td>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Vitis AI Tutorials</h1>
+   </td>
  </tr>
  <tr>
- <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/VAI-Caffe-ML-CATSvsDOGS">Quantization and Pruning of AlexNet CNN trained in Caffe with Cats-vs-Dogs dataset (UG1336)</a></td>
- <td>
-Train, prune, and quantize a modified version of the AlexNet convolutional neural network (CNN) with the Kaggle Dogs vs. Cats dataset in order to deploy it on the Xilinx&reg; ZCU102 board.</td>
- </tr><tr>
- <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/MNIST-Classification-TensorFlow">MNIST Classification using Vitis&trade; AI and TensorFlow (UG1337)</a></td>
- <td>
-Learn the Vitis AI TensorFlow design process for creating a compiled ELF file that is ready for deployment on the Xilinx DPU accelerator from a simple network model built using Python. This tutorial uses the MNIST test dataset.</td>
- </tr><tr>
- <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/CIFAR10-Classification-with-TensorFlow">CIFAR10 Classification using Vitis AI and TensorFlow (UG1338)</a></td>
- <td>
-Learn the Vitis AI TensorFlow design process for creating a compiled ELF file that is ready for deployment on the Xilinx DPU accelerator from a simple network model built using Python. This tutorial uses the CIFAR-10 test dataset.</td>
+ <td align="center"><h1>Medical AI Application Acceleration with Xilinx AI Stack</h1>
+ </td>
  </tr>
- <tr>
-  <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/DenseNetX_DPUv2">Using DenseNetX on the Xilinx DPU Accelerator (UG1340)</td>
-  <td>Learn about the Vitis AI TensorFlow design process and how to go from a Python description of the network model to running a compiled model on the Xilinx DPU accelerator.</td></tr>
-<tr>
- <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/Keras-Freeze-with-Vitis-AI">Freezing a Keras Model for use with Vitis AI (UG1380)</a></td>
- <td>
- Freeze a Keras model by generating a binary protobuf (.pb) file.</tr>
- <tr> <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/Keras-GoogleNet-ResNet">Deep Learning with Custom GoogleNet and ResNet in Keras and Xilinx Vitis AI (UG1381)</a></td>
- <td>
-Quantize in fixed point some custom CNNs and deploy them on the Xilinx ZCU102 board, using Keras and the Xilinx7Vitis AI tool chain based on TensorFlow (TF).</tr>
- <tr> <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/ML-Caffe-Segmentation-Tutorial">ML Caffe Segmentation Tutorial (UG1394)</a></td>
- <td>Use Vitis AI to train, quantize, compile, and deploy various segmentation networks including: ENet, ESPNet, FPN, UNet, and a reduced compute version of UNet.</td></tr>
- <tr>
-  <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/VAI-KERAS-FCN8-SEMSEG">FCN8 and UNET Semantic Segmentation with Keras and Xilinx Vitis AI (UG1445)</td>
-  <td>Train the FCN8 and UNET Convolutional Neural Networks (CNNs) for Semantic Segmentation in Keras adopting a small custom dataset, quantize the floating point weights files to an 8-bit fixed point representation, and then deploy them on the Xilinx® ZCU102 board using Vitis AI.</td></tr>
-  <tr>
-   <td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/ML-at-Edge-yolov3">ML at the Edge - Introduction Lab (UG1447)</td>
-   <td>Use the Vitis AI 1.0 tool kit to quantize and compile a Yolov3 TensorFlow model that utilizes the Xilinx Deep Learning Processor (DPU) on the ZCU104 board. The Yolov3 model was trained on the Pascal VOC data set.</td></tr> <tr><td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/Vitis-AI-Custom-Platform">Vitis AI (on Ultra96V2) Custom Platform Tutorials (UG1454)</a></td><td>A set of tutorials related to porting Vitis AI 1.0 to a custom platform.</td></tr>
+</table>
 
-  <tr><td align="center"><a href="https://github.com/Xilinx/Vitis-AI-Tutorials/tree/VAI-Caffe-SSD-Tutorial">ML SSD PASCAL Caffe Tutorial (UG1457)</a></td><td>Train, quantize, and compile SSD using PASCAL VOC 2007/2012 datasets, the Caffe framework, and Vitis AI tools. Then deploy the model on a Xilinx ZCU102 target board.</td></tr></table>
+# Introduction
+Medical AI is becoming an essential part of modern healthcare. Hardware implementation of the algorithm part of these applications offer much better efficiency and lower latency. This tutorial demonstrates how a medical application developer can take a medical dataset, develop and evaluate an end-to-end AI accelerated application using Xilinx&reg; Vitis&trade; AI, without writing any lower level RTL code.
+Here we take the open-source Skin Lesions dataset, create a machine learning network and train it on an x86 platform. Then we use the Xilinx Vitis AI toolset to quantize, compile and evaluate the model in one of the Xilinx AI inference platforms, the ZCU102 board.
 
-<p align="center"><sup>Copyright&copy; 2019-2020 Xilinx</sup></p>
+# Prerequisites
+## Host Machine Prep
++ A CentOS or an Ubuntu host machine configured as described in the Table 1 of the <a href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf">Vitis AI User Guide (UG1414)</a>.
++ Docker-ce installed. (see instructions <a href="https://docs.docker.com/engine/install/">Install Docker Engine</a>).
++ A terminal emulator and/or SSH Client (i.e. Putty) installed.
++ See the <a href="https://github.com/Xilinx/Vitis-AI">Vitis AI GitHub README.md</a> for details.
+
+## Target Platform: ZCU102 Evaluation Board Prep
++ Configure the ZCU102 board so that it boots from an SD card ( for instructions refer to chapter 2 of <a href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf">UG1414</a>)
++ Follow the instructions in the Guide_to_create_boot image_zcu102.pdf (look for it in the cloned folder)
+and create a bootable SD card image.
++ Connect it to a DHCP enabled network via its ethernet port.
+
+# Dataset Download and Preprocessing
++ In the Files folder, copy the "notebooks_for_training" folder to your host machine
++ Follow the steps described in the 'dataaug.ipynb' Jupiter notebook
+
+# ML Network Training and Model Creation
++ Follow the steps described in the ''training.ipynb' Jupiter notebook
+
+# Porting the Model to Target Platform (ZCU102 Eval Board)
+## 1. Vitis AI Tools Docker Bring Up
++ Follow the instructions described in the Phase-2 part of the article (look for it in the cloned folder)
+## 2. Model Quantization
++ Follow the instructions described in the Phase-2 part of the article (look for it in the cloned folder)
+## 3. Network Compilation
++ Follow the instructions described in the Phase-2 part of the article (look for it in the cloned folder)
+
+# Application Evaluation on the Target ZCU102 Board
+Once the zcu102 board is up and running it automatically launches a Jupiter notebook server. Jupiter notebooks mentioned in the article are already included in the board image and should be accessible on a browser using http://<board-ip>:8888 address. For Instructions on how to gather the board's ip address by accessing it over JTAG or via SSH refer to the chapter 2 of <a href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf">UG1414</a>)
++ Copy all subdirectories from ‘/test_dir’ (created during ‘Dataset download and preprocessing’ step) to the ‘/workspace/skinl/data’ directory in the board file system. Make sure to maintain the directory structure.
++ Follow the steps described in the Jupiter notebook 'skinl_app.ipynb' to evaluate the application.
+
+# License
+
+Licensed under the Apache License, Version 2.0 - see the [LICENSE.txt](files/LICENSE.txt) file for details
+
+# Acknowledgments
+This tutorial uses the following third-party material:
+Tschandl, Philipp, 2018, "The HAM10000 dataset, a large collection of multi-source dermatoscopic images of common pigmented skin lesions", https://doi.org/10.7910/DVN/DBW86T, Harvard Dataverse, V1, UNF:6:IQTf5Cb+3EzwZ95U5r0hnQ
