@@ -28,10 +28,10 @@ and create a bootable SD card image.
 
 # Dataset Download and Preprocessing
 + In the Files folder, copy the "notebooks_for_training" folder to your host machine
-+ Follow the steps described in the 'dataaug.ipynb' Jupiter notebook
++ Follow the steps described in the 'dataaug.ipynb' Jupyter notebook
 
 # ML Network Training and Model Creation
-+ Follow the steps described in the ''training.ipynb' Jupiter notebook
++ Follow the steps described in the ''training.ipynb' Jupyter notebook
 
 # Porting the Model to Target Platform (ZCU102 Eval Board)
 ## 1. Vitis AI Tools Docker Bring Up
@@ -42,9 +42,9 @@ and create a bootable SD card image.
 + Follow the instructions described in the Phase-2 part of the article (look for it in the cloned folder)
 
 # Application Evaluation on the Target ZCU102 Board
-Once the zcu102 board is up and running it automatically launches a Jupiter notebook server. Jupiter notebooks mentioned in the article are already included in the board image and should be accessible on a browser using http://<board-ip>:8888 address. For Instructions on how to gather the board's ip address by accessing it over JTAG or via SSH refer to the chapter 2 of <a href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf">UG1414</a>)
+Once the zcu102 board is up and running it automatically launches a Jupyter notebook server. Jupyter notebooks mentioned in the article are already included in the board image and should be accessible on a browser using http://<board-ip>:8888 address. For Instructions on how to gather the board's ip address by accessing it over JTAG or via SSH refer to the chapter 2 of <a href="https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf">UG1414</a>)
 + Copy all subdirectories from ‘/test_dir’ (created during ‘Dataset download and preprocessing’ step) to the ‘/workspace/skinl/data’ directory in the board file system. Make sure to maintain the directory structure.
-+ Follow the steps described in the Jupiter notebook 'skinl_app.ipynb' to evaluate the application.
++ Follow the steps described in the Jupyter notebook 'skinl_app.ipynb' to evaluate the application.
 
 # License
 
