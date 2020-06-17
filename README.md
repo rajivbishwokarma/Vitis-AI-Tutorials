@@ -4,7 +4,7 @@
    </td>
  </tr>
  <tr>
- <td align="center"><h1>DenseNetX - a version of DenseNet modified for use with Xilinx Alveo U50</h1>
+ <td align="center"><h1>Using DenseNetX on the Xilinx Alveo U50 Accelerator Card</h1>
  </td>
  </tr>
 </table>
