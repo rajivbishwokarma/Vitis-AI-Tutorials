@@ -21,7 +21,7 @@
 
 
 # daniele.bagni@xilinx.com
-# date 14 March 2020
+# date 25 June 2020
 
 ## clean up previous log files
 #rm -f ./log/*.log
@@ -229,7 +229,11 @@ Q_OUTPUT_NODE="conv2d_transpose_3/conv2d_transpose" # output node of quantized C
   echo "COMPILE FCN8 ELF FILE WITH Vitis AI for ZCU102"
   echo "##########################################################################"
   echo " "
-  python /opt/vitis_ai/compiler/vai_c_tensorflow \
+  # for Vitis AI == 1.0
+  #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+  # for Vitis AI >= 1.1
+  vai_c_tensorflow \
 	 --frozen_pb ${QUANT_DIR}/${CNN}/deploy_model.pb \
 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json \
 	 --output_dir ${COMPILE_DIR}/${CNN} \
@@ -245,7 +249,11 @@ Q_OUTPUT_NODE="conv2d_transpose_3/conv2d_transpose" # output node of quantized C
    echo "COMPILE FCN8 ELF FILE WITH Vitis AI for ZCU104"
    echo "##########################################################################"
    echo " "
-   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+   # for Vitis AI == 1.0
+   #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+   # for Vitis AI >= 1.1
+   vai_c_tensorflow \
  	 --frozen_pb ${QUANT_DIR}/${CNN}/deploy_model.pb \
  	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
  	 --output_dir ${COMPILE_DIR}/${CNN} \
@@ -259,7 +267,8 @@ Q_OUTPUT_NODE="conv2d_transpose_3/conv2d_transpose" # output node of quantized C
 
 main() {
 
-    conda activate vitis-ai-tensorflow
+
+    #conda activate vitis-ai-tensorflow
 
     # clean up previous results
     rm -rf ${WORK_DIR}; mkdir ${WORK_DIR}
@@ -294,12 +303,12 @@ main() {
     # evaluate the frozen graph performance
     4b_eval_graph 2>&1 | tee ${LOG_DIR}/${CNN}/${EVAL_FR_LOG}
 
-    # quantize 
+    # quantize
     5a_fcn8_quantize 2>&1 | tee ${LOG_DIR}/${CNN}/${QUANT_LOG}
 
     # evaluate post-quantization model
     5b_eval_quantized_graph 2>&1 | tee ${LOG_DIR}/${CNN}/${EVAL_Q_LOG}
-
+    
     # compile with dnnc to generate elf file for ZCU102
     6_compile_vai 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}
     # move elf and so files to target ZCU102 board directory

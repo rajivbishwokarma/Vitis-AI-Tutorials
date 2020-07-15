@@ -292,21 +292,33 @@ OUTPUT_NODE="conv2d_19/Relu" # output node of floating point CNN UNET v1 and v3
   echo "COMPILE UNET ELF FILE WITH Vitis AI for ZCU102"
   echo "##########################################################################"
   echo " "
-  python /opt/vitis_ai/compiler/vai_c_tensorflow \
+  # for Vitis AI == 1.0
+  #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+  # for Vitis AI >= 1.1
+  vai_c_tensorflow \
 	 --frozen_pb ${QUANT_DIR}/${CNN}1/deploy_model.pb \
 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json \
 	 --output_dir ${COMPILE_DIR}/${CNN}1 \
 	 --options    "{'mode':'normal'}" \
 	 --net_name ${CNN}1
 
-  python /opt/vitis_ai/compiler/vai_c_tensorflow \
+   # for Vitis AI == 1.0
+   #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+   # for Vitis AI >= 1.1
+  vai_c_tensorflow \
 	 --frozen_pb ${QUANT_DIR}/${CNN}2/deploy_model.pb \
 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json \
 	 --output_dir ${COMPILE_DIR}/${CNN}2 \
 	 --options    "{'mode':'normal'}" \
 	 --net_name ${CNN}2
 
-  python /opt/vitis_ai/compiler/vai_c_tensorflow \
+   # for Vitis AI == 1.0
+   #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+   # for Vitis AI >= 1.1
+  vai_c_tensorflow \
 	 --frozen_pb ${QUANT_DIR}/${CNN}3/deploy_model.pb \
 	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU102/ZCU102.json \
 	 --output_dir ${COMPILE_DIR}/${CNN}3 \
@@ -322,21 +334,33 @@ OUTPUT_NODE="conv2d_19/Relu" # output node of floating point CNN UNET v1 and v3
    echo "COMPILE UNET ELF FILE WITH Vitis AI for ZCU104"
    echo "##########################################################################"
    echo " "
-   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+   # for Vitis AI == 1.0
+   #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+   # for Vitis AI >= 1.1
+   vai_c_tensorflow \
  	 --frozen_pb ${QUANT_DIR}/${CNN}1/deploy_model.pb \
  	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
  	 --output_dir ${COMPILE_DIR}/${CNN}1 \
  	 --options    "{'mode':'normal'}" \
  	 --net_name ${CNN}1
 
-   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+   # for Vitis AI == 1.0
+   #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+   # for Vitis AI >= 1.1
+   vai_c_tensorflow \
  	 --frozen_pb ${QUANT_DIR}/${CNN}2/deploy_model.pb \
  	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
  	 --output_dir ${COMPILE_DIR}/${CNN}2 \
  	 --options    "{'mode':'normal'}" \
  	 --net_name ${CNN}2
 
-   python /opt/vitis_ai/compiler/vai_c_tensorflow \
+   # for Vitis AI == 1.0
+   #python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+   # for Vitis AI >= 1.1
+   vai_c_tensorflow \
  	 --frozen_pb ${QUANT_DIR}/${CNN}3/deploy_model.pb \
  	 --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
  	 --output_dir ${COMPILE_DIR}/${CNN}3 \
@@ -373,11 +397,10 @@ main() {
     mkdir ${QUANT_DIR}/${CNN}1   ${QUANT_DIR}/${CNN}2   ${QUANT_DIR}/${CNN}3
     mkdir ${COMPILE_DIR}/${CNN}1 ${COMPILE_DIR}/${CNN}2 ${COMPILE_DIR}/${CNN}3
 
- : '
     #copy target_zcu102 files into the new target_zcu104 folder if you have also the ZCU104 board
     cp -r  ${TARGET_DIR}/* ${TARGET_DIR4}
     mv ${TARGET_DIR4}/run_on_zcu102.sh  ${TARGET_DIR4}/run_on_zcu104.sh
-'
+
 
     ## create the proper folders and images from the original dataset
     #1_generate_images 2>&1 | tee ${LOG_DIR}/${CNN}/${PREPARE_DATA_LOG}
@@ -409,6 +432,7 @@ main() {
 
     # compile with Vitis AI to generate elf file for ZCU104
     6_compile_vai_zcu104 2>&1 | tee ${LOG_DIR}/${CNN}/${COMP_LOG}_zcu104
+
     # move elf and so files to target board directory
     #mv  ${COMPILE_DIR}/${CNN}1/dpu*.elf    ${TARGET_DIR4}/v1/model/
     mv  ${COMPILE_DIR}/${CNN}2/dpu*.elf    ${TARGET_DIR4}/v2/model/

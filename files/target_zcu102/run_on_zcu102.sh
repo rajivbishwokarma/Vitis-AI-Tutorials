@@ -31,9 +31,6 @@ ln -nsf ../../workspace ./workspace
 
 #run python3 script on fcn8
 cd ../../fcn8/
-make clean
-make
-make lib_so
 cd model
 python3 ./run_fcn8_on_dpu.py 2>&1 | tee dpu_logfile_fcn8_py.txt
 cd ..
@@ -42,25 +39,22 @@ cd ..
 
 #run python3 script on fcn8ups
 cd ../fcn8ups
-make clean
-make
-make lib_so
 cd model
 python3 ./run_fcn8ups_on_dpu.py 2>&1 | tee dpu_logfile_fcn8ups_py.txt
 cd ..
 #run C++ executable with 1 thread
 ./fcn8ups 1 2>&1 | tee dpu_logfile_fcn8ups_th1.txt
 
+
 #run python3 script on unet
 cd ../unet/v2
-make clean
-make
-make lib_so
 cd model
 python3 ./run_unet2_on_dpu.py 2>&1 | tee dpu_logfile_unet2_py.txt
 cd ..
 #run C++ executable with 1 thread
 ./unet2 1 2>&1 | tee dpu_logfile_unet2_th1.txt
+
+
 
 cd ../..
 

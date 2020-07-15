@@ -9,11 +9,11 @@
 
 ### Current status
 
-1. Tested with Vitis AI 1.0
+1. Tested with Vitis AI 1.0 and 1.1
 
-2. Tested in hardware on ZCU102 and ZCU104
+2. Tested in hardware on ZCU102 (both 1.0 and 1.1) and ZCU104 (only with 1.0)
 
-3. Date: 18 March 2020
+3. Date: 1 July 2020 (previous: 18 March 2020)
 
 Any questions, comments or errors found - please email me directly: [Daniele Bagni](mailto:danieleb@xilinx.com)
 
@@ -29,13 +29,21 @@ Once the selected CNN has been correctly trained in Keras, the [HDF5](https://ww
 
 - An Ubuntu 16.04 host PC with Python 3.6  and its package python3.6-tk installed (this last one installed with ``sudo apt-get install python3.6-tk``);
 
-- [Vitis AI stack release 1.0](https://github.com/Xilinx/Vitis-AI) from [www.github.com/Xilinx](https://www.github.com/Xilinx). In particular, refer to the [Vitis AI User Guide UG1414 v1.0](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf) for the installation guidelines and note that you need to download the two containers available from [docker hub](https://hub.docker.com/r/xilinx/vitis-ai/tags):
+- [Vitis AI stack release 1.0](https://github.com/Xilinx/Vitis-AI/tree/v1.0) from [www.github.com/Xilinx](https://www.github.com/Xilinx). In particular, refer to the [Vitis AI User Guide UG1414 v1.0](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf) for the installation guidelines and note that you need to download the two containers available from [docker hub](https://hub.docker.com/r/xilinx/vitis-ai/tags):
   - **tools container** with tag ``tools-1.0.0-cpu``, here ``cpu`` means that this environment runs on the host PC only with CPU support (in other words without any GPU need). Note also that UG1414 explains how to build your own container with GPU support;
   - **runtime container** with tag ``runtime-1.0.1-cpu``, note that you need this container only once to prepare SD card content of the target board, then you will compile all the applications directly on the target board itself, which means you do not cross-compile them from the host PC.
 
 - Vitis AI Evaluation board [ZCU102](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html) with its [image file](https://www.xilinx.com/bin/public/openDownload?filename=xilinx-zcu102-dpu-v2019.2.img.gz), which contains a pre-built working design for the ZCU102 with the [DPU-v2](https://github.com/Xilinx/Vitis-AI/tree/master/DPU-TRD).
 
+- With few changes, explained in the last part of the following section, this tutorial can work also with [Vitis AI stack release 1.1](https://github.com/Xilinx/Vitis-AI).
+
 - Familiarity with Deep Learning principles.
+
+
+## Dos-to-Unix Conversion
+
+In case you might get some strange errors during the execution of the scripts, you have to pre-process -just once- all the``*.sh`` shell and the python ``*.py`` scripts with the [dos2unix](http://archive.ubuntu.com/ubuntu/pool/universe/d/dos2unix/dos2unix_6.0.4.orig.tar.gz) utility.
+
 
 # Before starting
 
@@ -71,13 +79,18 @@ Note that both the two containers map the shared folder ``/workspace`` with the 
 
 The docker container do not have any graphic editor, so it is recommended that you work with two terminals and you point to the same folder, in one terminal you use the docker container commands and in the other terminal you open any graphic editor you like.
 
+Note that docker does not have an automatic garbage collection system as of now. You can use this command to do a manual garbage collection:
+```
+docker rmi -f $(docker images -f "dangling=true" -q)
+```
 
 
 ### Install Missing Packages on the Vitis AI Tools Container
 
 This tutorial requires some packages that were not included in the original Vitis AI tools container. Here are the commands to include such packages:
 ```bash
-./docker_run.sh xilinx/vitis-ai:tools-1.0.0-cpu # enter into the docker VAI tools image
+./docker_run.sh xilinx/vitis-ai:tools-1.0.0-cpu # enter into the docker Vitis AI 1.0 tools image
+#./docker_run.sh xilinx/vitis-ai:1.1.56 # enter into the docker Vitis AI 1.1 tools image    
 sudo su # you must be root
 conda activate vitis-ai-tensorflow # as root, enter into Vitis AI TF (anaconda-based) virtual environment
 conda install matplotlib
@@ -86,7 +99,7 @@ conda install seaborn
 conda install pycairo==1.18.2
 # you cannot install next packages with conda, so use pip instead
 pip install imutils==0.5.1
-pip install keras=2.2.4
+pip install keras==2.2.4
 conda deactivate
 exit # to exit from root
 conda activate vitis-ai-tensorflow # as normal user, enter into Vitis AI TF (anaconda-based) virtual environment
@@ -107,8 +120,6 @@ sudo docker commit -m"new image: added keras 2.2.4 and pandas, seaborn, matplotl
        5310263294ba xilinx/vitis-ai:tools-1.0.0-cpu
 ```
 
-For the sake of clarity, all the Python3.6 packages used in this tutorial are listed in the [vitis_ai_tf_tools_requirements.txt](files/doc/vitis_ai_tf_tools_requirements.txt). Most of them are already pre-installed in the original container and you only need to install the few missing ones listed previously (nevertheless, if you want to re-install all of them, from the python3.6 virtual environment run the command ``pip install -r ./files/doc/vitis_ai_tf_tools_requirements.txt``).
-
 You can launch this modified tools container by running the following command from the ``<WRK_DIR>`` folder:
 ```bash
 cd <WRK_DIR> # you are now in Vitis_AI subfolder
@@ -121,7 +132,7 @@ conda activate vitis-ai-tensorflow
 ```
 
 
-### The Vitis AI Runtime Container
+### The Vitis AI 1.0 Runtime Container
 
 This docker image can support both **Vitis AI Library** (named **AI SDK** prior to Vitis) and **DNNDK** cross compiler. In particular:
 
@@ -149,6 +160,43 @@ At the end of this procedure you should see something as illustrated in the scre
 
 Note also that the folder [target_zcu102/common](files/target_zcu102/common) of this repository is a copy of the folder [mpsoc/dnndk_samples_zcu102/common](https://github.com/Xilinx/Vitis-AI/tree/master/mpsoc/dnndk_samples_zcu102/common), just for your comfort.
 
+### Changes for Vitis AI 1.1
+
+There are few differences between Vitis AI 1.0 and 1.1 releases for what concerns the edge devices:
+
+1. you have to use the proper Docker Image for Vitis AI 1.1
+
+  ```
+  xilinx/vitis-ai           1.1.56                            798f6eaea389        3 months ago        9.5GB
+  ```
+
+  which is different from the images associated with 1.0:
+
+  ```
+  xilinx/vitis-ai           tools-1.0.0-cpu                   37ff1cd99ecb        3 months ago        8.59GB
+  xilinx/vitis-ai           tools-1.0.0-gpu                   1b45847f369d        3 months ago        12GB
+  ```
+
+2. You have to follow the Vitis AI 1.1 instructions for [Setting Up the Evaluation Boards](https://www.xilinx.com/html_docs/vitis_ai/1_1/yjf1570690235238.html).
+
+3. Starting from Vitis AI 1.1 release there is no more Docker Runtime Container, and you can cross compile the ``elf`` files directly from the host PC to the target board. You have to execute all the instructions of [Legacy DNNDK examples](https://www.xilinx.com/html_docs/vitis_ai/1_1/ump1570690283280.html) to setup ``petalinux/2019.2`` and all the DNNDK application files and libraries, so that you can finally run everything on your target board.
+In the following of this tutorial it is assumed that ``petalinux`` is installed into ``/opt/petalinux/2019.2`` of your host PC.
+
+Then, the Vitis AI 1.1 flow is basically the same of 1.0, the only difference is that in the three ``run_*.sh`` scripts you have to replace the line
+
+```
+# for Vitis AI == 1.0
+python /opt/vitis_ai/compiler/vai_c_tensorflow # vitis-ai 1.0 \
+```
+
+with the following lines
+
+```
+# for Vitis AI >= 1.1
+vai_c_tensorflow # vitis-ai 1.1 \
+```
+
+A part for the above changes, all the rest of the flow -with python and shell script files- used in this tutorial with Vitis 1.0 works also with  Vitis 1.1.
 
 
 # The Main Flow
@@ -178,20 +226,11 @@ Here is an overview of each step:
 7. Directly from the ZCU102 target board, you can use DPU Python APIs to import the Vitis AI target python modules (``n2cube``) and call the previously generated ``elf`` file to run the DPU for inference on the ``test`` dataset in order to measure the effective prediction accuracy. See [Build and Run on ZCU102 Target Board](#7-build-and-run-on-zcu102-target-board) for more information. From the target board, run the following command:
 ```bash
 cd target_zcu102
+source crosscompile_target.sh
 source ./run_on_zcu102.sh
 ```
 
 >**:pushpin: NOTE** Steps 1 and 2 are based on Yumi's blog titled [Learn about Fully Convolutional Networks for semantic segmentation](https://fairyonice.github.io/Learn-about-Fully-Convolutional-Networks-for-semantic-segmentation.html). For more background information about Semantic Segmentation have a look at the [Appendix](#appendix).
-
->**:pushpin: WARNING** Once launched the shell scripts, sometimes you might get the error:
-``` $'\r': command not found```. In that case run thee following commands from your Ubuntu host PC (out of the Vitis AI docker images):
-```bash
-sudo apt-get install dos2unix
-cd <WRK_DIR>
-for file in $(find . -name "*.sh"); do
-  dos2unix ${file}
-done
-```
 
 
 # 1 Organize the Data
@@ -411,7 +450,7 @@ from dnndk import n2cube
 ```
 
 Note that the Vitis AI Compiler tells you the names of the input and output nodes of the CNN that will be effectively implemented as a kernel in the DPU, therefore whatever layer remains out of such nodes it has to be executed in the ARM CPU as a software kernel.
-This can be easily understood looking at the logfile of this step, for example [5_vai_compile_Lenet_logfile.txt](files/rpt/fmnist/5_vai_compile_Lenet_logfile.txt) in case of `LeNet` CNN:
+This can be easily understood looking at the logfile of this step, for example ``5_vai_compile_Lenet_logfile.txt`` in case of `LeNet` CNN:
 ```text
 Input Node(s)             (H*W*C)
 conv2d_2_convolution(0) : 32*32*3
@@ -425,17 +464,40 @@ dense_2_MatMul(0) : 1*1*10
 
 In this design, you will use C++ to measure the performance in terms of fps and the Python APIs to get the prediction accuracy.
 
+You have to compile the hybrid (CPU + DPU) application with [crosscompile_target.sh](files/target_zcu102/crosscompile_target.sh) shell script.
+  - In case of Vitis AI 1.1 run the following:
+  ```bash
+  unset LD_LIBRARY_PATH    #required by petalinux for Vitis >= 1.1
+  sh /opt/petalinux/2019.2/environment-setup-aarch64-xilinx-linux # set petalinux environment of Vitis AI 1.1
+  cd <WRK_DIR>/tutorials/VAI-KERAS-FCN8-SEMSEG/files
+  cd target_zcu102
+  sh ./crosscompile_alexnet.sh
+  cd ..
+  tar -cvf target_zcu102.tar ./target_zcu102 # to be copied on the SD card
+  ```
+  - In case of Vitis AI 1.0 run the following:
+  ```bash
+  cd <WRK_DIR> # you are now in Vitis_AI subfolder
+  ./runtime/docker_run.sh xilinx/vitis-ai:runtime-1.0.0-cpu
+  cd <WRK_DIR>/tutorials/VAI-KERAS-FCN8-SEMSEG/files
+  cd target_zcu102
+  sh ./crosscompile_alexnet.sh
+  tar -cvf target_zcu102.tar ./target_zcu102 # to be copied on the SD card
+  ```
+
+Assuming you have transferred the ``target_zcu102.tar`` archive from the host to the target board with the ``scp`` utility, you can now run the following command directly on the target board:
+  ```bash
+  tar -xvf target_zcu102.tar
+  cd target_zcu102
+  sh ./run_on_zcu102.sh
+  ```
+
+
 The purpose of [run_on_zcu102.sh](files/target_zcu102/run_on_zcu102.sh) shell script is
 1. to create proper soft links to the test images;
-2. to compile the C++ application and the ``.so`` file;
-3. to launch the Python DPU API and measure at run time the effective ``Mean IoU`` prediction accuracy on the same test images applied in all the previous steps and stored in the ``test.tar.gz`` archive;
-4. to run the C++ executable in order of measuring the effective fps performance.  
+2. to launch the Python DPU API and measure at run time the effective ``Mean IoU`` prediction accuracy on the same test images applied in all the previous steps and stored in the ``test.tar.gz`` archive;
+3. to run the C++ executable in order of measuring the effective fps performance.  
 
-From the target board, run the following command:
-```bash
-cd target_zcu102
-sh ./run_on_zcu102.sh
-```
 
 ## 7.1 The Python Application
 
@@ -616,3 +678,8 @@ source ./run_on_zcu104.sh
 ```
 
 The  [logfile_run_on_dpu_zcu104.txt](files/target_zcu104/logfile_run_on_dpu_zcu104.txt) file contains all the top-1 accuracy and fps performance for the CNNs.  
+
+
+
+<hr/>
+<p align="center"><sup>Copyright&copy; 2019 Xilinx</sup></p>
