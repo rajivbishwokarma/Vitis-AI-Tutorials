@@ -23,7 +23,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: LeNet on CIFAR10"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/cifar10/LeNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/cifar10/LeNet \
@@ -38,7 +42,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: miniVggNet  on CIFAR10"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/cifar10/miniVggNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/cifar10/miniVggNet \
@@ -49,7 +57,11 @@ python /opt/vitis_ai/compiler/vai_c_tensorflow \
 mv  ./compile/cifar10/miniVggNet/dpu_miniVggNet_0.elf ./target_zcu104/cifar10/miniVggNet/model/nor_dpu_miniVggNet_0.elf
 
 #debug mode
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/cifar10/miniVggNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/cifar10/miniVggNet \
@@ -64,7 +76,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: miniGoogleNet  on CIFAR10"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/cifar10/miniGoogleNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/cifar10/miniGoogleNet \
@@ -79,7 +95,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: miniResNet  on CIFAR10"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/cifar10/miniResNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/cifar10/miniResNet \

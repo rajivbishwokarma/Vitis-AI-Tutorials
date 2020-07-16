@@ -23,7 +23,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: LeNet on FMNIST"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/fmnist/LeNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/fmnist/LeNet \
@@ -38,7 +42,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: miniVggNet  on FMNIST"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/fmnist/miniVggNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/fmnist/miniVggNet \
@@ -53,7 +61,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: miniGoogleNet  on FMNIST"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/fmnist/miniGoogleNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/fmnist/miniGoogleNet \
@@ -68,7 +80,11 @@ echo " "
 echo "##########################################################################"
 echo "COMPILE WITH Vitis AI: miniResNet  on FMNIST"
 echo "##########################################################################"
-python /opt/vitis_ai/compiler/vai_c_tensorflow \
+# for Vitis AI == 1.0
+#python /opt/vitis_ai/compiler/vai_c_tensorflow \
+
+# for Vitis AI >= 1.1
+vai_c_tensorflow \
        --frozen_pb=./quantized_results/fmnist/miniResNet/deploy_model.pb \
        --arch /opt/vitis_ai/compiler/arch/dpuv2/ZCU104/ZCU104.json \
        --output_dir=compile/fmnist/miniResNet \

@@ -10,13 +10,10 @@
 
 ### Current status
 
-1. Tested with Vitis AI 1.0
+1. Tested with Vitis AI 1.0 and 1.1
 
-2. Tested in hardware on ZCU102 (default) and ZCU104 boards
+2. Tested in hardware on ZCU102 (both Vitis AI 1.0 and 1.1) and ZCU104 boards (only with 1.0 on the cifar10)
 
-3. Date: 14 March 2020
-
-Any questions, comments or errors found - please email me directly: [Daniele Bagni](mailto:danieleb@xilinx.com)
 
 # Introduction
 
@@ -32,13 +29,16 @@ Once the selected CNN has been correctly trained in Keras, the [HDF5](https://ww
 
 - An Ubuntu 16.04 host PC with Python 3.6  and its package ``python3.6-tk`` installed (this last one installed with ``sudo apt-get install python3.6-tk``);
 
-- [Vitis AI stack release 1.0](https://github.com/Xilinx/Vitis-AI) from [www.github.com/Xilinx](https://www.github.com/Xilinx). In particular, refer to the [Vitis AI User Guide UG1414 v1.0](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf) for the installation guidelines and note that you need to download the two containers available from [docker hub](https://hub.docker.com/r/xilinx/vitis-ai/tags):
+- [Vitis AI stack release 1.0](https://github.com/Xilinx/Vitis-AI/tree/v1.0) from [www.github.com/Xilinx](https://www.github.com/Xilinx). In particular, refer to the [Vitis AI User Guide UG1414 v1.0](https://www.xilinx.com/support/documentation/sw_manuals/vitis_ai/1_0/ug1414-vitis-ai.pdf) for the installation guidelines and note that you need to download the two containers available from [docker hub](https://hub.docker.com/r/xilinx/vitis-ai/tags):
   - **tools container** with tag ``tools-1.0.0-cpu``, here ``cpu`` means that this environment runs on the host PC only with CPU support (in other words without any GPU need). Note also that UG1414 explains how to build your own container with GPU support;
   - **runtime container** with tag ``runtime-1.0.1-cpu``, note that you need this container only once to prepare SD card content of the target board, then you will compile all the applications directly on the target board itself, which means you do not cross-compile them from the host PC.
 
   - Vitis AI Evaluation boards that contain a pre-built working design with the [DPU-v2](https://github.com/Xilinx/Vitis-AI/tree/master/DPU-TRD), either:
     - the (default) [ZCU102](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html) board with its [zcu102 image file](https://www.xilinx.com/bin/public/openDownload?filename=xilinx-zcu102-dpu-v2019.2.img.gz), or
     - the (alternative) [ZCU104](https://www.xilinx.com/products/boards-and-kits/zcu104.html) board with its [zcu104 image file](https://www.xilinx.com/bin/public/openDownload?filename=xilinx-zcu104-dpu-v2019.2.img.gz).
+
+
+- With few changes, explained in the last part of the following section, this tutorial can work also with [Vitis AI stack release 1.1](https://github.com/Xilinx/Vitis-AI).
 
 - Familiarity with Deep Learning principles.
 
@@ -76,6 +76,12 @@ Note that both the two containers map the shared folder ``/workspace`` with the 
 The docker container do not have any graphic editor, so it is recommended that you work with two terminals and you point to the same folder, in one terminal you use the docker container commands and in the other terminal you open any graphic editor you like.
 
 
+Note that docker does not have an automatic garbage collection system as of now. You can use this command to do a manual garbage collection:
+```
+docker rmi -f $(docker images -f "dangling=true" -q)
+```
+
+
 
 ### Install Missing Packages on the Vitis AI Tools Container
 
@@ -90,7 +96,7 @@ conda install seaborn
 conda install pycairo==1.18.2
 # you cannot install next packages with conda, so use pip instead
 pip install imutils==0.5.1
-pip install keras=2.2.4
+pip install keras==2.2.4
 conda deactivate
 exit # to exit from root
 conda activate vitis-ai-tensorflow # as normal user, enter into Vitis AI TF (anaconda-based) virtual environment
@@ -159,6 +165,52 @@ At the end of this procedure you should see something as illustrated in the scre
 Note also that either [target_zcu102/common](files/target_zcu102/common) or [target_zcu104/common](files/target_zcu104/common) folder of this repository is a copy respectively of either [mpsoc/dnndk_samples_zcu102/common](https://github.com/Xilinx/Vitis-AI/tree/master/mpsoc/dnndk_samples_zcu102/common) or [mpsoc/dnndk_samples_zcu104/common](https://github.com/Xilinx/Vitis-AI/tree/master/mpsoc/dnndk_samples_zcu104/common) folder, just for your comfort.
 
 
+### Changes for Vitis AI 1.1
+
+There are few differences between Vitis AI 1.0 and 1.1 releases for what concerns MPSoC devices:
+
+1. you have to use the proper Docker Image for Vitis AI 1.1
+
+  ```
+  xilinx/vitis-ai-gpu       latest                            61872b030321        2 weeks ago         14.5GB
+  ```
+
+  which is different from the images associated with 1.0:
+
+  ```
+  xilinx/vitis-ai           tools-1.0.0-cpu                   37ff1cd99ecb        3 months ago        8.59GB
+  xilinx/vitis-ai           tools-1.0.0-gpu                   1b45847f369d        3 months ago        12GB
+  ```
+
+2. You have to follow the Vitis AI 1.1 instructions for [Setting Up the Evaluation Boards](https://www.xilinx.com/html_docs/vitis_ai/1_1/yjf1570690235238.html).
+
+3. Starting from Vitis AI 1.1 release there is no more Docker Runtime Container, and you can cross compile the ``elf`` files directly from the host PC to the target board. You have to execute all the instructions of [Legacy DNNDK examples](https://www.xilinx.com/html_docs/vitis_ai/1_1/ump1570690283280.html) to setup ``petalinux/2019.2`` and all the DNNDK application files and libraries, so that you can finally run everything on your target board.
+In the following of this tutorial it is assumed that ``petalinux`` is installed into ``/opt/petalinux/2019.2`` of your host PC.
+
+
+Then, the Vitis AI 1.1 flow is basically the same of 1.0, the only difference is that in the three ``run_*.sh`` scripts you have to replace the line
+
+```bash
+python /opt/vitis_ai/compiler/vai_c_tensorflow # vitis-ai 1.0 \
+```
+
+with the following line
+
+```bash
+vai_c_tensorflow # vitis-ai 1.1 \
+```
+
+For miniResNet CNN, you have to change one line in the ``*_tf_main.cc`` files of both ``cifar10`` and ``fmnist`` subdirectories in the [target_zcu102](files/target_zcu102) and [target_zcu104](files/target_zcu104) folders, from
+```c++
+#define CONV_INPUT_NODE "batch_normalization_1_FusedBatchNorm_1_add"   //for Vitis AI == 1.0
+```
+to
+```c++
+#define CONV_INPUT_NODE "batch_normalization_1_FusedBatchNormV3_1_add" //for Vitis AI >= 1.1
+```
+
+A part for the above changes, all the rest of the flow (that is, the python and shell script files) used in this tutorial with Vitis AI 1.0 works also with  Vitis AI 1.1.
+
 
 # The Main Flow
 
@@ -172,7 +224,7 @@ source ./0_generate_images.sh # generate images of both datasets
 ```
 2. Train the CNNs in Keras and generate the HDF5 weights model. See [Train the CNN](#2-train-the-cnn) for more information. From the host PC, run the following  commands:
 ```
-source ./1_fmnist_train.sh  #only for Fashion-MNIST
+source ./1_fmnist_train.sh  #only for Fashion-MNISTxilinx/vitis-ai-gpu             latest
 source ./1_cifar10_train.sh #only for CIFAR-10
 ```
 3. Convert into TF checkpoints and inference graphs. See [Create TF Inference Graphs from Keras Models](#3-create-tf-inference-graphs-from-keras-models) for more information. From the host PC, run the following  commands:
@@ -264,7 +316,7 @@ The model scheme of ```LeNet``` has 6,409,510 parameters as shown in the followi
 ![figure](files/doc/images/bd_LeNet.png)
 
 Once the training is complete, you will get the average top-1 accuracy as reported in the
-[1_train_fashion_mnist_LeNet_logfile.txt](files/rpt/fmnist/1_train_fashion_mnist_LeNet_logfile.txt) logfile.
+[logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt) logfile.
 
 For more details about this custom CNN and its training procedure, read the "Starter Bundle" of the [Deep Learning for Computer Vision with Python](https://www.pyimagesearch.com/deep-learning-computer-vision-python-book/) books by Dr. Adrian Rosebrock.
 
@@ -277,7 +329,7 @@ The model scheme of `miniVggNet` has 2,170,986 parameters as shown in the follow
 ![figure](files/doc/images/bd_miniVggNet.png)
 
 Once the training is complete, you will get the average top-1 accuracy as reported in the
-[1_train_fashion_mnist_miniVggNet_logfile.txt](files/rpt/fmnist/1_train_fashion_mnist_miniVggNet_logfile.txt) logfile and also illustrated by the learning curves:
+[logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt) logfile and also illustrated by the learning curves:
 
 ![figure](files/doc/images/miniVggNet_plot.png)
 
@@ -292,7 +344,7 @@ The model scheme of ```miniGoogleNet``` has 1,656,250 parameters, as shown in th
 ![figure](files/doc/images/bd_miniGoogleNet.png)
 
 Once the training is complete, you will get the average top-1 accuracy as reported in the
-[1_train_fashion_mnist_miniGoogleNet_logfile.txt](files/rpt/fmnist/1_train_fashion_mnist_miniGoogleNet_logfile.txt) logfile and also illustrated by the learning curves:
+[logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt) logfile and also illustrated by the learning curves:
 
 ![figure](files/doc/images/miniGoogleNet_plot.png)
 
@@ -308,7 +360,7 @@ The model scheme of ```miniResNet``` has  886,102 parameters, as shown in the fo
 ![figure](files/doc/images/bd_miniResNet.png)
 
 Once the training is complete, you will get the average top-1 accuracy as reported
-in the [1_train_fashion_mnist_miniResNet_logfile.txt](files/rpt/fmnist/1_train_fashion_mnist_miniResNet_logfile.txt) logfile
+in the [logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt) logfile
 and also reported by the learning curves:
 
 ![figure](files/doc/images/miniResNet_plot.png)
@@ -317,7 +369,7 @@ and also reported by the learning curves:
 
 The script [2_fmnist_Keras2TF.sh](files/2_fmnist_Keras2TF.sh) gets the computation graph of the TF backend representing the Keras model which includes the forward pass and training related operations.
 
-The output files of this process, ``infer_graph.pb`` and ``float_model.chkpt.*``, will be stored in the folder [tf_chkpts](files/tf_chkpts/) (actually empty to save disk space). The generated logfile in the [rpt](files/rpt) folder also contains the TF input and output names that will be needed for [Freeze the TF Graphs](#freeze-the-tf-graphs). For example, in the case of ``miniVggNet``, such nodes are named ``conv2d_1_input`` and ``activation_6/Softmax`` respectively, as reported in the [2_keras2TF_graph_conversion_mVggNet_logfile.txt](files/rpt/fmnist/2_keras2TF_graph_conversion_miniVggNet_logfile.txt) file.
+The output files of this process, ``infer_graph.pb`` and ``float_model.chkpt.*``, will be stored in the folder [tf_chkpts](files/tf_chkpts/) (actually empty to save disk space). The generated logfile in the [rpt](files/rpt) folder also contains the TF input and output names that will be needed for [Freeze the TF Graphs](#freeze-the-tf-graphs). For example, in the case of ``miniVggNet``, such nodes are named ``conv2d_1_input`` and ``activation_6/Softmax`` respectively, as reported in the [logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt) file.
 
 # 4 Freeze the TF Graphs
 
@@ -341,8 +393,7 @@ print ("\n TF output node name:")
 print(model.outputs)
 ```
 
-With the Fashion-MNIST dataset, the frozen graphs evaluation generates top-1 prediction accuracy as reported in the files [3b_evaluate_frozen_graph_LeNet_logfile.txt](files/rpt/fmnist/3b_evaluate_frozen_graph_LeNet_logfile.txt), [3b_evaluate_frozen_graph_miniVggNet_logfile.txt](files/rpt/fmnist/3b_evaluate_frozen_graph_miniVggNet_logfile.txt),
-[3b_evaluate_frozen_graph_miniGoogleNet_logfile.txt](files/rpt/fmnist/3b_evaluate_frozen_graph_miniGoogleNet_logfile.txt), and [3b_evaluate_frozen_graph_miniResNet_logfile.txt](files/rpt/fmnist/3b_evaluate_frozen_graph_miniResNet_logfile.txt).
+With the Fashion-MNIST dataset, the frozen graphs evaluation generates top-1 prediction accuracy as reported in the file [logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt).
 
 # 5 Quantize the Frozen Graphs
 
@@ -352,8 +403,7 @@ source ./4a_fmnist_quant.sh
 source ./4b_fmnist_evaluate_quantized_graph.sh
 ```
 
-With the Fashion-MNIST dataset, the quantized graphs evaluation generates top-1 prediction accuracy as reported in the files [4b_evaluate_quantized_graph_LeNet_logfile.txt](files/rpt/fmnist/4b_evaluate_quantized_graph_LeNet_logfile.txt), [4b_evaluate_quantized_graph_miniVggNet_logfile.txt](files/rpt/fmnist/4b_evaluate_quantized_graph_miniVggNet_logfile.txt),
-[4b_evaluate_quantized_graph_miniGoogleNet_logfile.txt](files/rpt/fmnist/4b_evaluate_quantized_graph_miniGoogleNet_logfile.txt) and  [4b_evaluate_quantized_graph_miniResNet_logfile.txt](files/rpt/fmnist/4b_evaluate_quantized_graph_miniResNet_logfile.txt).
+With the Fashion-MNIST dataset, the quantized graphs evaluation generates top-1 prediction accuracy as reported in the file [logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt).
 
 
 # 6 Compile the Quantized Models
@@ -365,7 +415,7 @@ source ./5_fmnist_vai_compile.sh
 This file has to be linked with the C++ application directly on the target board OS environment. For example, in case of ``LeNet`` for Fashion-MNIST, the ``elf`` file is named ``dpu_LeNet_0.elf``. A similar nomenclature is applied for the other CNNs.
 
 Note that the Vitis AI Compiler tells you the names of the input and output nodes of the CNN that will be effectively implemented as a kernel in the DPU, therefore whatever layer remains out of such nodes it has to be executed in the ARM CPU as a software kernel.
-This can be easily understood looking at the logfile of this step, for example [5_vai_compile_Lenet_logfile.txt](files/rpt/fmnist/5_vai_compile_Lenet_logfile.txt) in case of `LeNet` CNN:
+This can be easily understood looking at the logfile of this step, for example [logfile_host_run_all.txt](files/rpt/logfile_host_run_all.txt) in case of `LeNet` CNN:
 ```text
 Input Node(s)             (H*W*C)
 conv2d_2_convolution(0) : 32*32*3
@@ -565,7 +615,7 @@ With this command, the ``fmnist_test.tar`` file with the 5000 test images will b
 For each CNN, the whole application is then built with the ``make`` utility and finally launched, the effective top-5 classification accuracy is checked a python script like [check_runtime_top5_fashionmnist.py](files/target_zcu102/fmnist/LeNet/check_runtime_top5_fashionmnist.py).
 Another script like [run_target.sh](files/target_zcu102/fmnist/LeNet/run_target.sh) then re-compiles the C++ code to measure the effective fps by calling, under the hood, a script like [run_fps_LeNet.sh](files/target_zcu102/fmnist/LeNet/run_fps_LeNet.sh) script.
 
-The  [logfile_run_fmnist.txt](files/rpt/fmnist/logfile_run_fmnist.txt) contains all the top-1 accuracy and fps performance of the four CNNs on the ZCU102 board.
+The  [logfile_zcu102_fmnist.txt](files/rpt/logfile_zcu102_fmnist.txt) contains all the top-1 accuracy and fps performance of the four CNNs on the ZCU102 board.
 
 
 
@@ -846,6 +896,8 @@ Daniele Bagni
 DSP / ML Specialist for EMEA
 Xilinx Milan office (Italy)
 ```
+
+
 
 <hr/>
 <p align="center"><sup>Copyright&copy; 2019 Xilinx</sup></p>

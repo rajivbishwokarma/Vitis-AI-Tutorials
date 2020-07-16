@@ -17,11 +17,6 @@
 
 CNN=miniGoogleNet
 
-cp ./src/fps_tf_main.cc ./tf_main.cc
-make clean
-make
-mv ./${CNN} ./fps_${CNN}
-
 echo " "
 echo "CNN 1"
 ./fps_${CNN} 1

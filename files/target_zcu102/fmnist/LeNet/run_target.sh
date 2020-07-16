@@ -15,24 +15,20 @@
 ## under the License.
 
 
+CNN=LeNet
 
 ln -nsf ../../fmnist_test ./test
 
-CNN=LeNet
-
-## compile the executable for target board
-cp ./src/top5_tf_main.cc ./tf_main.cc
-make
-
 ## launch the executable and collect report
-./${CNN} 1 2>&1 | tee ./rpt/logfile_top5_${CNN}.txt
+./top5_${CNN} 1 2>&1 | tee ./rpt/logfile_top5_${CNN}.txt
 
-## launch python script to check top-5 accuracy
-python3 ./check_runtime_top5_fashionmnist.py -i ./rpt/logfile_top5_${CNN}.txt  2>&1 | tee ./rpt/top5_accuracy_fmnist_${CNN}.txt
+## launch python3 script to check top-5 accuracy
+python3 ./check_runtime_top5_fashionmnist.py -i ./rpt/logfile_top5_${CNN}.txt  2>&1 | tee ./rpt/top5_accuracy_cifar10_${CNN}.txt
 
 
 ## launch script to check fps
-source ./run_fps_${CNN}.sh 2>&1 | tee ./rpt/fps_fmnist_${CNN}.txt
+source ./run_fps_${CNN}.sh 2>&1 | tee ./rpt/fps_cifar10_${CNN}.txt
+
 
 ## clean up files
 make clean

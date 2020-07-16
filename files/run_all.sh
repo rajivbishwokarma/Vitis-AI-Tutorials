@@ -15,7 +15,7 @@
 ## under the License.
 
 # author daniele.bagni@xilinx.com
-# date: 14 March 2020
+# date: 1 July 2020
 
 #dos2unix conversion
 for file in $(find $PWD -name "*.sh"); do
@@ -30,7 +30,7 @@ done
 ##################################################################################
 
 # training from scratch with CIFAR10
-#source ./1_cifar10_train.sh
+source ./1_cifar10_train.sh
 
 # convert Keras model into TF inference graph
 source ./2_cifar10_Keras2TF.sh
@@ -58,9 +58,11 @@ tar -cvf cifar10_test.tar ./dataset/cifar10/test
 cp ./cifar10_test.tar ./target_zcu102/
 mv ./cifar10_test.tar ./target_zcu104/
 
+
 ##################################################################################
 # training from scratch with Fashion-MNIST
-#source ./1_fmnist_train.sh
+source ./1_fmnist_train.sh
+
 
 # convert Keras model into TF inference graph
 source ./2_fmnist_Keras2TF.sh
@@ -84,6 +86,6 @@ source ./5_fmnist_vai_compile.sh
 source ./5_fmnist_vai_compile_zcu104.sh
 
 ## copy test images into target board
-#tar -cvf fmnist_test.tar ./dataset/fmnist/test
-#cp ./fmnist_test.tar ./target_zcu102/
-#mv ./fmnist_test.tar ./target_zcu104/
+tar -cvf fmnist_test.tar ./dataset/fashion-mnist/test
+cp ./fmnist_test.tar ./target_zcu102/
+mv ./fmnist_test.tar ./target_zcu104/

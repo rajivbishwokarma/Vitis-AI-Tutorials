@@ -17,11 +17,6 @@
 
 CNN=miniVggNet
 
-cp ./src/fps_tf_main.cc ./tf_main.cc
-make clean
-make
-mv ./${CNN} ./fps_${CNN}
-
 echo " "
 echo "CNN 1"
 ./fps_${CNN} 1
@@ -47,3 +42,13 @@ echo " "
 echo "CNN 8"
 ./fps_${CNN} 8
 echo " "
+
+: '
+echo " "
+echo "CNN 1 in debug mode"
+cp ./model/dbg_dpu_miniVggNet_0.elf ./model/dpu_miniVggNet_0.elf
+make clean
+make
+mv ./${CNN} ./fps_${CNN}
+./fps_${CNN} 1
+'

@@ -20,12 +20,8 @@ CNN=miniResNet
 
 ln -nsf ../../cifar10_test ./test
 
-## compile the executable for target board
-cp ./src/top5_tf_main.cc ./tf_main.cc
-make
-
 ## launch the executable and collect report
-./${CNN} 1 2>&1 | tee ./rpt/logfile_top5_${CNN}.txt
+./top5_${CNN} 1 2>&1 | tee ./rpt/logfile_top5_${CNN}.txt
 
 ## launch python3 script to check top-5 accuracy
 python3 ./check_runtime_top5_cifar10.py -i ./rpt/logfile_top5_${CNN}.txt  2>&1 | tee ./rpt/top5_accuracy_cifar10_${CNN}.txt

@@ -52,7 +52,8 @@ int threadnum;
 
 #define KERNEL_CONV "miniResNet_0"
 
-#define CONV_INPUT_NODE "batch_normalization_1_FusedBatchNorm_1_add"
+#define CONV_INPUT_NODE "batch_normalization_1_FusedBatchNormV3_1_add"  //for Vitis AI >= 1.1
+//#define CONV_INPUT_NODE "batch_normalization_1_FusedBatchNorm_1_add"  //for Vitis AI == 1.0
 #define CONV_OUTPUT_NODE "dense_1_MatMul"
 
 const string baseImagePath = "./test/";
