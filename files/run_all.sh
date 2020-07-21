@@ -35,7 +35,7 @@ source ./7_make_target.sh
 
 # run the application - requires a U50 to be connected
 # run from inside Vitis-AI docker container
-#source ./alveo_hbm_setup.sh
-#cd ./build/target
-#/usr/bin/python3 app_mt.py -t 4 -m model_dir
+source ./U50_overlay.sh
+cd ./build/target
+/usr/bin/python3 app_mt.py -t 4 -m model_dir/densenetx.xmodel
 
