@@ -29,12 +29,10 @@ rm -rf U50_xclbin
 #--------------------------
 # VART setup
 #--------------------------
-sudo dpkg -i ./libvart-1.1.0-Linux-build48.deb
-
-#wget https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.1.2.tar.gz -O vitis-ai-runtime-1.1.2.tar.gz
-#tar -xzvf vitis-ai-runtime-1.1.2.tar.gz
-#sudo dpkg -i ./vitis-ai-runtime-1.1.2/VART/X86_64/libvart-1.1.0-Linux-build*.deb
-#rm -rf vitis-ai-runtime-1.1.2*
+wget https://www.xilinx.com/bin/public/openDownload?filename=vitis-ai-runtime-1.1.2.tar.gz -O vitis-ai-runtime-1.1.2.tar.gz
+tar -xzvf vitis-ai-runtime-1.1.2.tar.gz
+sudo dpkg -i ./vitis-ai-runtime-1.1.2/VART/X86_64/libvart-1.1.0-Linux-build*.deb
+rm -rf vitis-ai-runtime-1.1.2*
 
 export LD_LIBRARY_PATH=/opt/xilinx/xrt/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:/opt/vitis_ai/conda/envs/vitis-ai-tensorflow/lib/
 cd /workspace
