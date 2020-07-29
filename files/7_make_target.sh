@@ -22,11 +22,11 @@ echo "-----------------------------------------"
 
 # remove previous results
 rm -rf ${TARGET}
+mkdir -p ${TARGET}/model_dir
 
-# copy target template to build folder
-cp -ar ${TARGET_TEMPLATE} ${BUILD}
-mv ${BUILD}/target_template ${TARGET}
-echo "  Copied target template to target folder"
+# copy application to build folder
+cp ${APP}/*.py ${TARGET}/.
+echo "  Copied python application to target folder"
 
 
 # copy elf to target folder

@@ -18,6 +18,10 @@
 Trains the DenseNetX model on the CIFAR-10 dataset
 '''
 
+'''
+Author: Mark Harvey
+'''
+
 
 import numpy as np
 import os
@@ -27,7 +31,7 @@ import argparse
 from datadownload import datadownload
 
 # Silence TensorFlow messages
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # workaround for TF1.15 bug "Could not create cudnn handle: CUDNN_STATUS_INTERNAL_ERROR"
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'

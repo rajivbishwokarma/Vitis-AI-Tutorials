@@ -14,6 +14,16 @@
  limitations under the License.
 '''
 
+'''
+Tensorflow graph evaluation
+'''
+
+
+'''
+Autor: Mark Harvey
+'''
+
+
 
 import sys
 import os
@@ -24,7 +34,7 @@ import numpy as np
 from progressbar import ProgressBar
 
 # reduce TensorFlow messages in console
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # workaround for TF1.15 bug "Could not create cudnn handle: CUDNN_STATUS_INTERNAL_ERROR"
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
@@ -58,9 +68,9 @@ def graph_eval(input_graph_def, graph, input_node, output_node, batchsize):
     ground_truth_label = tf.argmax(labels, 1, output_type=tf.int32)
 
     # Define the metric and update operations
-    tf_metric, tf_metric_update = tf.compat.v1.metrics.accuracy(labels=ground_truth_label,
-                                                                predictions=predicted_logit,
-                                                                name='acc')
+    tf_acc, tf_acc_update = tf.compat.v1.metrics.accuracy(labels=ground_truth_label,
+                                                          predictions=predicted_logit,
+                                                          name='acc')
 
     with tf.compat.v1.Session() as sess:
         progress = ProgressBar()
@@ -77,8 +87,9 @@ def graph_eval(input_graph_def, graph, input_node, output_node, batchsize):
 
             # Run graph for accuracy node
             feed_dict={images_in: x_batch, labels: y_batch}
-            acc = sess.run(tf_metric_update, feed_dict)
+            acc = sess.run(tf_acc_update, feed_dict)
 
+        acc = sess.run(tf_acc)
         print ('Graph accuracy with validation dataset: {:1.4f}'.format(acc))
 
     return

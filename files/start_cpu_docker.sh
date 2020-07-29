@@ -15,7 +15,6 @@
 # limitations under the License.
 
 
-
-# example of how to start Vitis-AI 1.2 docker (GPU version)
-./docker_run.sh xilinx/vitis-ai-gpu:latest
+# example of how to start Vitis-AI 1.2 docker (CPU version)
+./docker_run.sh xilinx/vitis-ai-cpu:latest
 

@@ -15,7 +15,21 @@
 # limitations under the License.
 
 
+source ./0_setenv.sh
 
-# example of how to start Vitis-AI 1.2 docker (GPU version)
-./docker_run.sh xilinx/vitis-ai-gpu:latest
+# Uncomment the next line if you want to train from scratch
+#source ./1_train.sh
+
+# unzip & copy pretrained checkpoint
+# Comment this line if running training from scratch
+unzip -o pretrained/keras_model.zip -d ${BUILD}
+
+
+source ./2_keras2tf.sh
+source ./3_eval_frozen.sh
+source ./4_quant.sh
+source ./5_eval_quant.sh
+source ./6_compile.sh
+source ./7_make_target.sh
+
 

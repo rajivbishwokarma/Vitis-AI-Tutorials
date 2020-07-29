@@ -14,6 +14,15 @@
  limitations under the License.
 '''
 
+'''
+Image pre-processing for quantization
+'''
+
+'''
+Author: Mark Harvey
+'''
+
+
 import os
 import cv2
 
