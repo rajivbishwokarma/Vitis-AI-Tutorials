@@ -17,7 +17,7 @@ The dataset used in this example is [Kaggle's dogs-vs-cats](https://www.kaggle.c
 
 
 # Current Status
-Tested with Vitis AI 1.2 on Alveo U50 & ZCU102
++ Tested with Vitis AI 1.2 on Alveo U50 & ZCU102
 
 
 # Introduction
@@ -91,6 +91,14 @@ For more details, refer to the latest version of the *Vitis AI User Guide* ([UG1
 
 This repository should be downloaded to the host machine as a zip file and then unzipped to a folder, or cloned using the ``git clone`` command from a terminal.
 
+Note that each Vitis-AI tutorial is provided as a separate git branch, so the clone command should specify the correct branch and the target folder you want to clone to:
+
+
+```shell
+ git clone -b Moving-Edge-Cloud https://github.com/Xilinx/Vitis-AI-Tutorials.git <target_folder_path>
+```
+
+
 Download the [Kaggle dog-vs-cats dataset](https://www.kaggle.com/c/dogs-vs-cats/data) - note that you will need to register and create an account on the Kaggle website  before being able to download the dataset.
 
 Move the downloaded dogs-vs-cats.zip file into the 'files' folder of the design repository (i.e the same folder as the python (.py) and shell (.sh) scripts).
@@ -98,8 +106,7 @@ Move the downloaded dogs-vs-cats.zip file into the 'files' folder of the design 
 Open a linux terminal, cd into the repository folder then into the 'files' folder. Start the Vitis AI docker - if you have a GPU in the host system, it is recommended that you use the GPU version of the docker container. If you intend running the model training, you will definitely need the GPU docker container. If you are going to skip the training phase, then the CPU docker container will be sufficient:
 
 
-```
-shell
+```shell
 # navigate to densenet tutorial folder
 cd <path_to_densenet_design>/files
 
@@ -113,8 +120,7 @@ source ./start_cpu_docker.sh
 The docker container will start and you should see something like this in the terminal:
 
 
-```
-shell
+```shell
 ==========================================
 __      ___ _   _                   _____
 \ \    / (_) | (_)            /\   |_   _|
@@ -137,6 +143,12 @@ For Neptune Workflows do:
 mharvey@XITMHARVEY33:/workspace$
 ```
 
+>:bulb: If you get a "Permission Denied" error when running the start_gpu_docker.sh or start_cpu_docker.sh scripts, it is almost certainly because the docker_run.sh script is not set to be executable. You can fix this by running the following command:
+>
+>```shell
+> chmod +x ./docker_run.sh
+>```
+
 Now run the environment setup script:  `source ./0_setenv.sh`
 
 This will set up all the environment variables (..mainly pointers to folder and files..) most of which users can edit as required. It will also create the folders for the logs and the trained keras checkpoint.
@@ -144,8 +156,7 @@ This will set up all the environment variables (..mainly pointers to folder and 
 The `0_setenv.sh script` also activates the 'vitis-ai-tensorflow' TensorFlow conda environment, so you should now see that the terminal prompt looks like this:
 
 
-```
-shell
+```shell
 (vitis-ai-tensorflow) mharvey@XITMHARVEY33:/workspace$
 ```
 
@@ -312,8 +323,7 @@ With the target folder copied to the SD Card and the ZCU102 booted, you can issu
 The application can be started by navigating into the target_zcu102 folder (`cd target_zcu102`) and then issuing the command ``python3 app_mt.py -m model_dir/dpu_customcnn.elf``. The application will start and after a few seconds will show the throughput (in frames/sec) and the accuracy:
 
 
-```
-shell
+```shell
 $ python3 app_mt.py -m model_dir/dpu_customcnn.elf
 ----------------------------
 Command line options:
@@ -329,8 +339,7 @@ Correct: 2426 Wrong: 74 Accuracy: 0.9704
 
 For better throughput, the number of threads can be increased like this:
 
-```
-shell
+```shell
 $ python3 app_mt.py -t 8 -m model_dir/dpu_customcnn.elf
 ----------------------------
 Command line options:
@@ -353,8 +362,7 @@ To run step 8: ``source ./8_make_target_u50.sh`` and then follow the extra steps
 Run the `U50_overlay.sh` script (internet connection required) to download and install the correct overlay (note that the U50 will need to have been flashed with correct deployment shell - this should have been done in the 'Preparing the host machine and target boards' section above). The complete steps to run on the Alveo U50 are as follows:
 
 
-```
-shell
+```shell
 source ./U50_overlay.sh
 cd ./build/target_u50
 /usr/bin/python3 app_mt.py -m model_dir/customcnn.xmodel
@@ -363,8 +371,7 @@ cd ./build/target_u50
 You should see something like this:
 
 
-```
-shell
+```shell
 mharvey@XITMHARVEY33:/workspace/build/target_u50$ /usr/bin/python3 app_mt.py -m model_dir/customcnn.xmodel
 Command line options:
  --image_dir :  images
@@ -379,8 +386,7 @@ Correct: 2426 Wrong: 74 Accuracy: 0.9704
 Similar to the ZCU102, the number of threads can be increased for higher throughput:
 
 
-```
-shell
+```shell
 mharvey@XITMHARVEY33:/workspace/build/target_u50$ /usr/bin/python3 app_mt.py -m model_dir/customcnn.xmodel -t 8
 Command line options:
  --image_dir :  images
