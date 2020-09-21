@@ -16,29 +16,19 @@
 
 # Author: Mark Harvey
 
-# evaluate graph
-run_eval_graph() {
-  graph=$1
-  python eval_graph.py \
-    --graph        $graph \
-    --input_node   ${INPUT_NODE} \
-    --output_node  ${OUTPUT_NODE} \
-    --gpu          ${CUDA_VISIBLE_DEVICES}
-}
+
+source ./0_setenv.sh
+source ./1_train.sh
+source ./2_freeze.sh
+source ./3_eval_frozen_graph.sh
+source ./4_quant.sh
+source ./5_eval_quant_graph.sh
+source ./6_compile_zcu102.sh
+source ./6_compile_u50.sh
+source ./7_make_target_zcu102.sh
+source ./7_make_target_u50.sh
 
 
-
-eval() {
-  echo "-----------------------------------------"
-  echo " EVALUATING THE QUANTIZED GRAPH.."
-  echo "-----------------------------------------"
-
-  run_eval_graph ${QUANT}/quantize_eval_model.pb 2>&1 | tee ${LOG}/${EVAL_Q_LOG}
-
-
-  echo "-----------------------------------------"
-  echo "GRAPH EVAL COMPLETED"
-  echo "-----------------------------------------"
-}
-
-eval
+echo "--------------------------------------------"
+echo " TOOL FLOW COMPLETED"
+echo "--------------------------------------------"

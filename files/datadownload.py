@@ -14,8 +14,20 @@
  limitations under the License.
 '''
 
+'''
+Author: Mark Harvey
+'''
+
+import os
+
+# Silence TensorFlow messages
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+# workaround for TF1.15 bug "Could not create cudnn handle: CUDNN_STATUS_INTERNAL_ERROR"
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 
 import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 import numpy as np
 
 
@@ -37,19 +49,14 @@ def datadownload():
     # one-hot encode the labels
     y_train = tf.keras.utils.to_categorical(y_train, num_classes=10)
     y_test = tf.keras.utils.to_categorical(y_test, num_classes=10)
-    
-    # take 5000 images & labels from the train dataset to create a validation set
-    x_valid = x_train[55000:]
-    y_valid = y_train[55000:]
-    
-    # train dataset reduced to 55000 images
-    x_train = x_train[:55000]
-    y_train = y_train[:55000]
+       
+    # test dataset reduced to first 5000 images to simplify training & validation
+    x_test = x_test[:5000]
+    y_test = y_test[:5000]
 
     # reshape
     x_train = x_train.reshape(x_train.shape[0],28,28,1)
     x_test = x_test.reshape(x_test.shape[0],28,28,1)
-    x_valid = x_valid.reshape(x_valid.shape[0],28,28,1)
-    
+   
         
-    return (x_train,y_train), (x_test,y_test), (x_valid,y_valid)
+    return (x_train,y_train), (x_test,y_test)

@@ -15,11 +15,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Mark Harvey
 
 
 # freeze graph
 run_freeze_graph() {
-  mkdir -p ${FREEZE}
   freeze_graph \
     --input_graph      ${CHKPT_DIR}/${INFER_GRAPH_FILENAME} \
     --input_checkpoint ${CHKPT_DIR}/${CHKPT_FILENAME} \
@@ -30,11 +30,13 @@ run_freeze_graph() {
 
 
 
-
 freeze() {
   echo "-----------------------------------------"
   echo "FREEZE STARTED.."
   echo "-----------------------------------------"
+
+  rm -rf ${FREEZE}
+  mkdir -p ${FREEZE}
 
   run_freeze_graph 2>&1 | tee ${LOG}/${FREEZE_LOG}
 

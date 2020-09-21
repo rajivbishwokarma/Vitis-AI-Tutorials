@@ -14,22 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Mark Harvey
 
+wget --no-clobber https://www.xilinx.com/bin/public/openDownload?filename=alveo_xclbin-1.2.1.tar.gz -O alveo_xclbin-1.2.1.tar.gz
+tar xfz alveo_xclbin-1.2.1.tar.gz
+sudo cp -f ./alveo_xclbin-1.2.1/U50/6E300M/* /usr/lib
+#rm -rf alveo_xclbin-1.2.1*
 
-echo "--------------------------------------------"
-echo " TOOL FLOW STARTED.."
-echo "--------------------------------------------"
-
-source ./0_setenv.sh
-source ./1_train.sh
-source ./2_freeze.sh
-source ./3_eval_frozen_graph.sh
-source ./4_quant.sh
-source ./5_eval_quant_graph.sh
-source ./6_compile.sh
-source ./7_make_target.sh
-
-
-echo "--------------------------------------------"
-echo " TOOL FLOW COMPLETED - READY TO MAKE TARGET"
-echo "--------------------------------------------"

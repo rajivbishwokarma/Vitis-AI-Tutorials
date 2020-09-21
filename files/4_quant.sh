@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+# Author: Mark Harvey
 
 run_quant() {
 
@@ -39,7 +39,8 @@ run_quant() {
 	  --input_nodes        ${INPUT_NODE} \
 		--output_nodes       ${OUTPUT_NODE} \
 		--input_shapes       ${INPUT_SHAPE} \
-		--calib_iter         100
+		--calib_iter         100 \
+    --gpu                ${CUDA_VISIBLE_DEVICES}
 }
 
 
@@ -49,11 +50,13 @@ quant() {
   echo "QUANTIZE STARTED.."
   echo "-----------------------------------------"
 
+  rm -rf ${QUANT} 
   mkdir -p ${QUANT} 
 
   run_quant 2>&1 | tee ${LOG}/${QUANT_LOG}
 
-
+  rm -rf ${QUANT}/images
+  
   echo "-----------------------------------------"
   echo "QUANTIZED COMPLETED"
   echo "-----------------------------------------"

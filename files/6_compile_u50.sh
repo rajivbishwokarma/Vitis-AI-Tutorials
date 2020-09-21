@@ -14,31 +14,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Mark Harvey
+
+ARCH=/opt/vitis_ai/compiler/arch/DPUCAHX8H/U50/arch.json
+
+compile() {
+  vai_c_tensorflow \
+    --frozen_pb  ${QUANT}/quantize_eval_model.pb \
+    --arch       ${ARCH} \
+    --output_dir ${COMPILE_U50} \
+    --net_name   ${NET_NAME}
+}
 
 echo "-----------------------------------------"
-echo "MAKE TARGET STARTED.."
+echo "COMPILE U50 STARTED.."
 echo "-----------------------------------------"
 
-# remove previous results
-rm -rf ${TARGET}/dpuv2_rundir/*.so
-rm -rf ${TARGET}/*.elf
-rm -rf ${TARGET}/images
-mkdir -p ${TARGET}/images
-
-# copy elf to target folder
-cp ${COMPILE}/*.elf ${TARGET}/.
-echo "  Copied elf file(s) to target folder"
-
-# create image files and copy to target folder
-python generate_images.py  \
-    --dataset=mnist \
-    --image_dir=${TARGET}/images \
-    --image_format=jpg \
-    --max_images=${SDCARD_IMAGES}
-
-echo "  Copied images to target folder"
+rm -rf ${COMPILE_U50}
+mkdir -p ${COMPILE_U50}
+compile 2>&1 | tee ${LOG}/${COMP_LOG_U50}
 
 echo "-----------------------------------------"
-echo "MAKE TARGET COMPLETED"
+echo "COMPILE U50 COMPLETED"
 echo "-----------------------------------------"
-

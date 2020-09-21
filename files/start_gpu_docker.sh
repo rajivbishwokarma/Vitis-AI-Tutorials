@@ -16,29 +16,7 @@
 
 # Author: Mark Harvey
 
-# evaluate graph
-run_eval_graph() {
-  graph=$1
-  python eval_graph.py \
-    --graph        $graph \
-    --input_node   ${INPUT_NODE} \
-    --output_node  ${OUTPUT_NODE} \
-    --gpu          ${CUDA_VISIBLE_DEVICES}
-}
 
+# example of how to start Vitis-AI 1.2 docker (GPU version)
+./docker_run.sh xilinx/vitis-ai-gpu:latest
 
-
-eval() {
-  echo "-----------------------------------------"
-  echo " EVALUATING THE QUANTIZED GRAPH.."
-  echo "-----------------------------------------"
-
-  run_eval_graph ${QUANT}/quantize_eval_model.pb 2>&1 | tee ${LOG}/${EVAL_Q_LOG}
-
-
-  echo "-----------------------------------------"
-  echo "GRAPH EVAL COMPLETED"
-  echo "-----------------------------------------"
-}
-
-eval

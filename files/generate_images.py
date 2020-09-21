@@ -14,14 +14,15 @@
  limitations under the License.
 '''
 
-
+'''
+Author: Mark Harvey
+'''
 
 '''
 Converts Keras datasets in numpy array format to image files
 in .png or .jpg formats.
 
-Note that the MNIST and Fashion MNIST arrays are 2D arrays (single-channel) but
-will be converted to 3-channel RGB images.
+Note that the MNIST and Fashion MNIST arrays are 2D arrays (single-channel).
 
 
 Command line arguments:
@@ -32,7 +33,7 @@ Command line arguments:
 
 --subset : Convert training or test subset.
          : Only possible valid choices are 'train' or 'test'.
-         : Default is 'train'.
+         : Default is 'test'.
 
 --image_dir: Path to folder for saving the images and images list file.
            : If it doesn't already exist, it will be created.
@@ -119,7 +120,7 @@ def gen_images(dataset, subset, image_dir, image_list, label_list, max_images, i
   # Convert numpy arrays of dataset subset into image files.
   for i in range(len(data_array[:max_images])):
 
-    img_file=os.path.join(image_dir, classes[int(y_train[i])]+'_'+str(i)+'.'+image_format)
+    img_file=os.path.join(image_dir, classes[int(label_array[i])]+'_'+str(i)+'.'+image_format)
 
     if (one_chan == True):
       img = cv2.cvtColor(data_array[i], cv2.COLOR_GRAY2BGR)
@@ -145,8 +146,6 @@ def gen_images(dataset, subset, image_dir, image_list, label_list, max_images, i
   if label_list != '':
     fl.close()
 
-  print ('FINISHED GENERATING IMAGES')
-
   return
 
 
@@ -162,9 +161,9 @@ def main():
                   help='Dataset - valid choices are cifar10, cifar100, mnist, fashion_mnist. Default is mnist') 
   ap.add_argument('-s', '--subset',
                   type=str,
-                  default='train',
+                  default='test',
                   choices=['train','test'],
-                  help='Convert training or test subset - valid choices are train, test. Default is train') 
+                  help='Convert training or test subset - valid choices are train, test. Default is test') 
   ap.add_argument('-dir', '--image_dir',
                   type=str,
                   default='image_dir',

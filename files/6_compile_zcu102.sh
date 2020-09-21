@@ -14,30 +14,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Mark Harvey
 
-run_compile() {
-  vai_c_tensorflow \
-    --frozen_pb  ${QUANT}/deploy_model.pb \
-    --arch       ${ARCH} \
-    --output_dir ${COMPILE} \
-    --net_name   ${NET_NAME} \
-    --options    "{'mode':'${DPU_MODE}'}"
-}
+ARCH=/opt/vitis_ai/compiler/arch/DPUCZDX8G/ZCU102/arch.json
 
 
 compile() {
-
-  echo "-----------------------------------------"
-  echo "COMPILE STARTED.."
-  echo "-----------------------------------------"
-  
-  mkdir -p ${COMPILE}
-
-  run_compile 2>&1 | tee ${LOG}/${COMP_LOG} 
-
-  echo "-----------------------------------------"
-  echo "COMPILE COMPLETED"
-  echo "-----------------------------------------"
+  vai_c_tensorflow \
+    --frozen_pb  ${QUANT}/deploy_model.pb \
+    --arch       ${ARCH} \
+    --output_dir ${COMPILE_ZCU102} \
+    --net_name   ${NET_NAME}
 }
 
-compile
+echo "-----------------------------------------"
+echo "COMPILE ZCU102 STARTED.."
+echo "-----------------------------------------"
+
+rm -rf ${COMPILE_ZCU102}
+mkdir -p ${COMPILE_ZCU102}
+compile 2>&1 | tee ${LOG}/${COMP_LOG_ZCU102}
+
+echo "-----------------------------------------"
+echo "COMPILE ZCU102 COMPLETED"
+echo "-----------------------------------------"

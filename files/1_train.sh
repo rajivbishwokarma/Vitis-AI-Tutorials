@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Mark Harvey
+
 
 # train, evaluate & save trained model
 run_train() {  
@@ -26,7 +28,8 @@ run_train() {
     --batchsize          ${BATCHSIZE} \
     --output_ckpt_path   ${CHKPT_DIR}/${CHKPT_FILENAME} \
     --infer_graph_path   ${CHKPT_DIR}/${INFER_GRAPH_FILENAME} \
-    --tboard_path        ${TB_LOG}
+    --tboard_path        ${TB_LOG} \
+    --gpu                ${CUDA_VISIBLE_DEVICES}    
 }
 
 
@@ -35,16 +38,10 @@ train() {
   echo "TRAINING STARTED.."
   echo "-----------------------------------------"
 
-  # delete previous results
-  rm -rf ${BUILD}
-
-  # make folders
-  mkdir ${BUILD}
-  mkdir ${LOG}
-  mkdir -p ${TB_LOG}
+  rm -rf ${CHKPT_DIR}
   mkdir -p ${CHKPT_DIR}
-
-  # training
+  rm -rf ${TB_LOG}
+  mkdir -p ${TB_LOG}
   run_train 2>&1 | tee ${LOG}/${TRAIN_LOG}  
 
   echo "-----------------------------------------"

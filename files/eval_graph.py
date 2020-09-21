@@ -14,68 +14,79 @@
  limitations under the License.
 '''
 
+'''
+Author: Mark Harvey
+'''
 
 import sys
 import os
 import argparse
-import tensorflow as tf
 import numpy as np
 
-from progressbar import ProgressBar
+
+# Silence TensorFlow messages
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+# workaround for TF1.15 bug "Could not create cudnn handle: CUDNN_STATUS_INTERNAL_ERROR"
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
+
+import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from tensorflow.python.platform import gfile
 from datadownload import datadownload
 
 import tensorflow.contrib.decent_q
 
 
-# reduce TensorFlow messages in console
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
+def calc_acc(testdata,testlabels,predictions):
+    '''
+    Accuracy calculation
+    '''
+    correct_predictions = 0
+    wrong_predictions = 0
+    for i in range(len(testdata)):
+        if (predictions[i][0] == np.argmax(testlabels[i])):
+           correct_predictions += 1
+        else:
+            wrong_predictions += 1
+
+    # calculate accuracy
+    acc = (correct_predictions/len(testdata)) * 100
+
+    return acc
 
 
-def graph_eval(input_graph_def, graph, input_node, output_node, batchsize):
 
-    input_graph_def.ParseFromString(tf.gfile.GFile(graph, "rb").read())
+
+def graph_eval(input_graph_def, graph, input_node, output_node):
+
+    input_graph_def.ParseFromString(tf.io.gfile.GFile(graph, "rb").read())
 
     # CIFAR-10 dataset    
-    (x_train,y_train), (x_test,y_test), (x_valid,y_valid) = datadownload()
-
-    total_batches = int(len(x_valid)/batchsize)
+    (x_train,y_train), (x_test,y_test) = datadownload()
 
     tf.import_graph_def(input_graph_def,name = '')
 
     # Get input placeholders & tensors
-    images_in = tf.get_default_graph().get_tensor_by_name(input_node+':0')
-    labels = tf.placeholder(tf.int32,shape = [None,10])
+    images_in = tf.compat.v1.get_default_graph().get_tensor_by_name(input_node+':0')
+    labels = tf.compat.v1.placeholder(tf.int32, shape=[None,10], name='labels')
 
     # get output tensors
-    logits = tf.get_default_graph().get_tensor_by_name(output_node+':0')
-    predicted_logit = tf.argmax(input=logits, axis=1, output_type=tf.int32)
-    ground_truth_label = tf.argmax(labels, 1, output_type=tf.int32)
+    logits = tf.compat.v1.get_default_graph().get_tensor_by_name(output_node+':0')
+    predicted_logit = tf.compat.v1.argmax(input=logits, axis=3, output_type=tf.int32)
 
-    # Define the metric and update operations
-    tf_metric, tf_metric_update = tf.metrics.accuracy(labels=ground_truth_label,
-                                                      predictions=predicted_logit,
-                                                      name='acc')
-
-    with tf.Session() as sess:
-        progress = ProgressBar()
+    with tf.compat.v1.Session() as sess:
         
-        sess.run(tf.initializers.global_variables())
-        sess.run(tf.initializers.local_variables())
+        sess.run(tf.compat.v1.initializers.global_variables())
 
-        # process all batches
-        for i in progress(range(0,total_batches)):
+        # Run graph to get predictions
+        pred = sess.run(predicted_logit, feed_dict={images_in: x_test, labels: y_test})
+    
+    # iterate over the list of predictions and compare to ground truth
+    acc = calc_acc(x_test,y_test,pred)
 
-            # fetch a batch from validation dataset
-            x_batch, y_batch = x_valid[i*batchsize:i*batchsize+batchsize], \
-                               y_valid[i*batchsize:i*batchsize+batchsize]
-
-            # Run graph for accuracy node
-            feed_dict={images_in: x_batch, labels: y_batch}
-            acc = sess.run(tf_metric_update, feed_dict)
-
-        print ('Graph accuracy with validation dataset: {:1.4f}'.format(acc))
-
+    print('Graph accuracy: {:1.2f}'.format(acc),'%',flush=True)
+    
     return
 
 
@@ -97,15 +108,10 @@ def main():
                     type=str,
                     default='dense_1/BiasAdd',
                     help='output node.')
-    ap.add_argument('-b', '--batchsize',
-                    type=int,
-                    default=1,
-                    help='Evaluation batchsize, must be integer value. Default is 1')  
-    ap.add_argument('--gpu',
+    ap.add_argument('-g', '--gpu',
                     type=str,
                     default='0',
-                    help='gpu device id.')
-
+                    help='IDs of GPU cards to be used. Default is 0')
     args = ap.parse_args()  
 
     print('\n------------------------------------')
@@ -117,14 +123,17 @@ def main():
     print (' --graph      : ', args.graph)
     print (' --input_node : ', args.input_node)
     print (' --output_node: ', args.output_node)
-    print (' --batchsize  : ', args.batchsize)
     print (' --gpu        : ', args.gpu)
     print('------------------------------------\n')
 
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
+    os.environ["CUDA_DEVICE_ORDER"]='PCI_BUS_ID'
+    
+    # indicate which GPU to use
+    os.environ["CUDA_VISIBLE_DEVICES"]=args.gpu
+
     input_graph_def = tf.Graph().as_graph_def()
-    graph_eval(input_graph_def, args.graph, args.input_node, args.output_node, args.batchsize)
+    graph_eval(input_graph_def, args.graph, args.input_node, args.output_node)
 
 
 if __name__ ==  "__main__":

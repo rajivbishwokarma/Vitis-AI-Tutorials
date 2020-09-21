@@ -14,23 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+# Author: Mark Harvey
 
 # evaluate graph
 run_eval_graph() {
   graph=$1
   python eval_graph.py \
-    --graph=$graph \
-    --input_node=${INPUT_NODE} \
-    --output_node=${OUTPUT_NODE} \
-    --batchsize=100 \
-    --gpu=0
+    --graph         $graph \
+    --input_node    ${INPUT_NODE} \
+    --output_node   ${OUTPUT_NODE} \
+    --gpu           ${CUDA_VISIBLE_DEVICES}
 }
 
 
-
 eval() {
-
   echo "-----------------------------------------"
   echo " EVALUATING THE FROZEN GRAPH.."
   echo "-----------------------------------------"
