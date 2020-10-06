@@ -13,7 +13,10 @@ model {
   yolo_v3_param {
     num_classes: 20
     anchorCnt: 3
-    conf_threshold: 0.8
+    layer_name: "59"
+    layer_name: "67"
+    layer_name: "75"
+    conf_threshold: 0.3
     nms_threshold: 0.45
     biases: 10
     biases: 13
@@ -37,3 +40,5 @@ model {
    }
   is_tf : true
 }
+
+
