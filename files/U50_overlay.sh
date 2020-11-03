@@ -19,8 +19,9 @@
 # U50 overlay
 #--------------------------
 
-wget https://www.xilinx.com/bin/public/openDownload?filename=alveo_xclbin-1.2.0.tar.gz -O alveo_xclbin-1.2.0.tar.gz
-tar xfz alveo_xclbin-1.2.0.tar.gz
-sudo cp alveo_xclbin-1.2.0/U50/6E300M/* /usr/lib
-rm -rf alveo_xclbin-1.2.0*
+wget --no-clobber https://www.xilinx.com/bin/public/openDownload?filename=alveo_xclbin-1.2.1.tar.gz -O alveo_xclbin-1.2.1.tar.gz
+tar xfz alveo_xclbin-1.2.1.tar.gz
+sudo cp -f ./alveo_xclbin-1.2.1/U50/6E300M/* /usr/lib
+#rm -rf alveo_xclbin-1.2.1*
+
 
